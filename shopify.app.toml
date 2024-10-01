@@ -3,7 +3,7 @@
 client_id = "77e53684733f532fb1e88898becfeed3"
 name = "section-app"
 handle = "section-app-20"
-application_url = "https://mysql-athens-gravity-sight.trycloudflare.com"
+application_url = "https://starring-printer-atlanta-protocol.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products,write_themes"
 
 [auth]
 redirect_urls = [
-  "https://mysql-athens-gravity-sight.trycloudflare.com/auth/callback",
-  "https://mysql-athens-gravity-sight.trycloudflare.com/auth/shopify/callback",
-  "https://mysql-athens-gravity-sight.trycloudflare.com/api/auth/callback"
+  "https://starring-printer-atlanta-protocol.trycloudflare.com/auth/callback",
+  "https://starring-printer-atlanta-protocol.trycloudflare.com/auth/shopify/callback",
+  "https://starring-printer-atlanta-protocol.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

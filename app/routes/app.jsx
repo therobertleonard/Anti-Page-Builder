@@ -23,8 +23,6 @@ export default function App() {
         <Link to="/app" rel="home">
           Home
         </Link>
-        <Link to="/app/addCategory">Category Add</Link>
-        <Link to="/app/addSection">Section Add</Link>
         <Link to="/app/PurchasedSections">My Sections</Link>
       </NavMenu>
       <Outlet />
