@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.sqlite"
+}
+
+model Session {
+  id            String    @id
+  shop          String
+  state         String
+  isOnline      Boolean   @default(false)
+  scope         String?
+  expires       DateTime?
+  accessToken   String
+  userId        BigInt?
+  firstName     String?
+  lastName      String?
+  email         String?
+  accountOwner  Boolean   @default(false)
+  locale        String?
+  collaborator  Boolean?  @default(false)
+  emailVerified Boolean?  @default(false)
+}
+
+model Category {
+  id          String    @id @default(uuid())
+  name        String
+  description String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  sections    Section[] @relation("CategorySections")
+}
+
+model Section {
+  id         String   @id @default(uuid())
+  title      String
+  price      Float
+  features   String?
+  imageUrl   String?
+  template   String
+  categoryId String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  category   Category @relation("CategorySections", fields: [categoryId], references: [id])
+}
+
+model PaymentDetails {
+  id        Int              @id @default(autoincrement())
+  shopId    String           @unique
+  createdAt DateTime         @default(now())
+  sections  SectionPayment[]
+}
+
+model SectionPayment {
+  id        Int            @id @default(autoincrement())
+  chargeId  String
+  sectionId String
+  paymentId Int
+  payment   PaymentDetails @relation(fields: [paymentId], references: [id])
+}

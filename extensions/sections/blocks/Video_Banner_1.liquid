@@ -1,0 +1,436 @@
+<div class="an-cus-banner-wraper {% if block.settings.add_custom_class %}grid-video{% endif %}">
+  {%- if block.settings.mouse_scrol -%}
+    <div class="an-cus-mobile-scroll">
+      <img src="{{ block.settings.mou_img | img_url: 'master' }}" alt="">
+    </div>
+  {%- endif -%}
+
+  <div class="an-video-image-wraper">
+    {%- if block.settings.a_video != blank -%}
+      <video autoplay muted loop>
+        <source src="{{ block.settings.a_video }}">
+      </video>
+    {%- endif -%}
+  </div>
+
+  <div
+    class="an-cus-banner-wraper-overlay"
+    style="background-color:{{ block.settings.ov_bg }}; opacity:{{ block.settings.opacity }};"
+  ></div>
+
+  <div
+    class="page-width an-cus-banner {{ block.settings.jnsjnvsnv }} {{ block.settings.bot_con }}"
+    style="align-items:{{ block.settings.v_a }}; justify-content:{{ block.settings.h_a }};"
+  >
+    <div
+      class="an-cus-banner-content-wraper"
+      style="text-align:{{ block.settings.t_a }}; max-width:{{ block.settings.max_wdth }}px;"
+    >
+      {%- if block.settings.video_heading != blank -%}
+        <h1 style="color:{{ block.settings.cont_col }};">{{ block.settings.video_heading }}</h1>
+      {%- endif -%}
+      {%- if block.settings.video_sub_heading != blank -%}
+        <p style="color:{{ block.settings.cont_col }};">{{ block.settings.video_sub_heading }}</p>
+      {%- endif -%}
+
+      {%- if block.settings.video_button1 != blank -%}
+        <div
+          class="an-video-image-button-wraper"
+          style="text-align:{{ block.settings.t_a }}; justify-content:{{ block.settings.h_a }};"
+        >
+          <a
+            style="color:{{ block.settings.cont_co2 }}; background-color:{{ block.settings.color_accent1 }};"
+            href="{{ block.settings.video_button1_link }}"
+            class="an-cus-banner-button"
+          >
+            {{- block.settings.video_button1 -}}
+          </a>
+          <a
+            style="color:{{ block.settings.cont_col3 }}; background-color:{{ block.settings.color_accent2 }};"
+            href="{{ block.settings.video_button1_link1 }}"
+            class="an-cus-banner-button"
+          >
+            {{- block.settings.video_button2 -}}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<style>
+    .an-cus-banner-wraper .an-cus-mobile-scroll {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      height: 70px;
+      width: 70px;
+      opacity: 0;
+    }
+
+    .an-cus-banner {
+      height: 100%;
+      width: 100%;
+      position: relative;
+      display: flex;
+      padding-top: 6%;
+      padding-bottom: 6%;
+      min-height: 600px;
+    }
+
+    .an-cus-banner-wraper {
+      position: relative;
+    }
+
+    .an-cus-banner-wraper-overlay {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .an-video-image-wraper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .an-video-image-wraper video {
+      background-size: cover;
+      background-position: 50% 50%;
+      position: absolute;
+      margin: auto;
+      width: 100%;
+      height: 100%;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+    }
+
+    .an-video-image-wraper img {
+      object-position: center;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+    }
+
+    .an-video-image-button-wraper a.an-cus-banner-button:hover {
+      transition: 0.3s;
+    }
+
+    .an-video-image-button-wraper {
+      display: flex;
+      gap: 30px;
+    }
+
+    .an-cus-banner-content-wraper {
+      position: relative;
+      z-index: 2;
+    }
+
+    .an-cus-banner-content-wraper h1 {
+      font-size: 50px;
+      line-height: 64px;
+      margin: 0 0 10px;
+      letter-spacing: 0;
+      font-weight: 600;
+    }
+
+    .an-cus-banner-content-wraper p {
+      font-size: 18px;
+      line-height: 28px;
+      margin: 0;
+    }
+
+    .an-video-image-button-wraper {
+      margin-top: 30px;
+    }
+
+    .an-video-image-button-wraper a.an-cus-banner-button {
+      font-size: 20px;
+      line-height: 100%;
+      padding: 14px 32px;
+      transition: all 0.3s;
+      text-decoration: none;
+      font-weight: 600;
+      opacity: 1;
+      text-transform: uppercase;
+    }
+
+    .an-video-image-button-wraper a.an-cus-banner-button:hover {
+      background-color: #000 !important;
+      color: #fff !important;
+    }
+
+    @media (min-width: 1400px) {
+      .an-cus-banner {
+        padding-top: 6%;
+        padding-bottom: 6%;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .an-cus-banner-content-wraper {
+        max-width: unset !important;
+      }
+    }
+
+    @media (max-width: 800px) {
+      .an-cus-banner-wraper .an-cus-mobile-scroll {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .an-cus-banner {
+        min-height: 560px;
+        height: auto;
+        padding-top: 50px;
+      }
+
+      .an-cus-banner.bottom-content {
+        align-items: center !important;
+        padding-bottom: 50px;
+      }
+
+      .an-cus-banner.bottom-center {
+        align-items: center !important;
+        padding-bottom: 50px;
+      }
+
+      .an-cus-banner.bottom-top {
+        align-items: flex-start !important;
+        padding-bottom: 50px;
+      }
+
+      .an-cus-banner-content-wraper h1 {
+        font-size: 32px;
+        line-height: 42px;
+      }
+
+      .an-cus-banner-content-wraper p {
+        font-size: 15px;
+        line-height: 25px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      {%- if block.settings.a_m_image != blank -%}
+        .an-video-image-wraper img.an-video-image-desktop {
+          display: none;
+        }
+        .an-video-image-wraper img.an-video-image-mobile {
+          display: block;
+        }
+      {%- endif -%}
+    }
+
+  .grid-video {
+      border: none;
+      margin: 5% 3%;
+  }
+    .grid-video video {
+      border-radius: 40px;
+      padding: 10px;
+  }
+</style>
+
+<script>
+  $('.an-cus-banner-wraper .an-cus-mobile-scroll').delay(4000).animate({ opacity: '1' }, 500);
+</script>
+
+{% schema %}
+{
+  "name": "Video Banner",
+  "target": "section",
+  "settings": [
+    {
+      "type": "url",
+      "id": "a_video",
+      "label": "Video Url"
+    },
+    {
+      "type": "color",
+      "id": "ov_bg",
+      "label": "Overlay Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "opacity",
+      "max": 1,
+      "min": 0.0,
+      "step": 0.1,
+      "default": 0.5,
+      "label": "Overlay Opacity"
+    },
+    {
+      "type": "text",
+      "id": "video_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "video_sub_heading",
+      "label": "Subheading"
+    },
+    {
+      "type": "color",
+      "id": "cont_col",
+      "label": "Content Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "max_wdth",
+      "default": 450,
+      "max": 1000,
+      "min": 0,
+      "label": "Content Width",
+      "step": 50,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "bot_con",
+      "label": "Content on Mobile",
+      "default": "bottom-content",
+      "options": [
+        {
+          "label": "Bottom",
+          "value": "bottom-content"
+        },
+        {
+          "label": "Center",
+          "value": "bottom-center"
+        },
+        {
+          "label": "Top",
+          "value": "bottom-top"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "cont_co2",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "url",
+      "id": "video_button1_link",
+      "label": "Button 1 Link"
+    },
+    {
+      "type": "text",
+      "id": "video_button1",
+      "label": "Button 1"
+    },
+    {
+      "type": "color",
+      "id": "color_accent1",
+      "label": "Button Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "url",
+      "id": "video_button1_link1",
+      "label": "Button 2 Link"
+    },
+    {
+      "type": "text",
+      "id": "video_button2",
+      "label": "Button 2"
+    },
+    {
+      "type": "color",
+      "id": "cont_col3",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "color_accent2",
+      "label": "Button Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "select",
+      "id": "v_a",
+      "label": "Content Vertical Alignment",
+      "default": "center",
+      "options": [
+        {
+          "label": "Top",
+          "value": "flex-start"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Bottom",
+          "value": "flex-end"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "h_a",
+      "label": "Content Horizontal Alignment",
+      "default": "flex-start",
+      "options": [
+        {
+          "label": "Left",
+          "value": "flex-start"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "flex-end"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "t_a",
+      "label": "Text Alignment",
+      "default": "center",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "add_custom_class",
+      "label": "Add Custom Class"
+    }
+  ]
+}
+{% endschema %}

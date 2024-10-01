@@ -1,0 +1,8 @@
+-- CreateTable
+CREATE TABLE "PaymentDetails" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "chargeId" TEXT NOT NULL,
+    "shopId" TEXT NOT NULL,
+    "sectionId" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

@@ -1,0 +1,29 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "77e53684733f532fb1e88898becfeed3"
+name = "section-app"
+handle = "section-app-20"
+application_url = "https://mysql-athens-gravity-sight.trycloudflare.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "app-developement5.myshopify.com"
+include_config_on_deploy = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products,write_themes"
+
+[auth]
+redirect_urls = [
+  "https://mysql-athens-gravity-sight.trycloudflare.com/auth/callback",
+  "https://mysql-athens-gravity-sight.trycloudflare.com/auth/shopify/callback",
+  "https://mysql-athens-gravity-sight.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-07"
+
+[pos]
+embedded = false
