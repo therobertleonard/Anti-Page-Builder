@@ -196,9 +196,9 @@ export default function Index() {
                         </InlineStack>
                       </InlineStack>
                     </Card>
-                    <Card sectioned>
+                   {/* <Card sectioned>
                       <Button icon={ViewIcon} fullWidth>VIEW DEMO</Button>
-                    </Card>
+                    </Card> */}
 
                   </BlockStack>
                 </Grid.Cell>
