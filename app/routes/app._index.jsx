@@ -51,7 +51,7 @@ export const action = async ({ request }) => {
   const title = formData.get("title");
   const price = parseFloat(formData.get("price"));
   const shopDomain = session.shop;
-  const appHandle = "section-app-20";
+  const appHandle = "anti-page-builder";
   const returnUrl = `https://${shopDomain}/admin/apps/${appHandle}/app/confirmPayment?shop=${shopDomain}&sectionID=${Sectionid}`;
   const applicationCharge = new admin.rest.resources.ApplicationCharge({
     session: session,
