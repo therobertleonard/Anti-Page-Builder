@@ -151,10 +151,6 @@ export default function PurchasedSections() {
                                                 </InlineStack>
                                             </InlineStack>
                                         </Card>
-                                        <Card sectioned>
-                                            <Button icon={ViewIcon} fullWidth>VIEW DEMO</Button>
-                                        </Card>
-
                                     </BlockStack>
                                 </Grid.Cell>
                             </Grid>
