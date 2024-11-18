@@ -1,0 +1,640 @@
+<!-- Check for jQuery -->
+<script>
+    if (typeof jQuery === "undefined") {
+        document.write('<script src="{{ "jquery-3.6.3.min.js" | asset_url }}"><\/script>');
+    }
+</script>
+
+<!-- Check for Slick Slider -->
+<script>
+    if (typeof $.fn.slick === "undefined") {
+        document.write('<link rel="stylesheet" href="{{ "slick.css" | asset_url }}">');
+        document.write('<link rel="stylesheet" href="{{ "slick-theme.css" | asset_url }}">');
+        document.write('<script src="{{ "slick.min.js" | asset_url }}"><\/script>');
+    }
+</script>
+
+<div class="slider-review -bars" style="background-color:{{ section.settings.color_accent1 }}; padding-top:{{ section.settings.padding_top }}px; padding-bottom:{{ section.settings.padding_bottom }}px">
+    <div class="page-widtha">
+        <div class="top-text">
+            <h2>{{ section.settings.text-white1 }}</h2>
+            <div class="add-star">
+                {{ section.settings.rating1 }}
+                <div class="svg-cion">
+                    {{ section.settings.svgicon }}
+                </div>
+            </div>
+            <div class="new-text">{{ section.settings.rating2 }}</div>
+        </div>
+        <div class="main-review-slides">
+            <div class="reviewed slider">
+                {%- for block in section.blocks -%}
+                <div class="slide">
+                    <div class="main-multi-slides">
+                        <div class="multi-slides">
+                            <div class="images1">
+                                {% if block.settings.svgimage != blank %}
+                                <div class="star-image">
+                                  {% if block.settings.svgimage !=blank %}
+                                    {{ block.settings.svgimage }}
+                                  {% endif %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% if block.settings.verifycust != blank %}
+                            <p class="text-verified" style="font-size: {{ block.settings.text-size }}px; color:{{ block.settings.text_color }};">{{ block.settings.verifycust }}</p>
+                            {% endif %}
+                            <div class="discription-text">
+                                <div class="text-large" style="font-size: {{ block.settings.para-size }}px; color:{{ block.settings.para_color }};">{{ block.settings.description }}</div>
+                                {% if block.settings.text1 != blank %}
+                                <span class="dt-sc-collection-heading" style="font-size: {{ block.settings.para-size }}px; color:{{ block.settings.para_color }};"> {{ block.settings.text1 }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {%- endfor -%}
+            </div>
+        </div>
+        {%- if section.settings.video_button1 != blank -%}
+        <a href="{{section.settings.video_button1_link}}" class="button-text">{{ section.settings.video_button1 }}</a>
+        {%- endif -%}
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery(".reviewed").slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            arrows: true,
+            prevArrow:
+                '<div class="prev"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g id="Left"><path d="M14,17a1,1,0,0,1-.707-.293l-4-4a1,1,0,0,1,0-1.414l4-4a1,1,0,1,1,1.414,1.414L11.414,12l3.293,3.293A1,1,0,0,1,14,17Z" style="fill:#1c1b1e"></path></g></svg></div>',
+            nextArrow:
+                '<div class="next"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g id="Left"><path d="M14,17a1,1,0,0,1-.707-.293l-4-4a1,1,0,0,1,0-1.414l4-4a1,1,0,1,1,1.414,1.414L11.414,12l3.293,3.293A1,1,0,0,1,14,17Z" style="fill:#1c1b1e"></path></g></svg></div>',
+            adaptiveHeight: true,
+            dots: false,
+            pauseOnHover: false,
+            autoplay: false,
+            autoplaySpeed: 5000,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        dots: true,
+                    },
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: true,
+                    },
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: true,
+                    },
+                },
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+            ],
+        });
+    });
+</script>
+{% schema %} 
+{ 
+  "name": "APB Testimonial #1", 
+  "class": "review-slides", 
+  "settings": 
+  [ 
+    { 
+      "type": "color", 
+      "id": "color_accent1", 
+      "label": "Background Color", 
+      "default": "#D0F0C9" 
+    }, 
+    { 
+      "type": "range", 
+      "id": "padding_top", 
+      "min": 0, 
+      "max": 100,
+      "step": 4, 
+      "unit": "px", 
+      "label": "Padding Top", 
+      "default": 40 
+    }, 
+    { 
+      "type": "range", 
+      "id": "padding_bottom", 
+      "min": 0, 
+      "max": 100, 
+      "step": 4, 
+      "unit": "px", 
+      "label": "Padding Bottom", 
+      "default": 52 
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border Radius (px)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 5
+    },
+    { 
+      "id": "text-white1", 
+      "type": "text",
+      "label": "Heading Top",
+      "default": "Our customers tell it better than we do!"
+    }, 
+    { 
+      "id": "rating1", 
+      "type": "richtext", 
+      "label": "Add Text",
+       "default": "<p>Excellent<strong>4.7</strong></p>"
+    }, 
+    { 
+      "type": "liquid", 
+      "id": "svgicon", 
+      "label": "Rating SVG Icons",
+       "default": "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-battery' viewBox='0 0 16 16'><path d='M10.5 0a1 1 0 0 1 1 1v1h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-2v1a1 1 0 0 1-2 0v-1h-5v1a1 1 0 0 1-2 0v-1H1a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h2V1a1 1 0 0 1 1-1h7zM1 4v10h14V4H1z'/></svg>"
+
+    }, 
+    { 
+      "id": "rating2", 
+      "type": "richtext", 
+      "label": "Add Text",
+       "default": "<p>based on 12 067 reviews</p>"
+    },
+    { 
+      "type": "url", 
+      "id": "video_button1_link", 
+      "label": "Add Link" 
+    }, 
+    { 
+      "type": "text", 
+      "id": "video_button1", 
+      "label": "Add Text" 
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border Width (px)",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "select",
+      "id": "border_style",
+      "label": "Border Style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "dashed",
+          "label": "Dashed"
+        },
+        {
+          "value": "dotted",
+          "label": "Dotted"
+        },
+        {
+          "value": "double",
+          "label": "Double"
+        }
+      ],
+      "default": "solid"
+    }
+  ], 
+  "blocks": 
+  [ 
+    { 
+      "type": "reviews-slides", 
+      "name": "Reviews Slides", 
+      "settings": 
+      [ 
+        { 
+          "type": "liquid", 
+           "id": "svgimage", 
+          "label": "Add Star Ratings SVG", 
+          "default": "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-battery' viewBox='0 0 16 16'><path d='M10.5 0a1 1 0 0 1 1 1v1h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-2v1a1 1 0 0 1-2 0v-1h-5v1a1 1 0 0 1-2 0v-1H1a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h2V1a1 1 0 0 1 1-1h7zM1 4v10h14V4H1z'/></svg>"
+        }, 
+      { 
+          "type": "text", 
+          "id": "verifycust", 
+          "label": "Text",
+          "default": "I have very sensitive gums"
+        }, 
+           {
+          "type": "number",
+          "id": "text-size",
+          "label": "Text size",
+          "default": 16
+        },
+           {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#000"
+        },
+        { 
+          "type": "richtext", 
+          "id": "description",
+          "label": "Paragraph",
+          "default": "<p>I was initially hesitant to switch from my usual brand to this new one, but I'm so glad I did! This product has exceeded my expectations. It's not only affordable but also incredibly efficient. The quality is top-notch, and it's user-friendly.</p>"
+        }, 
+              {
+          "type": "number",
+          "id": "para-size",
+          "label": "Text size",
+          "default": 16
+        },
+           {
+          "type": "color",
+          "id": "para_color",
+          "label": "Text Color",
+          "default": "#000"
+        },
+        { 
+          "type": "text", 
+          "id": "text1", 
+          "label": "Week Days", 
+          "default": "Franck - 30 June"
+        },
+                  {
+          "type": "number",
+          "id": "Week-size",
+          "label": "Week size",
+          "default": 16
+        },
+           {
+          "type": "color",
+          "id": "Week_color",
+          "label": "Week Color",
+          "default": "#000"
+        }
+      ] 
+    } 
+  ],
+  "presets": 
+  [ 
+    { 
+      "name": "APB Testimonial #1",
+       "blocks": [
+      {
+        "type": "reviews-slides",
+      },
+              {
+        "type": "reviews-slides",
+      },
+                  {
+        "type": "reviews-slides",
+      },
+                  {
+        "type": "reviews-slides",
+      }
+    ]
+    }
+  ]
+} 
+{% endschema %}
+
+<style>
+    /*-----review-slider-----*/
+    .review-slides .main-multi-slides {
+        background-color: #ffffff;
+        overflow: hidden;
+        padding: 25px 25px;
+        border-radius: {{ section.settings.border_radius }}px; 
+        border: {{ section.settings.border_width }}px {{ section.settings.border_style }} {{ section.settings.border_color }}
+      
+    }
+    .review-slides .main-multi-slides .images1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .review-slides .main-multi-slides .images1 .test-days p {
+        margin: 0px;
+    }
+    .review-slides .reviewed.slider .slick-slide {
+        margin: 0 10px;
+        opacity: 0.5;
+    }
+    .review-slides .reviewed.slider h5.dt-sc-collection-heading {
+        font-size: 22px;
+        text-transform: capitalize;
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
+    .review-slides .reviewed.slider .slick-active {
+        opacity: 1;
+    }
+    .reviewed.slider .slick-prev {
+        left: -50px;
+        background-color: #6c5f13;
+        width: 42px;
+        height: 42px;
+        border-radius: 50px;
+    }
+    .reviewed.slider .slick-next {
+        right: -50px;
+        background-color: #6c5f13;
+        width: 42px;
+        height: 42px;
+        border-radius: 50px;
+    }
+    .review-slides .main-multi-slides .text-verified {
+        margin: 14px 0px;
+        color: #000000;
+        line-height: 24px;
+        font-size: 24px;
+        font-weight: 600;
+    }
+    .review-slides .main-multi-slides .discription-text .dt-sc-collection-heading {
+        text-align: center;
+        width: 100%;
+        display: block;
+        text-transform: capitalize;
+        color: #000000;
+        font-size: 15px;
+        margin-top: 20px;
+    }
+    .main-multi-slides .text-large p {
+        color: #000000;
+        font-size: 16px;
+        text-align: center;
+        letter-spacing: 0.2px;
+        line-height: 27px;
+        hyphens: auto;
+        margin: 6px 0px;
+    }
+    .test-days p {
+        color: #1e2532;
+    }
+    .review.-bars .review-wrap .text-image p {
+        margin: 0px;
+        color: #1e2532;
+        text-transform: capitalize;
+    }
+    .top-text {
+        text-align: center;
+    }
+    .main-review-slides {
+        padding-top: 36px;
+    }
+    .review-slides .reviewed.slider h5.dt-sc-collection-heading {
+        color: #1e2532;
+    }
+    .top-text p {
+        color: #000;
+        margin-bottom: 0px;
+        font-size: 24px;
+        margin-top: 0px;
+    }
+    .main-review-slides .conteted-text p.text-rating {
+        color: #1e2532;
+        font-size: 36px;
+        margin: 0px;
+        font-weight: 600;
+    }
+    .main-review-slides .conteted-text p.text-rating span.strat-text {
+        padding-left: 10px;
+        font-weight: 400;
+        font-size: 26px;
+    }
+    .top-text h2 {
+        text-transform: capitalize;
+        margin-top: 0px;
+        font-size: 40px;
+        color: #000000;
+        margin-bottom: 10px;
+        line-height: 33px;
+        font-weight: 600;
+    }
+    .top-text p.text-white {
+        margin: 0px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #1e2532;
+    }
+    .multi-slides {
+        text-align: center;
+    }
+    .main-review-slides .conteted-text p.text-white {
+        margin: 0px;
+        font-size: 20px;
+        color: #1e2532;
+        font-weight: 600;
+    }
+    .review-slides .slick-dots li button:before {
+        font-size: 50px;
+    }
+
+    .add-star {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        padding: 10px 0px;
+    }
+    .add-star p strong {
+        font-size: 30px;
+    }
+    .new-text p {
+        margin: 0px;
+        line-height: 20px;
+    }
+    .new-text p strong {
+        text-decoration: underline;
+    }
+    .reviewed .slick-arrow {
+        width: 28px;
+        height: 28px;
+    }
+    .reviewed .prev {
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
+        border: 0px solid #ffffff;
+        border-radius: 50%;
+        background: #ffffff;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease 0s;
+        cursor: pointer;
+        -webkit-appearance: none;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+    }
+    .reviewed .next {
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
+        border: 0px solid #ffffff;
+        border-radius: 50%;
+        background: #ffffff;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease 0s;
+        cursor: pointer;
+        -webkit-appearance: none;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+        right: 0px !important;
+    }
+    .next.slick-arrow svg {
+        transform: rotate(180deg);
+    }
+    .page-widtha {
+        overflow: hidden;
+    }
+    .review-slides .button-text {
+        text-align: center;
+        margin-top: 20px;
+        padding: 20px 26px;
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        border-radius: 8px;
+        border: 0px solid #000000;
+        background-color: #000000;
+        transition: all 0.25s ease 0s;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        max-width: fit-content;
+        margin: 0;
+        line-height: 100%;
+        margin-top: 30px;
+    }
+    @media (min-width: 1200px) {
+        .main-review-slides {
+            padding-top: 0px;
+            margin-top: 36px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            max-width: 80%;
+        }
+        .main-review-slides .reviewed.slider .slick-list.draggable {
+            overflow: visible;
+        }
+    }
+    @media (max-width: 767px) {
+        .review-slides .slick-dots {
+            left: 0px;
+        }
+        .shopify-section.review-slides {
+            margin-left: 0px;
+        }
+        .main-review-slides {
+            flex-direction: column;
+            row-gap: 30px;
+            padding-top: 30px;
+        }
+        .main-review-slides .conteted-text {
+            width: 100%;
+            text-align: center;
+        }
+        .reviewed.slider.slick-initialized.slick-slider {
+            width: 100%;
+            padding: 0px 25px;
+        }
+        .main-review-slides img.hand-image {
+            width: 20%;
+        }
+        .reviewed.slider .slick-prev {
+            left: 0px;
+        }
+        .reviewed.slider .slick-next {
+            right: 0px;
+        }
+        .top-text {
+            padding: 0px 25px;
+        }
+        .top-text p {
+            line-height: 100%;
+        }
+        .main-multi-slides .text-large p {
+            letter-spacing: 0.5px;
+            font-size: 14px;
+        }
+        .reviewed .next {
+            right: 15px !important;
+        }
+        .reviewed .slick-list.draggable {
+            overflow: visible;
+        }
+        .review-slides .button-text {
+            margin-top: 60px;
+        }
+        .top-text h2 {
+            font-size: 30px;
+            line-height: 40px;
+        }
+    }
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .main-review-slides {
+            flex-direction: column;
+            row-gap: 60px;
+        }
+        .main-review-slides .conteted-text {
+            width: 100%;
+            text-align: center;
+        }
+        .reviewed.slider.slick-initialized.slick-slider {
+            width: 100%;
+            padding: 0 15px;
+        }
+        .reviewed .next {
+            right: 14px !important;
+        }
+        .main-review-slides img.hand-image {
+            width: 10%;
+        }
+        .reviewed.slider .slick-next {
+            right: -42px;
+        }
+        .reviewed.slider .slick-prev {
+            left: -42px;
+        }
+        .main-multi-slides .text-large p {
+            letter-spacing: 0.5px;
+        }
+        .review-slides .button-text {
+            margin-top: 40px;
+        }
+    }
+    @media (min-width: 320px) and (max-width: 390px) {
+        .review-slides .main-multi-slides .images1 .test-days p {
+            margin: 0px;
+            font-size: 10px;
+        }
+    }
+    /*-----end review-slider-----*/
+</style>

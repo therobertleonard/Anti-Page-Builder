@@ -1,0 +1,705 @@
+{%- if section.blocks.size > 0 -%}
+
+    {%- style -%}
+      #shopify-section-{{ section.id }} > div {
+        padding-block-start: calc(var(--section-spacing-unit-size) * {{ section.settings.spacing_top }});
+        padding-block-end: calc(var(--section-spacing-unit-size) * {{ section.settings.spacing_bottom }});
+      }
+    {%- endstyle -%}
+  
+    <div class="accordions color-{{ section.settings.color_scheme }} gradient js-animation-fade-in">
+      <div class="container {{ section.settings.section_width }}">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="section__heading {{ section.settings.heading_size }} {{ section.settings.text_align }}">
+            {{- section.settings.heading -}}
+          </h2>
+        {%- endif -%}
+  
+        <accordion-default class="accordion" data-hide-multiple>
+          {%- for block in section.blocks -%}
+            {%- liquid
+              if block.settings.title == blank
+                continue
+              elsif block.settings.text == blank and block.settings.page == blank
+                continue
+              endif
+  
+              if block.settings.is_open
+                assign details_class = ' is-active default-active'
+                assign details_attr = 'open'
+              else
+                assign details_class = blank
+                assign details_attr = blank
+              endif
+            -%}
+  
+            <details class="accordion__section{{ details_class }}" id="Details-{{- block.id -}}" {{ details_attr }} {{- block.shopify_attributes -}}>
+              <summary class="accordion__button h6 js-btn" id="Details-Summary-{{- block.id -}}">
+                <div class="accordion__button-text">
+                 <h3>{{- block.settings.title | escape -}}</h3> 
+                </div>
+                <div class="accordion__icon">
+                  <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="6.75 8.75 11.5 6.5" width="1em" height="1em">
+                   <path d="M17.5 9.5L12.5 14.5L7.5 9.5" stroke="currentColor" stroke-width="1.0" stroke-linecap="square" stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+              </summary>
+  
+              <div class="accordion__body" id="Details-Content-{{- block.id -}}">
+                <div class="accordion__body-inner">
+                  {%- if block.settings.page != blank and block.settings.page.content != blank -%}
+                    {{- block.settings.page.content -}}
+                  {%- elsif block.settings.text != blank -%}
+                    {{- block.settings.text -}}
+                  {%- endif -%}
+                </div>
+              </div>
+            </details>
+          {%- endfor -%}
+        </accordion-default>
+      </div>
+    </div>
+  {%- endif -%}
+  
+  {% schema %}
+  {
+    "name": "APB Accordions #1",
+    "tag": "section",
+    "class": "section-accordions",
+    "settings": [
+      {
+        "type": "inline_richtext",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Frequently asked questions"
+      },
+      {
+        "type": "select",
+        "id": "heading_size",
+        "label": "Heading Size",
+        "options": [
+          {
+            "value": "h6",
+            "label": "XS"
+          },
+          {
+            "value": "h5",
+            "label": "S"
+          },
+          {
+            "value": "h4",
+            "label": "M"
+          },
+          {
+            "value": "h3",
+            "label": "L"
+          },
+          {
+            "value": "h2",
+            "label": "XL"
+          }
+        ],
+        "default": "h3"
+      },
+        {
+              "type": "select",
+              "id": "text_align",
+              "label": "Text Alignment",
+              "options": [
+                  { "value": "text-left", "label": "Left" },
+                  { "value": "text-center", "label": "Center" },
+                  { "value": "text-right", "label": "Right" }
+              ],
+              "default": "text-center"
+          },
+      {
+        "type": "header",
+        "content": "Common settings",
+        "info": "These settings are common for all sections."
+      },
+      {
+        "type": "select",
+        "id": "section_width",
+        "label": "Section Width",
+        "options": [
+          {
+            "value": "max-w-page",
+            "label": "Normal"
+          },
+          {
+            "value": "max-w-narrower",
+            "label": "Narrower"
+          },
+          {
+            "value": "max-w-fluid",
+            "label": "Fluid"
+          }
+        ],
+        "default": "max-w-narrower"
+      },
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.global.color_scheme.label",
+        "default": "scheme-1"
+      },
+      {
+        "type": "select",
+        "id": "spacing_top",
+        "label": "Spacing Top",
+        "options": [
+          {
+            "value": "0",
+            "label": "No"
+          },
+          {
+            "value": "1",
+            "label": "S"
+          },
+          {
+            "value": "2",
+            "label": "M"
+          },
+          {
+            "value": "4",
+            "label": "L"
+          },
+          {
+            "value": "6",
+            "label": "XL"
+          }
+        ],
+        "default": "2"
+      },
+      {
+        "type": "select",
+        "id": "spacing_bottom",
+        "label": "Spacing Bottom",
+        "options": [
+          {
+            "value": "0",
+            "label": "No"
+          },
+          {
+            "value": "1",
+            "label": "S"
+          },
+          {
+            "value": "2",
+            "label": "M"
+          },
+          {
+            "value": "4",
+            "label": "L"
+          },
+          {
+            "value": "6",
+            "label": "XL"
+          }
+        ],
+        "default": "2"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "topic",
+        "name": "Topic",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "is_open",
+            "label": "Show content on page load"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Topic heading"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Descriptive topic content body text</p>"
+          },
+          {
+            "type": "page",
+            "id": "page",
+            "label": "Page",
+            "info": "Outputs page content as topic body text. Overwrites topic content field."
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "APB Accordions #1",
+        "blocks": [
+          {
+            "type": "topic",
+            "settings": {
+              "is_open": true,
+              "title": "Shipping details",
+              "text": "<p>Add additional information about shipping policy.</p>"
+            }
+          },
+          {
+            "type": "topic",
+            "settings": {
+              "title": "Delivery details",
+              "text": "<p>Add additional information about delivery policy.</p>"
+            }
+          },
+          {
+            "type": "topic",
+            "settings": {
+              "title": "Refund details",
+              "text": "<p>Add additional information about refund policy.</p>"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+  
+  <style>
+  :root {
+      --page-gutter: 1.6rem;
+      --max-w-sm-multiplier: 0.4444;
+      --max-w-md-multiplier: 0.5333;
+      --max-w-lg-multiplier: 0.7111;
+      --max-w-narrow-multiplier: 0.7913;
+      --max-w-narrower-multiplier: 0.7681;
+    --color-border: 235, 235, 235;
+      --alpha-border: 1;
+      --section-spacing-unit-size: 1.6rem;
+     
+  }
+  
+  .container, .max-w-page {
+      max-width: var(--page-width);
+  }
+  .container {
+      width: 100%;
+      padding: 0 var(--page-gutter);
+      margin: 0 auto;
+  }
+  .max-w-narrower {
+      max-width: calc(var(--page-width)* var(--max-w-narrower-multiplier));
+  }
+    .max-w-fluid {
+      max-width: 100%;
+  }
+  .accordions {
+    padding: 4rem 0 6.4rem;
+  }
+  
+  .accordions .section__heading {
+        letter-spacing: var(--font-heading-letter-spacing);
+    margin-block-end: calc(var(--section-spacing-unit-size) * 2.25);
+  }
+  
+  .accordions .section__heading:last-child {
+    margin-block-end: 0;
+  }
+  .accordion__icon svg {
+      width: 1em;
+      height: 1em;
+      transform: rotate(0);
+      transition: transform var(--duration-default);
+  }
+  .accordion__button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: underline solid transparent .1rem;
+    text-underline-offset: .3rem;
+    transition: text-decoration-color var(--duration-default);
+    letter-spacing: var(--font-heading-letter-spacing);
+    padding-block: 0.2rem;
+    margin: 0;
+    font-size: calc(var(--font-heading-scale) * 1.6rem);
+  }
+  
+  .accordion__button span {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  
+  .accordion__button svg {
+    width: var(--font-heading-scale) * 1.6rem;
+    aspect-ratio: 1/1;
+  }
+  
+  .accordion__section {
+    padding: 2.8rem 0;
+    border-block-end: 0.1rem solid rgba(var(--color-border), var(--alpha-border));
+  }
+  
+  .accordion__section:first-child {
+    padding-block-start: 0;
+  }
+  
+  .accordion__section:last-child {
+    padding-block-end: 0;
+    border-block-end: none;
+  }
+  
+  .accordion__icon {
+    margin-inline-start: 1.6rem;
+    pointer-events: none;
+  }
+  
+  .accordion__body-inner {
+    padding-block-start: 2.4rem;
+  }
+  
+  .accordion__body p {
+    margin: 0 0 1.6rem;
+    color: rgba(var(--color-foreground), .75);
+  }
+  
+  .accordion__body p:last-child {
+    margin-block-end: 0;
+  }
+  .accordion__section.is-active .accordion__icon svg,
+  html.no-js .accordion__section[open] .accordion__icon svg {
+    transform: rotate(180deg);
+  }
+  
+  html.js .accordion__body {
+      overflow: visible hidden;
+      height: 0;
+      opacity: 0;
+      transform: translateY(2.4rem);
+      transition: height var(--duration-default), opacity var(--duration-default), transform var(--duration-default);
+  }
+    html.js .accordion__section.default-active .accordion__body {
+      height: auto;
+  }
+  html.js .accordion__section.is-active .accordion__body {
+      opacity: 1;
+      transform: none;
+  }
+  @media (hover: hover) {
+    .accordion__button:hover {
+      text-decoration-color: currentColor;
+    }
+  }
+  
+  @media screen and (min-width: 990px) {
+    .accordion__icon {
+      margin-inline-start: 3.2rem;
+    }
+  
+    .accordions {
+      padding: 6.4rem 0 calc(var(--section-spacing-unit-size) * 2);
+    }
+  
+    .accordion__body p {
+      margin-block-end: 3rem;
+    }
+  
+    .accordion__section {
+      padding: 3.2rem 0;
+    }
+  }
+  
+  
+  /* Product accordion collapsible */
+  .product__accordion {
+    padding-block: var(--spacing-5);
+    border-block-end: 1px solid rgba(var(--color-border), var(--alpha-border));
+  }
+  
+  .product__accordion .accordion__button span svg {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .product__accordion .accordion__icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-inline-end: 1.2rem;
+  }
+  
+  .product__accordion .accordion__icon>svg {
+    position: absolute;
+  }
+  
+  .product__accordion .accordion__icon>svg:last-child {
+    transform: rotate(90deg);
+  }
+  
+  .product__accordion .accordion__section.is-active .accordion__icon>svg:last-child {
+    transform: rotate(180deg);
+  }
+  
+  .product__accordion .accordion__body p {
+    color: rgb(var(--color-foreground));
+  }
+  
+  .product__accordion summary:hover {
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .product__accordion .accordion__body-inner {
+    padding-inline-end: 6.4rem;
+  }
+  .accordion__button-text h3 {
+      margin: 0;
+  }
+  .text-left {
+      text-align: left;
+  }
+  
+  .text-center {
+      text-align: center;
+  }
+  
+  .text-right {
+      text-align: right;
+  }
+    
+  </style>
+  
+  <script>
+  class AccordionDefault extends HTMLElement {
+    constructor() {
+      super();
+  
+      this.hideMultiple = this.hasAttribute("data-hide-multiple");
+      this.summaryElements = this.querySelectorAll("summary");
+  
+      this.setInitialAccessibilityAttr();
+  
+      this.addEventListener("click", e => {
+        let isBtn = e.target.classList.contains("js-btn");
+  
+        if (!isBtn) {
+          isBtn = e.target.closest("summary.js-btn");
+        }
+  
+        if (!isBtn) return;
+  
+        e.preventDefault();
+  
+        this.toggleDropdown(
+          e.target.classList.contains("js-btn")
+            ? e.target
+            : e.target.closest("summary")
+        );
+        this.collapseInactiveItems();
+      });
+  
+      this.addEventListener("keydown", e => {
+        const isEscapeKey = e.key === "Escape";
+  
+        if (!isEscapeKey) {
+          return;
+        }
+  
+        const closestOpenDetails = document.activeElement.closest(
+          "details.is-active"
+        );
+  
+        if (!closestOpenDetails) {
+          return;
+        }
+  
+        const btn = closestOpenDetails.querySelector("summary");
+  
+        if (this.closest('menu-drawer').classList.contains('facets__drawer')) {
+          this.closest('menu-drawer').toggleDrawer();
+          return;
+        }
+  
+        this.toggleDropdown(btn);
+        this.collapseInactiveItems();
+      });
+    }
+  
+    collapseInactiveItems() {
+      if (!this.hideMultiple) return;
+      const allSummaryElements = document.querySelectorAll(
+        "accordion-default summary"
+      );
+      allSummaryElements.forEach(summary => {
+        const accordionDefault = summary.closest("accordion-default");
+        accordionDefault.toggleDropdown(summary, true);
+      });
+    }
+  
+    toggleDropdown(btn, forceClose) {
+      const dropdown = btn.nextElementSibling;
+      const isDropdownTransitioning = dropdown.classList.contains(
+        "is-transitioning"
+      );
+  
+      if (isDropdownTransitioning) {
+        return;
+      }
+  
+      const details = btn.parentElement;
+  
+      if (forceClose) {
+        details.classList.remove("is-active");
+        details.removeAttribute("open");
+        btn.setAttribute("aria-expanded", false);
+        dropdown.style.height = "0px";
+        return;
+      }
+  
+      details.classList.toggle("is-active");
+  
+      const isDetailsActive = details.classList.contains("is-active");
+  
+      btn.setAttribute("aria-expanded", isDetailsActive);
+  
+      if (isDetailsActive) {
+        details.setAttribute("open", "");
+  
+        dropdown.style.height = `${dropdown.scrollHeight}px`;
+      } else {
+        dropdown.style.height = `${dropdown.scrollHeight}px`;
+  
+        setTimeout(() => {
+          dropdown.style.height = "0px";
+        }, 0);
+      }
+  
+      dropdown.classList.add("is-transitioning");
+      dropdown.addEventListener(
+        "transitionend",
+        handleHeightTransition
+      );
+  
+      function handleHeightTransition(e) {
+        dropdown.removeEventListener(
+          "transitionend",
+          handleHeightTransition
+        );
+        dropdown.classList.remove("is-transitioning");
+  
+        if (isDetailsActive) {
+          dropdown.style.height = "auto";
+          return;
+        }
+  
+        details.removeAttribute("open");
+        btn.focus();
+      }
+    }
+  
+    setInitialAccessibilityAttr() {
+      this.summaryElements.forEach(summaryElement => {
+        const detailsElement = summaryElement.parentElement;
+        const dropdown = summaryElement.nextElementSibling;
+        const isDetailsOpen = detailsElement.hasAttribute("open");
+  
+        summaryElement.setAttribute("role", "button");
+        summaryElement.setAttribute("aria-controls", dropdown.id);
+        summaryElement.setAttribute("aria-expanded", isDetailsOpen);
+      });
+    }
+  }
+  
+  customElements.define("accordion-default", AccordionDefault);
+  
+  const nav = document.querySelector(".js-nav");
+  
+  nav?.addEventListener("click", function (e) {
+    const isHoverDisabled = matchMedia("(hover: none)").matches;
+    const isLink = e.target.classList.contains("js-nav-link");
+  
+    if (!isHoverDisabled || !isLink) {
+      return;
+    }
+  
+    const link = e.target;
+    const linkItem = link.parentElement;
+    const linksList = linkItem.parentElement;
+    const activeLinkItem = linksList.querySelector(
+      ".js-nav-item.is-active"
+    );
+    const hasDropdown = linkItem.classList.contains("has-dropdown");
+  
+    if (activeLinkItem !== linkItem) {
+      activeLinkItem?.classList.remove("is-active");
+    }
+  
+    if (!hasDropdown) {
+      return;
+    }
+  
+    e.preventDefault();
+  
+    linkItem.classList.toggle("is-active");
+  });
+  
+  document.addEventListener("click", function (e) {
+    const targetActiveLinkItem = e.target.closest(
+      ".js-nav-item.is-active"
+    );
+  
+    if (targetActiveLinkItem) {
+      return;
+    }
+  
+    const activeLinkItems = document.querySelectorAll(
+      ".js-nav-item.is-active"
+    );
+  
+    if (activeLinkItems.length == 0) {
+      return;
+    }
+  
+    activeLinkItems.forEach(activeLinkItem => {
+      activeLinkItem.classList.remove("is-active");
+    });
+  });
+  
+  let navItems = document.querySelectorAll(
+    ".js-nav-item.has-dropdown:not(.dropdown)"
+  );
+  
+  window.addEventListener("shopify:section:load", function () {
+    navItems = document.querySelectorAll(
+      ".js-nav-item.has-dropdown:not(.dropdown)"
+    );
+  });
+  
+  ["DOMContentLoaded", "resize"].forEach(eventType => {
+    window.addEventListener(eventType, () => {
+      navItems = document.querySelectorAll(
+        ".js-nav-item.has-dropdown:not(.dropdown)"
+      );
+      navItems.forEach(navItem => {
+        const dropdown = navItem.querySelector(".js-dropdown");
+  
+        if (!dropdown) {
+          return;
+        }
+  
+        const { y, height } = navItem.getBoundingClientRect();
+        const itemTop = y + height;
+        const dropdownY = dropdown.getBoundingClientRect().y;
+        const isSameOffset = itemTop === dropdownY;
+  
+        if (isSameOffset) {
+          return;
+        }
+  
+        const difference = Math.round(dropdownY - itemTop);
+  
+        navItem.style.setProperty("--after-height", `${difference}px`);
+      });
+    });
+  });
+  
+  </script>
