@@ -1,0 +1,436 @@
+{% schema %}
+    {
+      "name": "Meal Replacement",
+      "settings": [
+             {
+                "type": "range",
+                "id": "main_padding_tp",
+                "label": "padding_top (px)",
+                "min": 0,
+                "max": 100,
+                "default": 40,
+                "step": 1
+            },
+             {
+                "type": "range",
+                "id": "main_padding_btm",
+                "label": "padding_bottom (px)",
+                "min": 0,
+                "max": 100,
+                "default": 40,
+                "step": 1
+            },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "THE MOST DELICIOUS MEAL REPLACEMENT"
+        },
+                {
+          "type": "number",
+          "id": "main_font_size",
+          "label": "main_font_size",
+          "default": 46
+        },
+               {
+          "type": "color",
+          "id": "main_fond_color",
+          "label": "main_fond_color",
+          "default": "#000"
+        },
+                 {
+          "type": "range",
+          "id": "main_text_letter_spacing",
+          "label": "main text Letter Spacing (px)",
+          "default": 0,
+          "min": 0,
+          "max": 10,
+          "step": 0.1
+        },
+                {
+    "type": "select",
+    "id": "font_family_main",
+    "label": "Font Family",
+    "options": [
+      { "value": "'Arial', sans-serif", "label": "Arial" },
+      { "value": "'Georgia', serif", "label": "Georgia" },
+      { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+      { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+      { "value": "'Courier New', monospace", "label": "Courier New" },
+      { "value": "'Fjalla One', sans-serif", "label": "Fjalla One" },
+      { "value": "'Montserrat', sans-serif", "label": "Montserrat" }
+    ],
+    "default": "'Fjalla One', sans-serif"
+  },
+         {
+    "type": "select",
+    "id": "font_weight_main",
+    "label": "Font Weight",
+    "options": [
+      { "value": "100", "label": "Thin" },
+      { "value": "300", "label": "Light" },
+      { "value": "400", "label": "Regular" },
+      { "value": "600", "label": "Semi-Bold" },
+      { "value": "700", "label": "Bold" },
+      { "value": "900", "label": "Black" }
+    ],
+    "default": "400"
+        },
+             {
+                "type": "range",
+                "id": "gap_size",
+                "label": "Gap Size (px)",
+                "min": 0,
+                "max": 100,
+                "default": 20,
+                "step": 1
+            },
+             {
+                "type": "range",
+                "id": "padding_top",
+                "label": "padding_top (px)",
+                "min": 0,
+                "max": 100,
+                "default": 40,
+                "step": 1
+            },
+        {
+          "type": "image_picker",
+          "id": "cocoa_image",
+          "label": "cocoa_image"
+        },
+        {
+          "type": "text",
+          "id": "cocoa_flavor_title",
+          "label": "Cocoa Flavor Title",
+          "default": "Cocoa flavor"
+        },
+                  {
+          "type": "number",
+          "id": "cont_hdg_font_size",
+          "label": "cont_hdg_font_size",
+          "default": 24
+        },
+        {
+          "type": "textarea",
+          "id": "cocoa_flavor_text",
+          "label": "Cocoa Flavor Description",
+          "default": "Calling all chocolate lovers! Get ready to indulge in our Cocoa Crunch flavor, a chocolate lover's dream come true."
+        },
+                      {
+          "type": "number",
+          "id": "cont_para_font_size",
+          "label": "cont_hdg_font_size",
+          "default": 17
+        },
+                        {
+    "type": "select",
+    "id": "font_family_para",
+    "label": "Font Family",
+    "options": [
+      { "value": "'Arial', sans-serif", "label": "Arial" },
+      { "value": "'Georgia', serif", "label": "Georgia" },
+      { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+      { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+      { "value": "'Courier New', monospace", "label": "Courier New" },
+      { "value": "'Fjalla One', sans-serif", "label": "Fjalla One" },
+      { "value": "'Montserrat', sans-serif", "label": "Montserrat" }
+    ],
+    "default": "'Montserrat', sans-serif"
+  },
+           {
+          "type": "image_picker",
+          "id": "cinnamon_image",
+          "label": "cinnamon_image"
+        },
+        {
+          "type": "text",
+          "id": "cinnamon_flavor_title",
+          "label": "Cinnamon Flavor Title",
+          "default": "Cinnamon flavor"
+        },
+        {
+          "type": "textarea",
+          "id": "cinnamon_flavor_text",
+          "label": "Cinnamon Flavor Description",
+          "default": "Prepare your taste buds for a trip down memory lane with our Cinnamon flavor!"
+        },
+        {
+          "type": "text",
+          "id": "protein_amount",
+          "label": "Protein Amount",
+          "default": "23g Protein"
+        },
+        {
+          "type": "textarea",
+          "id": "additional_info_protein",
+          "label": "Additional Information",
+          "default": "Our shakes provide satiety and keep you feeling fuller for longer to control cravings and reduce overall calorie intake while ensuring you meet your nutrient requirements."
+        },
+        {
+          "type": "image_picker",
+          "id": "bg_illustrate",
+          "label": "bg_illustrate_image"
+        },
+        {
+          "type": "text",
+          "id": "calories",
+          "label": "Calories",
+          "default": "230 Calories"
+        },
+        {
+          "type": "textarea",
+          "id": "additional_info_calories",
+          "label": "Additional Information",
+          "default": "Our shakes provide satiety and keep you feeling fuller for longer to control cravings and reduce overall calorie intake while ensuring you meet your nutrient requirements."
+        },
+           {
+          "type": "number",
+          "id": "additional_font",
+          "label": "additional_font",
+          "default": 12
+        }
+      ],
+      "presets": [
+        {
+            "name": "Meal Replacement"
+        }
+      ]
+    }
+    {% endschema %}
+    <div class="Main_meal_section" style="padding-top:{{ section.settings.main_padding_tp }}px; padding-bottom: {{ section.settings.main_padding_btm }}px;">
+        <div class="page-width">
+          <div class="meal-replacement-section" style="gap: {{ section.settings.gap_size }}px;">
+  <!-- Flavor Section -->
+  <div class="flavor-section">
+    
+    <!-- Title for the Flavor Section -->
+    <h2 style="font-size: {{ section.settings.main_font_size }}px; color: {{ section.settings.main_fond_color }};
+            letter-spacing: {{ section.settings.main_text_letter_spacing }}px; 
+      font-family: {{ section.settings.font_family_main }}; font-weight: {{ section.settings.font_weight_main }};">{{ section.settings.title }}</h2>
+    
+    <!-- Cocoa Flavor Block -->
+    <div class="main_flavor" style="padding-top: {{ section.settings.padding_top }}px;">
+    <div class="flavor" style="gap: {{ section.settings.gap_size }}px;">
+      <!-- Cocoa Powder Image -->
+      <div class="coco_powder_image">
+        <img src="{% if section.settings.cocoa_image !=blank %}{{ section.settings.cocoa_image | img_url: 'small' }} 
+          {% else %} https://cdn.shopify.com/s/files/1/0887/8194/7244/files/mockup-graphics-lamdffhcb_I-unsplash.webp?v=1730792283 {% endif %}">
+      </div>
+      
+      <!-- Cocoa Content Text -->
+      <div class="cocoa_content_sec">
+        <h3 style="font-size: {{ section.settings.cont_hdg_font_size }}px; color: {{ section.settings.main_fond_color }};
+            letter-spacing: {{ section.settings.main_text_letter_spacing }}px; 
+      font-family: {{ section.settings.font_family_main }}; font-weight: {{ section.settings.font_weight_main }};">{{ section.settings.cocoa_flavor_title }}</h3>
+        <p style="font-size: {{ section.settings.cont_para_font_size }}px; color: {{ section.settings.main_fond_color }};
+            letter-spacing: {{ section.settings.main_text_letter_spacing }}px; 
+      font-family: {{ section.settings.font_family_para }}; font-weight: {{ section.settings.font_weight_main }};">{{ section.settings.cocoa_flavor_text }}</p>
+      </div>
+    </div>
+    
+    <!-- Cinnamon Flavor Block -->
+    <div class="flavor" style="gap: {{ section.settings.gap_size }}px;">
+      <!-- Cinnamon Image -->
+      <div class="cinnamon_image">
+        <img src="{% if section.settings.cinnamon_image !=blank %}{{ section.settings.cinnamon_image | img_url: 'small' }}
+          {% else %}https://cdn.shopify.com/s/files/1/0887/8194/7244/files/mockup-graphics-y7iHZ4nY63s-unsplash.webp?v=1730792282 {% endif %}">
+      </div>
+      
+      <!-- Cinnamon Content Text -->
+      <div class="cinnamon_content">
+        <h3 style="font-size: {{ section.settings.cont_hdg_font_size }}px; color: {{ section.settings.main_fond_color }};
+            letter-spacing: {{ section.settings.main_text_letter_spacing }}px; 
+      font-family: {{ section.settings.font_family_main }}; font-weight: {{ section.settings.font_weight_main }};">{{ section.settings.cinnamon_flavor_title }}</h3>
+        <p style="font-size: {{ section.settings.cont_para_font_size }}px; color: {{ section.settings.main_fond_color }};
+            letter-spacing: {{ section.settings.main_text_letter_spacing }}px; 
+      font-family: {{ section.settings.font_family_para }}; font-weight: {{ section.settings.font_weight_main }};">{{ section.settings.cinnamon_flavor_text }}</p>
+      </div>
+    </div>
+    </div>
+   </div>
+  <!-- Nutrition Information Section -->
+  <div class="nutrition-info">
+        <div class="protein_section">
+      <span class="protein" style="font-family: {{ section.settings.font_family_para }};">{{ section.settings.protein_amount }}</span>
+          <div class="additional_info_sec">
+      <p class="additional_info" style="font-size:{{ section.settings.additional_font }}px; font-family: {{ section.settings.font_family_para }};">{{ section.settings.additional_info_protein }}</p>
+          </div>
+    </div>
+    
+            <img src="{% if section.settings.bg_illustrate !=blank %}{{ section.settings.bg_illustrate | img_url: 'small' }}
+          {% else %}https://cdn.shopify.com/s/files/1/0887/8194/7244/files/bg-illustration.svg?v=1730792550 {% endif %}">
+    <!-- Protein Section -->
+    
+    <!-- Calories Section -->
+    <div class="calories_section">
+      <span class="calories" style="font-family: {{ section.settings.font_family_para }};">{{ section.settings.calories }}</span>
+       <div class="additional_info_sec_cal">
+      <p class="additional_info" style="font-size:{{ section.settings.additional_font }}px; font-family: {{ section.settings.font_family_para }};">{{ section.settings.additional_info_calories }}</p>
+       </div>
+    </div>
+     </div>
+  </div>
+  </div>
+</div>
+
+    <style>
+      
+      @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+ .meal-replacement-section {
+    display: flex;
+    justify-content: space-between;
+}
+.meal-replacement-section h2 {
+    margin: 0;
+}
+.additional_info_sec {
+    max-width: 270px;
+    width: 270px;
+    position: absolute;
+    left: -54%;
+    top: -30px;
+    background: #000;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #c8d9bf;
+    z-index: 2;
+    opacity: 0;
+    transition: 0.5s;
+}
+.additional_info_sec_cal {
+    max-width: 240px;
+    width: 240px;
+    height: auto;
+    position: absolute;
+    left: -65%;
+    top: -70px;
+    background: #000;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #c8d9bf;
+    z-index: 2;
+    opacity: 0;
+    transition: 0.5s;
+}
+    .calories_section:hover .additional_info_sec_cal {
+    opacity: 1;
+}
+.flavor {
+    width: 100%;
+    display: flex;
+    padding-bottom: 2rem;
+}
+      .cocoa_content_sec h3, .cinnamon_content h3 {
+    margin: 0px;
+}
+    .flavor img {
+      width: 50px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+.protein, .calories {
+    background-color: #c8d9bf;
+    padding: 8px 28px;
+    border-radius: 16px;
+    border: 1px solid #161616;
+}
+.protein_section {
+    position: absolute;
+    top: 18%;
+    transform: translate(50%, -18%);
+    z-index: 2;
+    cursor: pointer;
+}
+  .calories_section:hover .additional_info_sec {
+    opacity: 1;
+}
+.calories_section {
+    position: absolute;
+    top: unset;
+    bottom: 20%;
+    right: 20%;
+    transform: translate(20%, -18%);
+    cursor: pointer;
+}
+  .protein_section:hover .additional_info_sec {
+    opacity: 1;
+}
+ p.additional_info {
+    color: #fff;
+}
+    .flavor-section {
+    width: 50%;
+}
+.nutrition-info {
+    width: 50%;
+    position: relative;
+    text-align: center;
+}
+.nutrition-info img {
+    width: 100%;
+    max-width: 420px;
+    object-fit: cover;
+    animation: 40s linear infinite animName;
+}
+    @keyframes animName {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+
+ </style>
+
+ <style>
+         /* media query */
+      @media(max-width: 767px){
+        .meal-replacement-section {
+          display: block;
+        }
+        .flavor-section {
+        width: 100%;
+      }
+        .flavor-section h2 {
+        font-size: 35px !important;
+      }
+        .nutrition-info {
+        width: 100%;
+      }
+        .nutrition-info img {
+        display: none;
+    }
+        .nutrition-info {
+        margin-top: 6rem;
+    }
+        .protein, .calories {
+        font-size: 25px;
+    }
+      .additional_info_sec_cal {
+        left: -25%;
+        top: -30px;
+    }
+        .protein_section {
+        transform: translate(10%, -18%);
+    }
+      .additional_info_sec {
+        left: -8%;
+        top: -50px;
+    }
+      }
+
+   @media(max-width: 1199px) and (min-width: 768px){
+      .calories_section {
+      bottom: 55%;
+      right: 7%;
+    }
+     span.trusted-text {
+    font-size: 17px !important;
+}
+     .matte-heading {
+    font-size: 40px !important;
+}
+   }
+ </style>
+    

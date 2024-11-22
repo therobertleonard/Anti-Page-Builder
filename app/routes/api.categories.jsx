@@ -1,6 +1,8 @@
 // api/categories.js
 import { json } from "@remix-run/node";
-import db from '../db.server';
+
+import { PrismaClient } from "@prisma/client";
+const db = new PrismaClient();
 
 export const loader = async () => {
   const categories = await db.category.findMany();

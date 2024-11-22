@@ -3,7 +3,9 @@ import { json } from "@remix-run/node";
 import { useActionData, useSubmit } from "@remix-run/react";
 import { Button, TextField, Form, Page, Frame, Toast } from "@shopify/polaris";
 import { useNavigate } from "react-router-dom";
-import db from '../db.server';
+
+import { PrismaClient } from "@prisma/client";
+const db = new PrismaClient();
 
 // Main action function to handle form submission and category creation
 export const action = async ({ request }) => {

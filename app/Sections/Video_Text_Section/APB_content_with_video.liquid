@@ -1,0 +1,502 @@
+<div class="custom-banner-section" 
+     style="padding-top: {{ section.settings.main-padding-top }}px; 
+            padding-bottom: {{ section.settings.main-padding-bottom }}px; 
+            max-width: {{ section.settings.dynamic_max_width }}%; 
+            width: {{ section.settings.dynamic_width }}%;">
+
+  <div class="page-width">
+    <div class="custom-banner" 
+         style="gap: {{ section.settings.gap_size }}px; 
+                box-shadow: {{ section.settings.box_shadow }}px;">
+      
+      {% comment %}
+      <!-- Custom banner content area -->
+      This is the section containing the banner content, including the title, subtitle, and button.
+      {% endcomment %}
+      <div class="custom-banner-content" 
+           style="max-width: {{ section.settings.right-dynamic_max_width }}%; 
+                  width: {{ section.settings.right-dynamic_width }}%;">
+
+        {% comment %}
+        <!-- Banner heading -->
+        The main heading of the banner, styled dynamically based on section settings.
+        {% endcomment %}
+        <h2 class="banner-title" 
+            style="font-size: {{ section.settings.heading-font-size }}px; 
+                   color: {{ section.settings.heading-color }}; 
+                   letter-spacing: {{ section.settings.hdg_letter_spacing }}px;">
+          {{ section.settings.banner_heading }}
+        </h2>
+
+        {% comment %}
+        <!-- Banner subtitle -->
+        A subtitle for the banner, also dynamically styled.
+        {% endcomment %}
+        <p class="banner-subtitle" 
+           style="font-size: {{ section.settings.para-font-size }}px; 
+                  color: {{ section.settings.para-color }}; 
+                  letter-spacing: {{ section.settings.para_letter_spacing }}px;">
+          {{ section.settings.banner_subheading }}
+        </p>
+
+        {% comment %}
+        <!-- Button section -->
+        This section includes a button with customizable text, link, background color, and other styles.
+        {% endcomment %}
+        <div class="banner-button" 
+             style="width: {{ section.settings.button_width }}%; 
+                    margin-top: {{ section.settings.margin-top }}px; 
+                    background-color: {{ section.settings.bg-color-button }}; 
+                    padding: {{ section.settings.padding }}px; 
+                    padding-left: {{ section.settings.left-padding }}px; 
+                    padding-right: {{ section.settings.right-padding }}px; 
+                    border-radius: {{ section.settings.border_radius }}px; 
+                    letter-spacing: {{ section.settings.button_letter_spacing }}px;">
+          
+          <a class="link-button" 
+             style="font-size: {{ section.settings.link-font-size }}px; 
+                    color: {{ section.settings.link-color }};" 
+             href="{{ section.settings.button_link }}">
+            {{ section.settings.button_text }}
+          </a>
+        </div>
+      </div>
+
+      {% comment %}
+      <!-- Banner image area -->
+      The section on the right that contains the video or image. The width is also dynamically adjustable.
+      {% endcomment %}
+      <div class="banner-image" 
+           style="max-width: {{ section.settings.left-dynamic_max_width }}%; 
+                  width: {{ section.settings.left-dynamic_width }}%;">
+
+        {% comment %}
+        <!-- Video element -->
+        A video is included that can be customized with a dynamic link. If no video is provided, a default one is used.
+        {% endcomment %}
+        <video class="banner-video" 
+               loop 
+               muted 
+               autoplay 
+               playsinline 
+               width="100%" 
+               height="100%" 
+               style="border-radius: 10px;">
+          <source 
+            src="{% if section.settings.left_video != blank %}{{ section.settings.left_video }}{% else %}https://cdn.shopify.com/videos/c/o/v/ae92c58b835c4b3391f96e18a262517c.mp4{% endif %}" 
+            type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<style>
+/* Link styles */
+a.link-button {
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    display: block;
+}
+
+/* Main banner styles */
+.custom-banner {
+    display: flex;
+    margin: auto;
+    width: 100%;
+    align-items: center;
+    box-shadow: 0px 0px 6px -2px;
+    padding: 20px 20px 10px 90px;
+    border-radius: 30px;
+    border: 1px solid #999;
+}
+
+/* Image styles */
+.banner-image img {
+  border-radius: 15px;
+  max-width: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Content styles */
+.custom-banner-content {
+  max-width: 600px;
+  text-align: left;
+}
+
+.banner-title {
+  margin: 0 0 20px;
+  font-weight: 600;
+}
+
+.banner-subtitle {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Button styles */
+.banner-button {
+  background-color: black;
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.banner-button:hover {
+  background-color: #333;
+}
+
+/* Mobile styles */
+@media(max-width: 767px) {
+  .custom-banner-section {
+    padding: 0 0 20px!important;
+  }
+
+  .custom-banner {
+    flex-direction: column-reverse;
+    gap: 8px !important;
+    padding: 20px 10px 0px;
+  }
+
+  .banner-image, .custom-banner-content {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .banner-button {
+    margin-bottom: 30px;
+    text-align: center;
+    padding: 10px !important;
+    width: auto !important;
+  }
+
+  .banner-title {
+    font-size: 33px !important;
+    letter-spacing: 0px !important;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .banner-subtitle {
+    letter-spacing: 0px !important;
+    text-align: center;
+  }
+
+  a.link-button {
+    padding: 0px !important;
+  }
+}
+
+/* Tablet styles */
+@media(max-width: 991px) and (min-width: 768px) {
+  .custom-banner {
+    padding: 20px 20px 10px 30px;
+}
+  .custom-banner-container.page-width {
+    padding: 0px 30px;
+  }
+
+  .banner-button {
+    margin: 15px 0 0 !important;
+  }
+
+  a.link-button {
+    font-size: 12px !important;
+    padding: 0px 0px !important;
+    letter-spacing: 1.4px !important;
+  }
+.banner-button {
+    padding: 10px !important;
+}
+  .custom-banner-container.page-width {
+    gap: 20px !important;
+  }
+
+  .banner-title {
+    font-size: 25px !important;
+    margin-bottom: 10px;
+  }
+
+  .banner-subtitle {
+    font-size: 17px !important;
+    letter-spacing: 1.2px !important;
+  }
+}
+</style>
+
+
+
+{% schema %}
+{
+  "name": "APB_content_with_video",
+  "settings": [
+    
+     {
+      "type": "range",
+      "id": "main-padding-top",
+      "label": "main padding top",
+      "min": 0,
+      "max": 80,
+      "default": 30,
+      "step": 1,
+       "unit": "px"
+    },
+         {
+      "type": "range",
+      "id": "main-padding-bottom",
+      "label": "main padding bottom",
+      "min": 0,
+      "max": 80,
+      "default": 30,
+      "step": 1,
+       "unit": "px"
+    },
+            {
+          "type": "range",
+          "id": "gap_size",
+          "label": "Gap Size (px)",
+          "min": 0,
+          "max": 100,
+          "default": 20,
+          "step": 1
+        },
+     {
+      "type": "range",
+      "id": "left-dynamic_width",
+      "label": "left section Width (%)",
+      "min": 0,
+      "max": 100,
+      "default": 100,
+      "step": 1,
+    },
+        {
+      "type": "range",
+      "id": "left-dynamic_max_width",
+      "label": "left section Max Width (%)",
+      "min": 0,
+      "max": 100,
+      "default": 100,
+      "step": 1
+    },
+        {
+      "type": "text",
+      "id": "box_shadow",
+      "label": "Box Shadow",
+      "default": "0px 4px 20px rgba(0, 0, 0, 0.1)"
+    },
+    {
+      "type": "video",
+      "id": "left-video",
+      "label": "video url",
+    },
+            {
+      "type": "range",
+      "id": "right-dynamic_width",
+      "label": "right section Width (%)",
+      "min": 0,
+      "max": 100,
+      "default": 100,
+      "step": 1,
+    },
+        {
+      "type": "range",
+      "id": "right-dynamic_max_width",
+      "label": "right section Max Width (%)",
+      "min": 0,
+      "max": 100,
+      "default": 100,
+      "step": 1
+    },
+    {
+      "type": "text",
+      "id": "banner_heading",
+      "label": "Banner Heading",
+      "default": "Summer Market Sale"
+    },
+     {
+      "type": "number",
+      "id": "heading-font-size",
+      "label": "heading font size",
+      "default": 20
+    },
+       {
+      "type": "color",
+      "id": "heading-color",
+      "label": "heading color",
+      "default": "#000"
+    },
+    {
+      "type": "textarea",
+      "id": "banner_subheading",
+      "label": "Banner Subheading",
+      "default": "Enjoy up to 50% off our summer linen dresses. Hurry—stock is limited and your perfect size won't last long."
+    },
+    {
+      "type": "number",
+      "id": "para-font-size",
+      "label": "para font size",
+      "default": 16
+    },
+        {
+      "type": "color",
+      "id": "para-color",
+      "label": "para color",
+      "default": "#000"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "button-url"
+},
+       {
+      "type": "range",
+      "id": "button_width",
+      "label": "button Width (%)",
+      "min": 0,
+      "max": 100,
+      "default": 33,
+      "step": 1,
+    },
+        {
+      "type": "color",
+      "id": "bg-color-button",
+      "label": "bg color button",
+      "default": "#000"
+},
+             {
+      "type": "range",
+      "id": "margin-top",
+      "label": "margin top",
+      "min": 0,
+      "max": 80,
+      "default": 30,
+      "step": 1,
+      "unit": "px"
+    },
+            {
+      "type": "range",
+      "id": "padding",
+      "label": "padding",
+      "min": 0,
+      "max": 80,
+      "default": 12,
+      "step": 1,
+       "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "left-padding",
+      "label": "left padding",
+      "min": 0,
+      "max": 80,
+      "default": 30,
+      "step": 1,
+       "unit": "px"
+    },
+      {
+      "type": "range",
+      "id": "right-padding",
+      "label": "right padding",
+      "min": 0,
+      "max": 80,
+      "default": 30,
+      "step": 1,
+       "unit": "px"
+    },
+    {
+      "type": "number",
+      "id": "link-font-size",
+      "label": "link font size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "link-color",
+      "label": "link color",
+      "default": "#fff"
+    },
+    {
+        "type": "range",
+        "id": "border_radius",
+        "label": "Border Radius (px)",
+        "min": 0,
+        "max": 50,
+        "default": 20,
+        "step": 1,
+      },
+          {
+         "type": "range",
+         "id": "button_letter_spacing",
+         "label": "button Letter Spacing (px)",
+         "min": 0,
+         "max": 50,
+         "default": 0,
+         "step": 1,
+      },
+             {
+         "type": "range",
+         "id": "hdg_letter_spacing",
+         "label": "hdg Letter Spacing (px)",
+         "min": 0,
+         "max": 50,
+         "default": 0,
+         "step": 1,
+      },
+           {
+         "type": "range",
+         "id": "para_letter_spacing",
+         "label": "para Letter Spacing (px)",
+         "min": 0,
+         "max": 50,
+         "default": 0,
+         "step": 1,
+      },
+     {
+      "type": "text",
+      "id": "button_text",
+      "label": "button text",
+      "default": "Shop Sale"
+    },
+     {
+      "type": "range",
+      "id": "padding-top",
+      "label": "pdg-top",
+      "min": 0,
+      "max": 60,
+      "default": 20,
+      "step": 1,
+    },
+  {
+      "type": "range",
+      "id": "dynamic_width",
+      "label": "Dynamic Width (%)",
+      "min": 0,
+      "max": 100,
+      "default": 100,
+      "step": 1,
+    },
+        {
+      "type": "range",
+      "id": "dynamic_max_width",
+      "label": "Dynamic Max Width (%)",
+      "min": 0,
+      "max": 100,
+      "default": 100,
+      "step": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "APB_content_with_video",
+    }
+  ]
+}
+
+{% endschema %}

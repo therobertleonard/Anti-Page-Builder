@@ -1,0 +1,517 @@
+
+{% comment %}
+<!-- Liquid Section for Sanitizer Promo -->
+{% endcomment %}
+
+<div class="sanitizer-promo-section" style="background-color:{{ section.settings.bg_color_main }}; background-image:url({{ section.settings.after-image }}); padding-top: {{ section.settings.pdg_top }}px; padding-bottom: {{ section.settings.pdg_bottom }}px;">
+  <div class="page-width">
+    <div class="sanitizer-promo-container">
+
+      {% comment %}
+      <!-- Left Side: Text Content -->
+      {% endcomment %}
+      <div class="sanitizer-text" style="max-width: {{ section.settings.custom-dynamic_max_width }}%; 
+                  width: {{ section.settings.custom-dynamic_width }}%;">
+        <h1 class="sanitizer-heading" style="font-size:{{ section.settings.main_text_font_size }}px; 
+                    color:{{ section.settings.main_text_color }}; 
+                    letter-spacing: {{ section.settings.main_text_letter_spacing }}px; line-height: {{ section.settings.main_text_line_height }};">
+          {{ section.settings.main_heading }}
+        </h1>
+        <p class="sanitizer-subheading" style="font-size:{{ section.settings.para_text_font_size }}px; 
+                    color:{{ section.settings.para_text_color }}; 
+                    letter-spacing: {{ section.settings.para_text_letter_spacing }}px; line-height: {{ section.settings.para_text_line_height }};">
+          {{ section.settings.sub_heading }}
+        </p>
+        <div class="senti_btn" style="margin-top:{{ section.settings.mt-top }}px;">
+          <div class="button-section" style="
+            {% if section.settings.enable_box_shadow %} 
+                box-shadow: {{ section.settings.box_shadow_x_offset }} {{ section.settings.box_shadow_y_offset }} {{ section.settings.box_shadow_blur }} {{ section.settings.box_shadow_color }}; 
+            {% endif %}
+            background-color: {{ section.settings.bg_button_color }}; 
+            border-radius: {{ section.settings.button_border_radius }}px; 
+            padding: {{ section.settings.btn-pdg }}px; 
+            padding-left: {{ section.settings.pdg_left }}px; 
+            padding-right: {{ section.settings.pdg_right }}px;">
+            <a href="{{ section.settings.button_link }}" class="sanitizer-button" style="font-size:{{ section.settings.button_text_font_size }}px; 
+                      color:{{ section.settings.button_text_color }}; 
+                      letter-spacing: {{ section.settings.button_text_letter_spacing }}px; 
+                      max-width: {{ section.settings.button-dynamic_max_width }}%; 
+                      width: {{ section.settings.button-dynamic_width }}%;">
+              {{ section.settings.button_text }}
+            </a>
+          </div>
+          <div class="perst-div-class">
+            <strong class="sanitizer-footer" style="font-size:{{ section.settings.made_text_font_size }}px; 
+                      color:{{ section.settings.made_text_color }}; 
+                      letter-spacing: {{ section.settings.made_text_letter_spacing }}px;">
+              {{ section.settings.footer_text }}
+            </strong>
+          </div>
+        </div>
+      </div>
+
+      {% comment %}
+      <!-- Right Side: Product Image -->
+      {% endcomment %}
+      <div class="sanitizer-image-container">
+        <img src="{% if section.settings.product_image != blank %}{{ section.settings.product_image | img_url: 'master' }}
+          {% else %}https://cdn.shopify.com/s/files/1/0674/8363/1794/files/Hand-Sanitizer-PNG_2.webp?v=1729842694{% endif %}" 
+             alt="Product Image">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+.sanitizer-promo-container {
+    display: flex;
+    position: relative;
+}
+  .button-section {
+    cursor: pointer;
+}
+  .perst-div-class strong.sanitizer-footer {
+    font-family: "Raleway", sans-serif;
+}
+.sanitizer-image-container img {
+    width: 100%;
+    height: auto;
+    max-width: 420px;
+}
+  .sanitizer-text {
+    margin-bottom: 5rem;
+}
+  .sanitizer-image-container {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    top: unset;
+    bottom: -50px;
+}
+h1.sanitizer-heading {
+    margin: 0px;
+    line-height: 65px !important;
+    font-family: "Raleway", sans-serif;
+    font-weight: 900;
+}
+p.sanitizer-subheading {
+    margin: 22px 0px;
+    font-family: "Raleway", sans-serif;
+}
+  .senti_btn {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.button-section a.sanitizer-button {
+    text-decoration: none;
+    font-weight: 700;
+    font-family: "Raleway", sans-serif;
+}
+  .sanitizer-promo-section:after {
+    content: "";
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    display: block;
+    left: 0;
+    right: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center bottom;
+    background-image: url(https://cdn.shopify.com/s/files/1/0674/8363/1794/files/download_1.svg?v=1729851630);
+}
+  .sanitizer-promo-section {
+    position: relative;
+    margin-bottom: 17rem;
+}
+
+  /* media query */
+  @media(max-width: 767px){
+    .sanitizer-promo-section {
+    padding-top: 40px !important;
+}
+    .senti_btn {
+    gap: 20px !important;
+}
+    .perst-div-class strong.sanitizer-footer {
+    font-size: 16px !important;
+}
+    .sanitizer-promo-section:after {
+    background-position: 60% 80%;
+}
+    .sanitizer-promo-container {
+    display: flex;
+    flex-direction: column;
+}
+.sanitizer-text {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+    h1.sanitizer-heading {
+    margin: 0px;
+    font-size: 40px !important;
+    line-height: 46px !important;
+}
+.sanitizer-text {
+    margin-bottom: 17rem;
+}
+.sanitizer-image-container {
+    top: 68%;
+    width: 100%;
+    text-align: center;
+}
+    p.sanitizer-subheading {
+    margin: 16px 0px 0px;
+    font-size: 18px !important;
+    font-weight: 600;
+    letter-spacing: 0px !important;
+}
+    .senti_btn {
+    gap: 10px;
+    flex-direction: column-reverse;
+    margin-top: 10px !important;
+}
+    .button-section {
+    width: 100%;
+      text-align: center;
+}
+    .perst-div-class {
+    text-align: left;
+    width: 100%;
+}
+    .sanitizer-image-container img {
+    width: 300px;
+    max-width: 300px;
+}
+  }
+
+  @media(max-width:1199px) and (min-width: 768px){
+    .sanitizer-image-container {
+    right: -50px;
+}
+    h1.sanitizer-heading {
+    font-size: 40px !important;
+    line-height: 47px !important;
+}
+    .button-section a.sanitizer-button {
+    display: block;
+    font-size: 12px !important;
+}
+  }
+</style>
+{% schema %}
+{
+  "name": "APB Sanitizer Promo Sec",
+  "settings": [
+      {
+      "type": "image_picker",
+      "id": "after-image",
+      "label": "after link image"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_main",
+      "label": "bg color main",
+      "default": "#9ec688"
+    },
+      {
+          "type": "range",
+          "id": "pdg_top",
+          "label": "Main Padding Top",
+          "min": 0,
+          "max": 100,
+          "default": 100,
+          "step": 1,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "pdg_bottom",
+          "label": "Main Padding Bottom",
+          "min": 0,
+          "max": 80,
+          "default": 30,
+          "step": 1,
+          "unit": "px"
+        },
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main Heading",
+      "default": "ABSOLUTELY AMAZING HAND SANITIZER"
+    },
+            {
+      "type": "range",
+      "id": "custom-dynamic_width",
+      "label": "right section Width (%)",
+      "min": 0,
+      "max": 100,
+      "default": 50,
+      "step": 1,
+    },
+        {
+      "type": "range",
+      "id": "custom-dynamic_max_width",
+      "label": "right section Max Width (%)",
+      "min": 0,
+      "max": 100,
+      "default": 50,
+      "step": 1
+    },
+    {
+  "type": "range",
+  "id": "main_text_line_height",
+  "label": "Main Text Line Height (px)",
+  "default": 1.5,
+  "min": 1,
+  "max": 3,
+  "step": 0.1
+},
+                   {
+      "type": "range",
+      "id": "main_text_font_size",
+      "label": "Font Size (px)",
+      "default": 50,
+      "min": 10,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "type": "color",
+      "id": "main_text_color",
+      "label": "Text Color",
+      "default": "#233e16"
+    },
+    {
+      "type": "range",
+      "id": "main_text_letter_spacing",
+      "label": "Letter Spacing (px)",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.1
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "Subheadline goes right here champs, believe it or not."
+    },
+    {
+  "type": "range",
+  "id": "para_text_line_height",
+  "label": "Paragraph Text Line Height (px)",
+  "default": 1.5,
+  "min": 1,
+  "max": 3,
+  "step": 0.1
+},
+                     {
+      "type": "range",
+      "id": "para_text_font_size",
+      "label": "para Font Size (px)",
+      "default": 20,
+      "min": 10,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "type": "color",
+      "id": "para_text_color",
+      "label": "para Color",
+      "default": "#233e16"
+    },
+    {
+      "type": "range",
+      "id": "para_text_letter_spacing",
+      "label": "para Letter Spacing (px)",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.1
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "BUY NOW"
+    },
+                         {
+      "type": "range",
+      "id": "button_text_font_size",
+      "label": "button Font Size (px)",
+      "default": 20,
+      "min": 10,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "button Color",
+      "default": "#233e16"
+    },
+        {
+          "type": "range",
+          "id": "btn-pdg",
+          "label": "button Padding",
+          "min": 0,
+          "max": 50,
+          "default": 10,
+          "step": 1,
+          "unit": "px"
+        },
+            {
+          "type": "range",
+          "id": "pdg_left",
+          "label": "left Padding",
+          "min": 0,
+          "max": 50,
+          "default": 30,
+          "step": 1,
+          "unit": "px"
+        },
+            {
+          "type": "range",
+          "id": "pdg_right",
+          "label": "right Padding",
+          "min": 0,
+          "max": 50,
+          "default": 30,
+          "step": 1,
+          "unit": "px"
+        },
+    {
+      "type": "range",
+      "id": "button_text_letter_spacing",
+      "label": "button Letter Spacing (px)",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.1
+    },
+      {
+      "type": "color",
+      "id": "bg_button_color",
+      "label": "bg button color",
+      "default": "#fff"
+    },
+                {
+      "type": "range",
+      "id": "button-dynamic_width",
+      "label": "button Width (%)",
+      "min": 0,
+      "max": 100,
+      "default": 100,
+      "step": 1,
+    },
+        {
+      "type": "range",
+      "id": "button-dynamic_max_width",
+      "label": "button Max Width (%)",
+      "min": 0,
+      "max": 100,
+      "default": 100,
+      "step": 1
+    },
+             {
+          "type": "range",
+          "id": "mt-top",
+          "label": "margin top",
+          "min": 0,
+          "max": 50,
+          "default": 20,
+          "step": 1,
+          "unit": "px"
+        },
+        {
+  "type": "range",
+  "id": "button_border_radius",
+  "label": "Button Border Radius (px)",
+  "default": 50,
+  "min": 0,
+  "max": 50,
+  "step": 1
+},
+        {
+        "type": "checkbox",
+        "id": "enable_box_shadow",
+        "label": "Enable Box Shadow",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "box_shadow_x_offset",
+        "label": "Horizontal Offset",
+        "default": "4px"
+      },
+      {
+        "type": "text",
+        "id": "box_shadow_y_offset",
+        "label": "Vertical Offset",
+        "default": "5px"
+      },
+      {
+        "type": "text",
+        "id": "box_shadow_blur",
+        "label": "Blur Radius",
+        "default": "2px"
+      },
+      {
+        "type": "text",
+        "id": "box_shadow_color",
+        "label": "Shadow Color",
+        "default": "rgb(35 62 22)"
+      },
+
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product Image"
+    },
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Footer Text",
+      "default": "100% Hand made products"
+    },
+                             {
+      "type": "range",
+      "id": "made_text_font_size",
+      "label": "made Font Size (px)",
+      "default": 20,
+      "min": 10,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "type": "color",
+      "id": "made_text_color",
+      "label": "made Color",
+      "default": "#233E16"
+    },
+    {
+      "type": "range",
+      "id": "made_text_letter_spacing",
+      "label": "made Letter Spacing (px)",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.1
+    },
+  ],
+  "presets": [
+    {
+      "name": "APB_Sanitizer_Promo_Sec"
+    }
+  ]
+}
+{% endschema %} 

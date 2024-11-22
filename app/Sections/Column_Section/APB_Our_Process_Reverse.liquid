@@ -1,0 +1,409 @@
+<section class="our-process">
+    <div class="page-width">
+      <div class="main_section_process" style="gap: {{ section.settings.gap_size }}px;">
+  
+        {% comment %}
+        <!-- Right side content for process steps -->
+        This section is for displaying process steps, with each step generated dynamically using the blocks.
+        {% endcomment %}
+        <div class="right-process-steps-content">
+          <div class="process-steps">
+            {% comment %}
+            <!-- Loop through each block to display process steps dynamically -->
+            Each block represents a step in the process, and each step has a title and description.
+            {% endcomment %}
+            {% for block in section.blocks %}
+              <div class="step {{ block.settings.alignment-content }}" style="">
+                <h3 style="font-size: {{ block.settings.rgt_cont_hdg_fntsize }}px; color: {{ block.settings.rgt_cont_hdg_fntcolor }};
+                  font-family: {{ block.settings.font_family_hdg }};">
+                  {{ block.settings.step_title }}
+                </h3>
+                <p style="font-size: {{ block.settings.rgt_desc_fntsize }}px; color: {{ block.settings.rgt_desc_fntcolor }};
+                  font-family: {{ block.settings.font_family_desc }};">
+                  {{ block.settings.step_description }}
+                </p>
+              </div>
+            {% endfor %}
+          </div>
+  
+          {% comment %}
+          <!-- Call to Action button section -->
+          This section contains a call-to-action button. The button's styles and link are dynamically generated.
+          {% endcomment %}
+          <div class="cta-button {{ section.settings.alignment-content-button }}">
+            <a href="{{ section.settings.cta_link }}" class="button" style="font-size: {{ section.settings.btn_text_fnt }}px; 
+              color: {{ section.settings.btn_text_clr }}; background-color: {{ section.settings.bg_button_color }}; border-color: {{ section.settings.border_color }};
+              border-width: {{ section.settings.border_width }}px; border-style: {{ section.settings.border_style }};">
+              {{ section.settings.cta_text }}
+            </a>
+          </div>
+        </div>
+  
+        {% comment %}
+        <!-- Left side content including the main heading and image -->
+        This section contains the main heading, description, and an image related to the process.
+        {% endcomment %}
+        <div class="left-process-steps-content">
+          <h2 style="font-size: {{ section.settings.our_pro_fntsize }}px; color: {{ section.settings.our_pro_fntcolor }};
+             font-family: {{ section.settings.font_family }}; font-weight: {{ section.settings.font_weight }};">
+            {{ section.settings.main_heading }}
+          </h2>
+          
+          <p style="font-size: {{ section.settings.desc_fntsize }}px; color: {{ section.settings.desc_fntcolor }};
+             font-family: {{ section.settings.font_family }}; font-weight: {{ section.settings.font_weight_desc }};">
+            {{ section.settings.description }}
+          </p>
+  
+          {% comment %}
+          <!-- Left image section, with a default image if none is set -->
+          If no image is selected, a default image is shown.
+          {% endcomment %}
+          <div class="Left_image_sec">
+            <img src="{% if section.settings.left_image != blank %} {{ section.settings.left_image | img_url: 'small' }} {% else %} 
+            https://cdn.shopify.com/s/files/1/0887/8194/7244/files/Screenshot_2024-02-07_at_16.12.00.webp?v=1730698523 {% endif %}">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+      
+      <style>
+        .process-steps .step h3 {
+          margin: 0px;
+      }
+        div#shopify-section-template--23816943141228__apb_our_process_sectio_2_V67tH6 {
+      border-top: 1px solid #000;
+  }
+        .left-process-steps-content h2 {
+          margin: 0px;
+      }
+        .main_section_process {
+          display: flex;
+      }
+        .left-process-steps-content p {
+          padding-bottom: 20px;
+          margin: 10px 0px;
+      }
+      .left-process-steps-content {
+          width: 50%;
+          text-align: left;
+      }
+        .right-process-steps-content {
+          width: 50%;
+      }
+        .our-process {
+          text-align: center;
+          padding: 2em 0;
+        }
+        .Left_image_sec img {
+          width: 100%;
+          height: 100%;
+      }
+        .process-steps {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0px;
+        }
+        .step {
+          max-width: 600px;
+          margin: 1em 0;
+          padding-bottom: 1em;
+          border-bottom: 2px solid {{ section.settings.border_color }};
+        }
+        .cta-button {
+          margin-top: 2em;
+        }
+        .process-steps .step p {
+          margin: 0px;
+      }
+      </style>
+      {% schema %}
+      {
+        "name": "Our Process Section_2",
+        "settings": [
+              {
+              "type": "range",
+              "id": "gap_size",
+              "label": "Gap Size (px)",
+              "min": 0,
+              "max": 100,
+              "default": 80,
+              "step": 1
+            },
+          {
+            "type": "text",
+            "id": "main_heading",
+            "label": "Main Heading",
+            "default": "OUR PROCESS"
+          },
+          {
+                "type": "number",
+                "id": "our_pro_fntsize",
+                "label": "our_pro_fntsize",
+                "default": 56
+              },
+                     {
+                "type": "color",
+                "id": "our_pro_fntcolor",
+                "label": "our_pro_fntcolor",
+                "default": "#000"
+              },
+                                         {
+          "type": "select",
+          "id": "font_family",
+          "label": "Font Family",
+          "options": [
+            { "value": "'Arial', sans-serif", "label": "Arial" },
+            { "value": "'Georgia', serif", "label": "Georgia" },
+            { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+            { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+            { "value": "'Courier New', monospace", "label": "Courier New" },
+            { "value": "'Roboto', sans-serif", "label": "Roboto" },
+            { "value": "'Raleway', sans-serif", "label": "Raleway" },
+             { "value": "'Montserrat', sans-serif", "label": "Montserrat" }
+          ],
+          "default": "'Montserrat', sans-serif"
+        },
+               {
+          "type": "select",
+          "id": "font_weight",
+          "label": "Font Weight",
+          "options": [
+            { "value": "100", "label": "Thin" },
+            { "value": "300", "label": "Light" },
+            { "value": "400", "label": "Regular" },
+            { "value": "600", "label": "Semi-Bold" },
+            { "value": "700", "label": "Bold" },
+            { "value": "900", "label": "Black" }
+          ],
+          "default": "700"
+        },
+          {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description",
+            "default": "From the initial strategy to the successful launch of the online store, we follow a detailed 5-step process that ensures the end result. Each stage is executed carefully, achieving results that exceed expectations."
+          },
+             {
+                "type": "number",
+                "id": "desc_fntsize",
+                "label": "desc_fntsize",
+                "default": 18
+              },
+                     {
+                "type": "color",
+                "id": "desc_fntcolor",
+                "label": "desc_fntcolor",
+                "default": "#000"
+              },
+                   {
+          "type": "select",
+          "id": "font_weight_desc",
+          "label": "Font Weight",
+          "options": [
+            { "value": "100", "label": "Thin" },
+            { "value": "300", "label": "Light" },
+            { "value": "400", "label": "Regular" },
+            { "value": "600", "label": "Semi-Bold" },
+            { "value": "700", "label": "Bold" },
+            { "value": "900", "label": "Black" }
+          ],
+          "default": "400"
+        },
+          {
+            "type": "image_picker",
+            "id": "left_image",
+            "label": "Add_left_image"
+          },
+          {
+            "type": "text",
+            "id": "cta_text",
+            "label": "Button Text",
+            "default": "Learn More"
+          },
+                {
+                      "type": "select",
+                      "id": "alignment-content-button",
+                      "label": "Select Alignment",
+                      "default": "left",
+                      "options": [
+                          { "value": "center", "label": "Center" },
+                          { "value": "top", "label": "Top" },
+                          { "value": "bottom", "label": "Bottom" },
+                          { "value": "left", "label": "Left" },
+                          { "value": "right", "label": "Right" }
+                      ]
+                  },
+          {
+            "type": "url",
+            "id": "cta_link",
+            "label": "Button Link"
+          },
+                     {
+        "type": "number",
+        "id": "btn_text_fnt",
+        "label": "btn_text_fnt",
+        "default": 20
+      },
+        {
+        "type": "color",
+        "id": "btn_text_clr",
+        "label": "btn_text_clr",
+        "default": "#000"
+      },
+          {
+            "type": "color",
+            "id": "bg_button_color",
+            "label": "bg button color",
+            "default": "#ebea5f"
+          },
+             {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#233e16"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border Width (px)",
+      "min": 1,
+      "max": 10,
+      "default": 1
+    },
+    {
+      "type": "select",
+      "id": "border_style",
+      "label": "Border Style",
+      "options": [
+        { "value": "solid", "label": "Solid" },
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "dotted", "label": "Dotted" }
+      ],
+      "default": "solid"
+    },
+        ],
+        "blocks": [
+          {
+            "name": "Step",
+            "type": "step",
+            "settings": [
+                  {
+                      "type": "select",
+                      "id": "alignment-content",
+                      "label": "Select Alignment",
+                      "default": "left",
+                      "options": [
+                          { "value": "center", "label": "Center" },
+                          { "value": "top", "label": "Top" },
+                          { "value": "bottom", "label": "Bottom" },
+                          { "value": "left", "label": "Left" },
+                          { "value": "right", "label": "Right" }
+                      ]
+                  },
+                  {
+            "type": "color",
+            "id": "border_color",
+            "label": "Border Color",
+            "default": "#000"
+          },
+              {
+                "type": "text",
+                "id": "step_title",
+                "label": "Step Title",
+                "default": "Step Title"
+              },
+              {
+                "type": "number",
+                "id": "rgt_cont_hdg_fntsize",
+                "label": "rgt_cont_hdg_fntsize",
+                "default": 38
+              },
+                     {
+                "type": "color",
+                "id": "rgt_cont_hdg_fntcolor",
+                "label": "rgt_cont_hdg_fntcolor",
+                "default": "#000"
+              },
+                                                 {
+          "type": "select",
+          "id": "font_family_hdg",
+          "label": "Font Family",
+          "options": [
+            { "value": "'Arial', sans-serif", "label": "Arial" },
+            { "value": "'Georgia', serif", "label": "Georgia" },
+            { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+            { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+            { "value": "'Courier New', monospace", "label": "Courier New" },
+            { "value": "'Roboto', sans-serif", "label": "Roboto" },
+            { "value": "'Raleway', sans-serif", "label": "Raleway" },
+             { "value": "'Montserrat', sans-serif", "label": "Montserrat" }
+          ],
+          "default": "'Montserrat', sans-serif"
+        },
+              {
+                "type": "textarea",
+                "id": "step_description",
+                "label": "Step Description",
+                "default": "Step Description"
+              },
+                     {
+                "type": "number",
+                "id": "rgt_desc_fntsize",
+                "label": "rgt_desc_fntsize",
+                "default": 16
+              },
+                     {
+                "type": "color",
+                "id": "rgt_desc_fntcolor",
+                "label": "rgt_desc_fntcolor",
+                "default": "#000"
+              },
+                                                 {
+          "type": "select",
+          "id": "font_family_desc",
+          "label": "Font Family",
+          "options": [
+            { "value": "'Arial', sans-serif", "label": "Arial" },
+            { "value": "'Georgia', serif", "label": "Georgia" },
+            { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+            { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+            { "value": "'Courier New', monospace", "label": "Courier New" },
+            { "value": "'Roboto', sans-serif", "label": "Roboto" },
+            { "value": "'Raleway', sans-serif", "label": "Raleway" },
+             { "value": "'Montserrat', sans-serif", "label": "Montserrat" }
+          ],
+          "default": "'Montserrat', sans-serif"
+        },
+            ]
+          }
+        ],
+        "presets": [
+          {
+            "name": "APB_Our_Process_Reverse",
+            "category": "Custom Sections",
+            "blocks": [
+              {
+                "type": "step"
+              },
+              {
+                "type": "step"
+              },
+              {
+                "type": "step"
+              },
+              {
+                "type": "step"
+              },
+              {
+                "type": "step"
+              }
+            ]
+          }
+        ]
+      }
+      {% endschema %}
+      

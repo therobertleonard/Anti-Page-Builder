@@ -1,5 +1,4 @@
 import { useLoaderData, useActionData, Form, redirect, useNavigate } from "@remix-run/react";
-import db from '../db.server';
 import { Grid, Text, Page, Image, Modal, Box, Button, Banner, Card, Icon, BlockStack, InlineGrid, Badge, InlineStack } from "@shopify/polaris";
 import { useState, useEffect } from "react";
 import { authenticate } from "../shopify.server";
@@ -8,6 +7,8 @@ import {
   PlusCircleIcon,
   ProductIcon
 } from '@shopify/polaris-icons';
+import { PrismaClient } from "@prisma/client";
+const db = new PrismaClient();
 
 // Loader function to fetch sections that have not been purchased
 export const loader = async ({ request }) => {
@@ -74,6 +75,7 @@ export default function Index() {
   const [showBanner, setShowBanner] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  console.log(sections[0].features)
 
   // Function to open the modal with section details
   const handleOpenModal = (section) => {
@@ -147,7 +149,7 @@ export default function Index() {
                       width="100%"
                     />
                     <Text variant="bodyMd">
-                      <Text variant="headingMd" as="h2">Features:</Text>
+                      <Text variant="headingMd" as="h2">Feature:</Text>
                       <ul>
                         {activeSection.features.split('|').map((feature, index) => (
                           <li key={index}>{feature.trim()}</li>
@@ -196,7 +198,7 @@ export default function Index() {
                         </InlineStack>
                       </InlineStack>
                     </Card>
-                   {/* <Card sectioned>
+                    {/* <Card sectioned>
                       <Button icon={ViewIcon} fullWidth>VIEW DEMO</Button>
                     </Card> */}
 

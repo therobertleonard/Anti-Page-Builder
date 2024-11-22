@@ -1,5 +1,7 @@
 import { useActionData, useLoaderData } from "@remix-run/react";
-import db from '../db.server';
+
+import { PrismaClient } from "@prisma/client";
+const db = new PrismaClient();
 import { Grid, Text, Page, Image, Modal, Box, Button, Banner, Toast, Card, Icon, BlockStack, InlineGrid, Badge, InlineStack, ButtonGroup, Frame } from "@shopify/polaris";
 import {
     ViewIcon,

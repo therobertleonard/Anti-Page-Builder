@@ -1,41 +1,99 @@
+
+<!-- Wrapper for the custom banner -->
 <div class="an-cus-banner-wraper">
+  
+  {% comment %}
+ --------- Check if mouse scroll setting is enabled-------------
+  {% endcomment %}
   {%- if section.settings.mouse_scrol -%}
   <div class="an-cus-mobile-scroll">
+    {% comment %}
+    ----------Image displayed on mobile scroll-------------
+    {% endcomment %}
     <img src="{{ section.settings.mou_img | img_url: 'master' }}" alt="" width="auto" height="auto">
   </div>
   {%- endif -%}
   
+  {% comment %}
+ ------------ Wrapper for video or image display------------
+  {% endcomment %}
   <div class="an-video-image-wraper">
+      {% comment %}
+    -----------  Check if a custom video is provided-----------
+      {% endcomment %}
       {% if section.settings.a_video %}
         {% assign video = section.settings.a_video %}
       {% else %}
-       {% assign video = "https://cdn.shopify.com/videos/c/o/v/4a42e93c665f4594bbd2013c328365fe.mp4" %}
-        {% endif %}
+        {% comment %}
+       ---------------- Default video assigned if none is provided-------------------
+        {% endcomment %}
+        {% assign video = "https://cdn.shopify.com/videos/c/o/v/0961b6dae9b9418289626a910226531d.mp4" %}
+      {% endif %}
+      {% comment %}
+      -----------------Video element with autoplay, muted, and loop attributes-----------------
+      {% endcomment %}
       <video autoplay muted loop>
         <source src="{{ video }}">
       </video>
   </div>
   
-  <div class="an-cus-banner-wraper-overlay" style="background-color:{{ section.settings.ov_bg }}; opacity:{{ section.settings.opacity }};">l</div>
+  {% comment %}
+ --------------------- Overlay with customizable background color and opacity--------------------
+  {% endcomment %}
+  <div class="an-cus-banner-wraper-overlay" style="background-color:{{ section.settings.ov_bg }}; opacity:{{ section.settings.opacity }};"></div>
   
-  <div class="page-width an-cus-banner {{ section.settings.jnsjnvsnv }} {{ section.settings.bot_con }}" style="align-items:{{ section.settings.v_a }}; justify-content:{{ section.settings.h_a }};">
+  {% comment %}
+ --------------------- Banner content wrapper with customizable alignment---------------
+  {% endcomment %}
+  <div class="page-width an-cus-banner {{ section.settings.jnsjnvsnv }} {{ section.settings.bot_con }}" 
+       style="align-items:{{ section.settings.v_a }}; justify-content:{{ section.settings.h_a }};">
+       
+    {% comment %}
+  -----------------------  Content wrapper with text alignment and max width control-----------------
+    {% endcomment %}
     <div class="an-cus-banner-content-wraper" style="text-align:{{ section.settings.t_a }}; max-width:{{ section.settings.max_wdth }}px;">
+      
+      {% comment %}
+     ----------------------- Heading section, displayed if not blank-----------------------
+      {% endcomment %}
       {%- if section.settings.video_heading != blank -%}
         <h1 style="color:{{ section.settings.cont_col }};">{{ section.settings.video_heading }}</h1>
       {%- endif -%}
+      
+      {% comment %}
+     ----------------------- Sub-heading section, displayed if not blank-----------------
+      {% endcomment %}
       {%- if section.settings.video_sub_heading != blank -%}
         <p style="color:{{ section.settings.cont_col }};">{{ section.settings.video_sub_heading }}</p>
       {%- endif -%}
-
+      
+      {% comment %}
+     -------------------- Button section, displayed if the first button text is not blank------------------------
+      {% endcomment %}
       {%- if section.settings.video_button1 != blank -%}
       <div class="an-video-image-button-wraper" style="text-align:{{ section.settings.t_a }}; justify-content:{{ section.settings.h_a }};">
-        <a style="color:{{ section.settings.cont_co2 }}; background-color:{{ section.settings.color_accent1 }};" href="{{ section.settings.video_button1_link }}" class="an-cus-banner-button">{{ section.settings.video_button1 }}</a>
-        <a style="color:{{ section.settings.cont_col3 }}; background-color:{{ section.settings.color_accent2 }};" href="{{ section.settings.video_button1_link1 }}" class="an-cus-banner-button">{{ section.settings.video_button2 }}</a>
+        {% comment %}
+      ------------------  First button with customizable colors and link---------------------------
+        {% endcomment %}
+        <a style="color:{{ section.settings.cont_co2 }}; background-color:{{ section.settings.color_accent1 }};" 
+           href="{{ section.settings.video_button1_link }}" class="an-cus-banner-button">
+          {{ section.settings.video_button1 }}
+        </a>
+        {% comment %}
+       ------------------ Second button with customizable colors and link----------------------
+        {% endcomment %}
+        <a style="color:{{ section.settings.cont_col3 }}; background-color:{{ section.settings.color_accent2 }};" 
+           href="{{ section.settings.video_button1_link1 }}" class="an-cus-banner-button">
+          {{ section.settings.video_button2 }}
+        </a>
       </div>
       {%- endif -%}
+      
     </div>
   </div>
 </div>
+
+
 
 <style>
   .an-cus-banner-wraper .an-cus-mobile-scroll {
@@ -64,14 +122,13 @@
   }
   
   .an-cus-banner-wraper-overlay {
-    display: block ;
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
     z-index: 1;
-    font-size:0;
   }
   
   .an-video-image-wraper {
@@ -230,10 +287,9 @@
 <script>
   $('.an-cus-banner-wraper .an-cus-mobile-scroll').delay(4000).animate({'opacity':'1'}, 500);
 </script>
-
 {% schema %}
 {
-  "name": "APB Video Banner #3",  
+  "name": "APB_video-banner_1",  
   "settings": [
     {
       "type": "url",
@@ -308,7 +364,7 @@
       "type": "color",
       "id": "cont_co2",
       "label": "Button Text Color",
-      "default": "#fff"
+      "default": "#000"
     },
     {
       "type": "url",
@@ -325,7 +381,7 @@
       "type": "color",
       "id": "color_accent1",
       "label": "Button Background Color",
-      "default": "#000"
+      "default": "#FFFFFF"
     },
     {
       "type": "url",
@@ -342,13 +398,13 @@
       "type": "color",
       "id": "cont_col3",
       "label": "Button Text Color",
-      "default": "#fff"
+      "default": "#000"
     },
     {
       "type": "color",
       "id": "color_accent2",
       "label": "Button Background Color",
-      "default": "#043170"
+      "default": "#FFFFFF"
     },
     {
       "type": "select",
@@ -374,7 +430,7 @@
       "type": "select",
       "id": "h_a",
       "label": "Content Horizontal Alignment",
-      "default": "flex-start",
+      "default": "center",
       "options": [
         {
           "label": "Left",
@@ -394,7 +450,7 @@
       "type": "select",
       "id": "t_a",
       "label": "Text Alignment",
-      "default": "left",
+      "default": "center",
       "options": [
         {
           "label": "Left",
@@ -413,7 +469,7 @@
   ],
   "presets": [
     {
-      "name": "APB Video Banner #3"
+      "name": "APB_video-banner_1"
     }
   ]
 }

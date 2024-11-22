@@ -3,7 +3,9 @@ import { json } from "@remix-run/node";
 import { useActionData, useSubmit } from "@remix-run/react";
 import { Button, TextField, Form, Page, Select, BlockStack, Toast, Frame } from "@shopify/polaris";
 import { useNavigate } from "react-router-dom";
-import db from '../db.server';
+
+import { PrismaClient } from "@prisma/client";
+const db = new PrismaClient();
 
 // Main action function to handle form submission and section creation
 export const action = async ({ request }) => {
@@ -19,7 +21,7 @@ export const action = async ({ request }) => {
     data: {
       title,
       price,
-      features: features.join(", "), // Store features as a comma-separated string or array depending on schema
+      features: features.join(" | "), // Use a pipe as the separator
       imageUrl,
       template,
       category: {
@@ -119,6 +121,7 @@ export default function AddSectionPage() {
               value={price}
               required
             />
+            <Button onClick={addFeatureField}>Add Another Feature</Button>
 
             {/* Dynamic feature inputs */}
             <BlockStack vertical>
@@ -137,7 +140,6 @@ export default function AddSectionPage() {
               ))}
             </BlockStack>
 
-            <Button onClick={addFeatureField}>Add Another Feature</Button>
 
             <TextField
               label="Image URL"

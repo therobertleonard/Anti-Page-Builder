@@ -1,0 +1,1275 @@
+{% comment %}
+  <!-- Tennis Banner Section -->
+{% endcomment %}
+<section
+  class="tennis-banner {{ section.settings.custom_class }}"
+  style="background-image: url({% if section.settings.background_image %}{{ section.settings.background_image | img_url: 'master' }}); {% else %} https://cdn.shopify.com/s/files/1/0887/8194/7244/files/image_109_2.png?v=1730207539 {% endif %}"
+>
+  {% comment %}
+    <!-- Container to hold all content -->
+  {% endcomment %}
+
+  <div class="page-width">
+    {% comment %}
+      <!-- Main Content of the Tennis Banner -->
+    {% endcomment %}
+
+    <div class="content">
+      {% comment %}
+        <!-- Top Row: Displays Information, Availability, and Events -->
+      {% endcomment %}
+
+      <div class="top-row">
+        <div class="info_sec">
+          <h4
+            class="insta-text"
+            style="
+              font-size: {{ section.settings.insta_font_size }}px; color: {{ section.settings.insta_fond_color }};
+              letter-spacing: {{ section.settings.insta_text_letter_spacing }}px; font-family: {{ section.settings.font_family_insta }}; font-weight: {{ section.settings.font_weight_insta }};
+            "
+          >
+            {{ section.settings.insta_text }}
+          </h4>
+          <div class="info_sec">
+            <span
+              class="info"
+              style="
+                font-size: {{ section.settings.info_fond_size }}px; color: {{ section.settings.info_fond_color }};
+                  letter-spacing: {{ section.settings.info_text_letter_spacing }}px;
+                font-family: {{ section.settings.font_family_info }}; font-weight: {{ section.settings.font_weight_info }};
+              "
+            >
+              {{ section.settings.info_text -}}
+            </span>
+            <span
+              class="info"
+              style="
+                font-size: {{ section.settings.info_fond_size }}px; color: {{ section.settings.info_fond_color }};
+                  letter-spacing: {{ section.settings.info_text_letter_spacing }}px;
+                font-family: {{ section.settings.font_family_info }}; font-weight: {{ section.settings.font_weight_info }};
+              "
+            >
+              {{ section.settings.info_text -}}
+            </span>
+          </div>
+
+          {% comment %}
+            <!-- Info Text -->
+          {% endcomment %}
+        </div>
+        <span
+          class="availability"
+          style="
+            font-size: {{ section.settings.availity_fond_size }}px; color: {{ section.settings.availity_fond_color }};
+              letter-spacing: {{ section.settings.availity_text_letter_spacing }}px;
+            font-family: {{ section.settings.font_family_availity }}; font-weight: {{ section.settings.font_weight_availity }};
+          "
+        >
+          {{ section.settings.availability_text -}}
+        </span>
+        <!-- Availability Info -->
+        <div class="event_sec">
+          <h3
+            class="wimb_text"
+            style="
+              font-size: {{ section.settings.wild_fond_size }}px; color: {{ section.settings.wild_fond_color }};
+              letter-spacing: {{ section.settings.wild_text_letter_spacing }}px; font-family: {{ section.settings.font_family_wild }}; font-weight: {{ section.settings.font_weight_wild }};
+            "
+          >
+            {{ section.settings.wimb_text }}
+          </h3>
+
+          <div class="events_text_section">
+            <span
+              class="events"
+              style="
+                font-size: {{ section.settings.event_fond_size }}px; color: {{ section.settings.event_fond_color }};
+                  letter-spacing: {{ section.settings.event_text_letter_spacing }}px;
+                font-family: {{ section.settings.font_family_event }}; font-weight: {{ section.settings.font_weight_event }};
+              "
+            >
+              {{ section.settings.events_text -}}
+            </span>
+
+            <!--
+              <span class="events" style="font-size: {{ section.settings.event_fond_size }}px; color: {{ section.settings.event_fond_color }};
+                letter-spacing: {{ section.settings.event_text_letter_spacing }}px;
+              font-family: {{ section.settings.font_family_event }}; font-weight: {{ section.settings.font_weight_event }};">
+              {{ section.settings.events_text }}</span>
+            -->
+          </div>
+          {% comment %}
+            <!-- Events Info -->
+          {% endcomment %}
+        </div>
+      </div>
+      {% comment %}
+        <!-- Brand Title and Tagline -->
+      {% endcomment %}
+      <div class="brand_inf0c">
+        <h1
+          id="element"
+          class="brand-title"
+          style="
+            font-size: {{ section.settings.wilson_fond_size }}px; color: {{ section.settings.wilson_fond_color }};
+                letter-spacing: {{ section.settings.wilson_text_letter_spacing }}px;
+            font-family: {{ section.settings.font_family_wilson }}; font-weight: {{ section.settings.font_weight_wilson }};
+          "
+        >
+          {{ section.settings.wilson_text }}
+        </h1>
+        <!-- Brand Name with Registered Trademark Symbol -->
+        <p
+          class="tagline"
+          style="
+            font-size: {{ section.settings.tagline_fond_size }}px; color: {{ section.settings.tagline_fond_color }};
+                letter-spacing: {{ section.settings.tagline_text_letter_spacing }}px;
+            font-family: {{ section.settings.font_family_tagline }}; font-weight: {{ section.settings.font_weight_tagline }};
+          "
+        >
+          {{ section.settings.tagline }}
+        </p>
+        <!-- Tagline Text -->
+      </div>
+
+      <script>
+        const multiple = 10;
+        const mouseOverContainer = document.getElementsByTagName('body')[0];
+        const element = document.getElementById('element');
+
+        function transformElement(x, y) {
+          let box = element.getBoundingClientRect();
+          const calcX = -(y - box.y - box.height / 2) / multiple;
+          const calcY = (x - box.x - box.width / 2) / multiple;
+          const percentage = parseInt(((x - box.x) / box.width) * 1000) / 10;
+
+          element.style.transform = 'rotateX(' + calcX + 'deg) ' + 'rotateY(' + calcY + 'deg)';
+        }
+
+        mouseOverContainer.addEventListener('mousemove', (e) => {
+          window.requestAnimationFrame(function () {
+            transformElement(e.clientX, e.clientY);
+          });
+        });
+
+        mouseOverContainer.addEventListener('mouseleave', (e) => {
+          window.requestAnimationFrame(function () {
+            element.style.transform = 'rotateX(0) rotateY(0)';
+          });
+        });
+      </script>
+
+      <!-- Meta Information: Established Date and Address -->
+      <div class="main_meta_content">
+        <div class="meta_sec">
+          <div class="main_lines_sec">
+            <div
+              class="est_text"
+              style="
+                border-color: {{ section.settings.est_text_border_color }};
+                border-width: {{ section.settings.est_text_border_width }}px;
+                border-style: {{ section.settings.est_text_border_style }};
+                border-radius: {{ section.settings.est_button_border_radius }}%; padding: {{ section.settings.btn-pdg }}px;
+                padding-left: {{ section.settings.pdg_left }}px;
+                padding-right: {{ section.settings.pdg_right }}px;
+              "
+            >
+              <span class="est">{{ section.settings.established }}</span>
+              <!-- Established Year/Info -->
+            </div>
+            <div class="graph_lines">
+              <svg width="97" height="23" viewBox="0 0 97 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <mask id="mask0_571_2246" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="97" height="23">
+                <g clip-path="url(#clip0_571_2246)">
+                <path d="M6.31669 22.9814V0.0111293H3.19745V22.9814H6.31669Z" fill="#bfea88"></path>
+                <path d="M75.5664 22.9932H77.0963V0.0179006H75.5664V22.9932Z" fill="#bfea88"></path>
+                <path d="M47.7304 22.9941H49.2568V0.00827684H47.7304V22.9941Z" fill="#bfea88"></path>
+                <path d="M81.1331 22.9937H82.6618V0.00778856H81.1331V22.9937Z" fill="#bfea88"></path>
+                <path d="M66.8164 22.9932H68.3463V0.0179006H66.8164V22.9932Z" fill="#bfea88"></path>
+                <path d="M96.9666 0.00632372H95.4414V22.9922H96.9666V0.00632372Z" fill="#bfea88"></path>
+                <path d="M23.8691 22.9937H25.399V0.0183888H23.8691V22.9937Z" fill="#bfea88"></path>
+                <path d="M9.55078 23H11.0678V0.0169637H9.55078V23Z" fill="#bfea88"></path>
+                <path d="M32.5471 0.00730028H31.0195V22.9932H32.5471V0.00730028Z" fill="#bfea88"></path>
+                <path d="M38.1816 23H39.6975V0.0176689H38.1816V23Z" fill="#bfea88"></path>
+                <path d="M52.498 23H54.0139V0.0169637H52.498V23Z" fill="#bfea88"></path>
+                <path d="M58.7971 0.00874011H57.2754V22.9805H58.7971V0.00874011Z" fill="#bfea88"></path>
+                <path d="M15.8444 0.00644061H14.3262V22.9888H15.8444V0.00573321V0.00644061Z" fill="#bfea88"></path>
+                <path d="M33.416 22.9932H34.9424V0.00800526H33.416V22.9932Z" fill="#bfea88"></path>
+                <path d="M89.8867 22.9976H91.4002V0.0152275H89.8867V22.9976Z" fill="#bfea88"></path>
+                <path d="M87.4307 0.00874011H85.9102V22.9805H87.4307V0.00874011Z" fill="#bfea88"></path>
+                <path d="M78.7461 22.9932H79.4813V0.00588521H78.7461V22.9932Z" fill="#bfea88"></path>
+                <path d="M0.735176 0.00685961H0V22.9941H0.735176V0.00685961Z" fill="#bfea88"></path>
+                <path d="M84.3145 22.9941H85.0473V0.00685961H84.3145V22.9941Z" fill="#bfea88"></path>
+                <path d="M69.9961 22.9932H70.7313V0.00588521H69.9961V22.9932Z" fill="#bfea88"></path>
+                <path d="M64.4317 22.9951H65.1622V0.00783833H64.4317V22.9951Z" fill="#bfea88"></path>
+                <path d="M93.7897 0.00756702H93.0546V22.9941H93.7897V0.00685961V0.00756702Z" fill="#bfea88"></path>
+                <path d="M13.4598 0.00756702H12.7246V22.9941H13.4598V0.00685961V0.00756702Z" fill="#bfea88"></path>
+                <path d="M56.4106 0.00014057H55.6895V22.9839H56.4106V-0.000564677V0.00014057Z" fill="#bfea88"></path>
+                <path d="M17.5039 22.9937H18.2391V0.00637349H17.5039V22.9937Z" fill="#bfea88"></path>
+                <path d="M27.775 0.00707874H27.041V22.9937H27.775V0.00637349V0.00707874Z" fill="#bfea88"></path>
+                <path d="M41.3652 22.9941H42.0992V0.00685961H41.3652V22.9941Z" fill="#bfea88"></path>
+                <path d="M21.4823 22.9941H22.2151V0.00685961H21.4823V22.9941Z" fill="#bfea88"></path>
+                <path d="M44.5488 22.9951H45.2805V0.00783833H44.5488V22.9951Z" fill="#bfea88"></path>
+                <path d="M73.1836 22.9956H73.9118V0.00832661H73.1836V22.9956Z" fill="#bfea88"></path>
+                <path d="M29.3674 0.00898209H28.6427V22.9941H29.3674V0.00898209Z" fill="#bfea88"></path>
+                <path d="M19.0994 22.9932H19.8217V0.013658H19.0994V22.9932Z" fill="#bfea88"></path>
+                <path d="M1.60156 22.9932H2.32273V0.013658H1.60156V22.9932Z" fill="#bfea88"></path>
+                <path d="M43.6837 6.57834e-05H42.9648V22.9951H43.6837V6.57834e-05Z" fill="#bfea88"></path>
+                <path d="M72.3138 0.00800769H71.5938V22.9932H72.3138V0.00730028V0.00800769Z" fill="#bfea88"></path>
+                <path d="M60.3868 6.57834e-05H59.668V22.9951H60.3868V6.57834e-05Z" fill="#bfea88"></path>
+                <path d="M61.2539 22.9941H61.9844V0.00685961H61.2539V22.9941Z" fill="#bfea88"></path>
+                <path d="M89.0173 0.00827684H88.2949V22.9941H89.0173V0.00898209V0.00827684Z" fill="#bfea88"></path>
+                <path d="M50.1191 22.9951H50.8473V0.00783833H50.1191V22.9951Z" fill="#bfea88"></path>
+                <path d="M7.16992 22.9956H7.8981V0.00832661H7.16992V22.9956Z" fill="#bfea88"></path>
+                <path d="M36.5251 0.00898209H35.8027V22.9941H36.5251V0.00898209Z" fill="#bfea88"></path>
+                </g>
+                </mask>
+                <g mask="url(#mask0_571_2246)">
+                <rect x="-13" y="-9" width="110" height="41" fill="#bfea88"></rect>
+                </g>
+                <defs>
+                <clipPath id="clip0_571_2246">
+                <rect width="97" height="23" fill="white" transform="matrix(1 0 0 -1 0 23)"></rect>
+                </clipPath>
+                </defs>
+              </svg>
+            </div>
+          </div>
+
+          <div class="address_sec">
+            <div class="top_address">
+              <p
+                class="first_address"
+                style="
+                  font-size: {{ section.settings.addr-frst-font-size }}px;
+                  color:{{ section.settings.addr-frst-font-color }}; font-family: {{ section.settings.font_family_adress }};
+                "
+              >
+                {{ section.settings.address_line_1 }}
+              </p>
+              <!-- First Line of Address -->
+            </div>
+            <div class="down_address">
+              <p
+                style="
+                  font-size: {{ section.settings.addr-secd-font-size }}px;
+                  color:{{ section.settings.addr-secd-font-color }};
+                  font-family: {{ section.settings.font_family_adress }};
+                "
+              >
+                {{ section.settings.address_line_2 }}
+              </p>
+              <!-- Second Line of Address -->
+              <p
+                style="
+                  font-size: {{ section.settings.addr-secd-font-size }}px;
+                  color:{{ section.settings.addr-secd-font-color }};
+                  font-family: {{ section.settings.font_family_adress }};
+                "
+              >
+                {{ section.settings.address_line_3 }}
+              </p>
+              <!-- Third Line of Address -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Projects and Collaboration Section -->
+        <div class="brand_info_sec">
+          <p
+            class="projects"
+            style="
+              font-size: {{ section.settings.working-font-size }}px;
+              color:{{ section.settings.working-font-color }};
+              font-family: {{ section.settings.font_family_working }}; font-weight: {{ section.settings.font_weight_working }};
+            "
+          >
+            {{ section.settings['working-text'] }}
+          </p>
+          <!-- Introductory Text -->
+          <h2
+            style="
+              font-size: {{ section.settings.brand-digi-font-size }}px;
+              color:{{ section.settings.working-font-color }};
+              font-family: {{ section.settings.font_family_working }}; font-weight: {{ section.settings.font_weight_working }};
+            "
+          >
+            {{ section.settings.project_heading }}
+          </h2>
+          <!-- Project Heading -->
+          <p
+            class="collaborate"
+            style="
+              font-size: {{ section.settings.coll-font-size }}px;
+              color:{{ section.settings.working-font-color }};
+              font-family: {{ section.settings.font_family_working }}; font-weight: {{ section.settings.font_weight_coll }};
+            "
+          >
+            {{ section.settings.collaborate_text }}
+          </p>
+          <!-- Collaboration Text -->
+        </div>
+        <!-- Explore Button -->
+        <div class="main_sec_parent">
+          <div class="image-section">
+            <img src="{% if section.settings.image_explore !=blank %} {{ section.settings.image_explore | img_url: 'small' }} {% else %} https://cdn.shopify.com/s/files/1/0674/8363/1794/files/image_108_1.png?v=1730188199  {% endif %}">
+          </div>
+          <div class="explore">
+            <p class="explore-btn">
+              {{ section.settings.explore_text }}
+              <!-- Explore Button Text -->
+            </p>
+            <p class="frame">{{ section.settings.frame_text }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Content -->
+  </div>
+  <!-- End of Container -->
+</section>
+<!-- End of Tennis Banner Section -->
+
+<style>
+  .events_text_section {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  .info_sec span.info:last-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(100%);
+  }
+  .info_sec:hover span.info:last-child {
+    transform: translateY(0);
+    transition: transform 0.3s;
+  }
+  .info_sec:hover span.info:first-child {
+    transform: translateY(-100%) !important;
+    transition: transform 0.3s;
+  }
+  .info_sec {
+    margin: 0px;
+    width: 100%;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 26px;
+    line-height: 100%;
+    color: #bfea88;
+    position: relative;
+    overflow: hidden;
+    height: fit-content;
+    width: fit-content;
+  }
+  .events_sec {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  .image-section img {
+    width: 200px;
+    height: auto;
+    max-width: 100%;
+    border-radius: 20px;
+  }
+  .main_sec_parent {
+    position: relative;
+  }
+  .main_sec_parent .explore {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+  }
+  h1.brand-title {
+    -webkit-text-stroke: 6px #bfea88;
+    -webkit-text-fill-color: transparent;
+    line-height: 30px;
+  }
+  .address_sec .top_address p {
+    margin: 4px 0px;
+  }
+  .down_address p {
+    margin: 17px 0px 8px 0px;
+    line-height: 6px;
+  }
+  .down_address {
+    border-top: 1px solid #bfea88;
+  }
+  .address_sec {
+    border: 1px solid #bfea88;
+    padding: 8px;
+  }
+  .brand_info_sec {
+    width: 50%;
+    max-width: 50%;
+  }
+  .brand_info_sec p.projects {
+    margin: 0px;
+  }
+  .main_lines_sec {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .meta_sec {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 18px;
+  }
+  .brand_inf0c {
+    padding: 40px 0px;
+  }
+  p.tagline {
+    margin-top: -24px;
+  }
+  .main_meta_content {
+    display: flex;
+    justify-content: space-between;
+  }
+  .content {
+    position: relative;
+    z-index: 2;
+  }
+  span.events {
+    line-height: 76px;
+    cursor: pointer;
+  }
+  section.tennis-banner {
+    background-position: 50% 48%;
+    position: relative;
+    background-size: cover;
+  }
+  section.tennis-banner:after {
+    position: absolute;
+    content: '';
+    background: #000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    max-width: 100%;
+    left: 0;
+    opacity: 50%;
+  }
+  .event_sec {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+  }
+  .info_sec h4.insta-text {
+    margin: 0px;
+  }
+  .event_sec h3.wimb_text {
+    margin: 0px;
+  }
+  span.info {
+    line-height: 76px;
+    cursor: pointer;
+  }
+  .tennis-banner {
+    padding: 20px 0px;
+    color: #d4ffad;
+    text-align: center;
+  }
+
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    z-index: -1;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .info_sec {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  .brand-title {
+    font-size: 4rem;
+    margin: 10px 0;
+  }
+
+  .tagline {
+    font-style: italic;
+    margin-bottom: 30px;
+  }
+
+  .meta {
+    margin-top: 20px;
+    font-size: 0.9rem;
+  }
+
+  .projects {
+    margin-top: 40px;
+    font-weight: bold;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin: 10px 0;
+  }
+
+  .collaborate {
+    margin-top: 10px;
+    text-transform: uppercase;
+  }
+  .main_sec_parent .explore {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: left;
+    padding-left: 10px;
+    cursor: pointer;
+    row-gap: 23px;
+  }
+  .explore-btn {
+    margin-top: 20px;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  /* media query */
+  @media (max-width: 767px) {
+    .brand_info_sec {
+      width: 100%;
+      max-width: 100%;
+    }
+    span.info {
+      font-size: 22px !important;
+    }
+    span.events {
+      font-size: 20px !important;
+    }
+    span.availability {
+      display: none;
+    }
+    .brand_inf0c {
+      padding: 40px 0px 0px !important;
+    }
+    h3.wimb_text {
+      display: none;
+    }
+
+    .main_lines_sec {
+      display: none;
+    }
+    p.projects {
+      display: none;
+    }
+    p.collaborate {
+      display: none;
+    }
+    .main_sec_parent {
+      display: none;
+    }
+    .info_sec h4.insta-text {
+      display: none;
+    }
+    .main_meta_content {
+      flex-direction: column-reverse;
+    }
+    h1.brand-title {
+      font-size: 90px !important;
+      line-height: 70px;
+    }
+    p.tagline {
+      display: none;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    span.info {
+      line-height: 48px;
+      font-size: 38px !important;
+    }
+    .page-width {
+      padding: 0 2rem;
+    }
+    span.events {
+      line-height: 48px;
+      font-size: 40px !important;
+    }
+    .event_sec h3.wimb_text {
+      font-size: 20px !important;
+    }
+    .info_sec h4.insta-text {
+      font-size: 14px !important;
+    }
+    .brand_info_sec p.projects {
+      font-size: 15px !important;
+    }
+    .brand_info_sec h2 {
+      font-size: 21px !important;
+    }
+    .down_address p {
+      margin: 13px 0px 7px 0px;
+      line-height: 10px;
+      font-size: 11px !important;
+    }
+    .brand_inf0c h1#element {
+      font-size: 110px !important;
+    }
+    p.tagline {
+      margin-top: -34px;
+      font-size: 40px !important;
+    }
+  }
+</style>
+{% schema %}
+{
+  "name": "Tennis Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "custom_class"
+    },
+    {
+      "type": "text",
+      "id": "insta_text",
+      "label": "insta Text",
+      "default": "INSTAGRAM"
+    },
+    {
+      "type": "number",
+      "id": "insta_font_size",
+      "label": "insta_font_size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "insta_fond_color",
+      "label": "insta_fond_color",
+      "default": "#bfea88"
+    },
+    {
+      "type": "range",
+      "id": "insta_text_letter_spacing",
+      "label": "insta text Letter Spacing (px)",
+      "default": 0,
+      "min": 0,
+      "max": 10,
+      "step": 0.1
+    },
+    {
+      "type": "select",
+      "id": "font_family_insta",
+      "label": "Font Family",
+      "options": [
+        { "value": "'Arial', sans-serif", "label": "Arial" },
+        { "value": "'Georgia', serif", "label": "Georgia" },
+        { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+        { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+        { "value": "'Courier New', monospace", "label": "Courier New" },
+        { "value": "'Roboto', sans-serif", "label": "Roboto" },
+        { "value": "'Raleway', sans-serif", "label": "Raleway" }
+      ],
+      "default": "'Raleway', sans-serif"
+    },
+    {
+      "type": "select",
+      "id": "font_weight_insta",
+      "label": "Font Weight",
+      "options": [
+        { "value": "100", "label": "Thin" },
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "text",
+      "id": "info_text",
+      "label": "Info Text",
+      "default": "INFO"
+    },
+    {
+      "type": "number",
+      "id": "info_fond_size",
+      "label": "info_fond_size",
+      "default": 80
+    },
+    {
+      "type": "color",
+      "id": "info_fond_color",
+      "label": "info_fond_color",
+      "default": "#bfea88"
+    },
+    {
+      "type": "range",
+      "id": "info_text_letter_spacing",
+      "label": "info text Letter Spacing (px)",
+      "default": 0,
+      "min": 0,
+      "max": 10,
+      "step": 0.1
+    },
+    {
+      "type": "select",
+      "id": "font_family_info",
+      "label": "Font Family",
+      "options": [
+        { "value": "'Arial', sans-serif", "label": "Arial" },
+        { "value": "'Georgia', serif", "label": "Georgia" },
+        { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+        { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+        { "value": "'Courier New', monospace", "label": "Courier New" },
+        { "value": "'Roboto', sans-serif", "label": "Roboto" },
+        { "value": "'Raleway', sans-serif", "label": "Raleway" }
+      ],
+      "default": "'Raleway', sans-serif"
+    },
+    {
+      "type": "select",
+      "id": "font_weight_info",
+      "label": "Font Weight",
+      "options": [
+        { "value": "100", "label": "Thin" },
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "text",
+      "id": "availability_text",
+      "label": "Availability Text",
+      "default": "AVAILABLE FOR COMMISSIONS 2023"
+    },
+    {
+      "type": "number",
+      "id": "availity_fond_size",
+      "label": "availity_fond_size",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "availity_fond_color",
+      "label": "availity_fond_color",
+      "default": "#bfea88"
+    },
+    {
+      "type": "range",
+      "id": "availity_text_letter_spacing",
+      "label": "availity text Letter Spacing (px)",
+      "default": 0,
+      "min": 0,
+      "max": 10,
+      "step": 0.1
+    },
+    {
+      "type": "select",
+      "id": "font_family_availity",
+      "label": "Font Family",
+      "options": [
+        { "value": "'Arial', sans-serif", "label": "Arial" },
+        { "value": "'Georgia', serif", "label": "Georgia" },
+        { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+        { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+        { "value": "'Courier New', monospace", "label": "Courier New" },
+        { "value": "'Roboto', sans-serif", "label": "Roboto" },
+        { "value": "'Raleway', sans-serif", "label": "Raleway" }
+      ],
+      "default": "'Raleway', sans-serif"
+    },
+    {
+      "type": "select",
+      "id": "font_weight_availity",
+      "label": "Font Weight",
+      "options": [
+        { "value": "100", "label": "Thin" },
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "text",
+      "id": "wimb_text",
+      "label": "wimb text",
+      "default": "WIMBLEDON"
+    },
+    {
+      "type": "number",
+      "id": "wild_fond_size",
+      "label": "wild_fond_size",
+      "default": 26
+    },
+    {
+      "type": "color",
+      "id": "wild_fond_color",
+      "label": "wild_fond_color",
+      "default": "#bfea88"
+    },
+    {
+      "type": "range",
+      "id": "wild_text_letter_spacing",
+      "label": "wild text Letter Spacing (px)",
+      "default": 0,
+      "min": 0,
+      "max": 10,
+      "step": 0.1
+    },
+    {
+      "type": "select",
+      "id": "font_family_wild",
+      "label": "Font Family",
+      "options": [
+        { "value": "'Arial', sans-serif", "label": "Arial" },
+        { "value": "'Georgia', serif", "label": "Georgia" },
+        { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+        { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+        { "value": "'Courier New', monospace", "label": "Courier New" },
+        { "value": "'Roboto', sans-serif", "label": "Roboto" },
+        { "value": "'Raleway', sans-serif", "label": "Raleway" }
+      ],
+      "default": "'Raleway', sans-serif"
+    },
+    {
+      "type": "select",
+      "id": "font_weight_wild",
+      "label": "Font Weight",
+      "options": [
+        { "value": "100", "label": "Thin" },
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "text",
+      "id": "events_text",
+      "label": "Events Text",
+      "default": "EVENTS"
+    },
+    {
+      "type": "number",
+      "id": "event_fond_size",
+      "label": "event_fond_size",
+      "default": 80
+    },
+    {
+      "type": "color",
+      "id": "event_fond_color",
+      "label": "event_fond_color",
+      "default": "#bfea88"
+    },
+    {
+      "type": "range",
+      "id": "event_text_letter_spacing",
+      "label": "event text Letter Spacing (px)",
+      "default": 0,
+      "min": 0,
+      "max": 10,
+      "step": 0.1
+    },
+    {
+      "type": "select",
+      "id": "font_family_event",
+      "label": "Font Family",
+      "options": [
+        { "value": "'Arial', sans-serif", "label": "Arial" },
+        { "value": "'Georgia', serif", "label": "Georgia" },
+        { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+        { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+        { "value": "'Courier New', monospace", "label": "Courier New" },
+        { "value": "'Roboto', sans-serif", "label": "Roboto" },
+        { "value": "'Raleway', sans-serif", "label": "Raleway" }
+      ],
+      "default": "'Raleway', sans-serif"
+    },
+    {
+      "type": "select",
+      "id": "font_weight_event",
+      "label": "Font Weight",
+      "options": [
+        { "value": "100", "label": "Thin" },
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "text",
+      "id": "wilson_text",
+      "label": "wilson_text",
+      "default": "WILSON®"
+    },
+    {
+      "type": "number",
+      "id": "wilson_fond_size",
+      "label": "wilson_fond_size",
+      "default": 130
+    },
+    {
+      "type": "color",
+      "id": "wilson_fond_color",
+      "label": "wilson_fond_color",
+      "default": "#bfea88"
+    },
+    {
+      "type": "range",
+      "id": "wilson_text_letter_spacing",
+      "label": "wilson text Letter Spacing (px)",
+      "default": 0,
+      "min": 0,
+      "max": 10,
+      "step": 0.1
+    },
+    {
+      "type": "select",
+      "id": "font_family_wilson",
+      "label": "Font Family",
+      "options": [
+        { "value": "'Arial', sans-serif", "label": "Arial" },
+        { "value": "'Georgia', serif", "label": "Georgia" },
+        { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+        { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+        { "value": "'Courier New', monospace", "label": "Courier New" },
+        { "value": "'Roboto', sans-serif", "label": "Roboto" },
+        { "value": "'Raleway', sans-serif", "label": "Raleway" }
+      ],
+      "default": "'Raleway', sans-serif"
+    },
+    {
+      "type": "select",
+      "id": "font_weight_wilson",
+      "label": "Font Weight",
+      "options": [
+        { "value": "100", "label": "Thin" },
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Rethinking rackets"
+    },
+    {
+      "type": "number",
+      "id": "tagline_fond_size",
+      "label": "tagline_fond_size",
+      "default": 50
+    },
+    {
+      "type": "color",
+      "id": "tagline_fond_color",
+      "label": "tagline_fond_color",
+      "default": "#bfea88"
+    },
+    {
+      "type": "range",
+      "id": "tagline_text_letter_spacing",
+      "label": "tagline text Letter Spacing (px)",
+      "default": 0,
+      "min": 0,
+      "max": 10,
+      "step": 0.1
+    },
+    {
+      "type": "select",
+      "id": "font_family_tagline",
+      "label": "Font Family",
+      "options": [
+        { "value": "'Arial', sans-serif", "label": "Arial" },
+        { "value": "'Georgia', serif", "label": "Georgia" },
+        { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+        { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+        { "value": "'Courier New', monospace", "label": "Courier New" },
+        { "value": "'Roboto', sans-serif", "label": "Roboto" },
+        { "value": "'Raleway', sans-serif", "label": "Raleway" }
+      ],
+      "default": "'Raleway', sans-serif"
+    },
+    {
+      "type": "select",
+      "id": "font_weight_tagline",
+      "label": "Font Weight",
+      "options": [
+        { "value": "100", "label": "Thin" },
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "text",
+      "id": "established",
+      "label": "Established Year",
+      "default": "EST.2021"
+    },
+    {
+      "type": "color",
+      "id": "est_text_border_color",
+      "label": "est text Border Color",
+      "default": "#bfea88"
+    },
+    {
+      "type": "range",
+      "id": "est_text_border_width",
+      "label": "est text Border Width (px)",
+      "min": 1,
+      "max": 10,
+      "default": 1
+    },
+    {
+      "type": "select",
+      "id": "est_text_border_style",
+      "label": "est text Border Style",
+      "options": [
+        { "value": "solid", "label": "Solid" },
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "dotted", "label": "Dotted" }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "range",
+      "id": "est_button_border_radius",
+      "label": "est Button Border Radius (px)",
+      "default": 50,
+      "min": 0,
+      "max": 50,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "btn-pdg",
+      "label": "button Padding",
+      "min": 0,
+      "max": 50,
+      "default": 10,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "pdg_left",
+      "label": "left Padding",
+      "min": 0,
+      "max": 50,
+      "default": 30,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "pdg_right",
+      "label": "right Padding",
+      "min": 0,
+      "max": 50,
+      "default": 30,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "text",
+      "id": "address_line_1",
+      "label": "Address Line 1",
+      "default": "WILSON® TENNIS"
+    },
+    {
+      "type": "number",
+      "id": "addr-frst-font-size",
+      "label": "addr-frst-font-size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "addr-frst-font-color",
+      "label": "addr-frst-font-color",
+      "default": "#bfea88"
+    },
+    {
+      "type": "select",
+      "id": "font_family_adress",
+      "label": "Font Family",
+      "options": [
+        { "value": "'Arial', sans-serif", "label": "Arial" },
+        { "value": "'Georgia', serif", "label": "Georgia" },
+        { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+        { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+        { "value": "'Courier New', monospace", "label": "Courier New" },
+        { "value": "'Roboto', sans-serif", "label": "Roboto" },
+        { "value": "'Raleway', sans-serif", "label": "Raleway" }
+      ],
+      "default": "'Raleway', sans-serif"
+    },
+    {
+      "type": "text",
+      "id": "address_line_2",
+      "label": "Address Line 2",
+      "default": "88-92 Frederiksborggade, Indre By"
+    },
+    {
+      "type": "number",
+      "id": "addr-secd-font-size",
+      "label": "addr-second-font-size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "addr-secd-font-color",
+      "label": "addr-second-font-color",
+      "default": "#bfea88"
+    },
+    {
+      "type": "text",
+      "id": "address_line_3",
+      "label": "Address Line 3",
+      "default": "Copenhagen, Denmark, 1360 K"
+    },
+    {
+      "type": "text",
+      "id": "working-text",
+      "label": "working text Heading",
+      "default": "WORKING ON PROJECTS FOR"
+    },
+    {
+      "type": "number",
+      "id": "working-font-size",
+      "label": "working font-size",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "working-font-color",
+      "label": "working -font-color",
+      "default": "#bfea88"
+    },
+    {
+      "type": "select",
+      "id": "font_family_working",
+      "label": "Font Family",
+      "options": [
+        { "value": "'Arial', sans-serif", "label": "Arial" },
+        { "value": "'Georgia', serif", "label": "Georgia" },
+        { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+        { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+        { "value": "'Courier New', monospace", "label": "Courier New" },
+        { "value": "'Roboto', sans-serif", "label": "Roboto" },
+        { "value": "'Raleway', sans-serif", "label": "Raleway" }
+      ],
+      "default": "'Raleway', sans-serif"
+    },
+    {
+      "type": "select",
+      "id": "font_weight_working",
+      "label": "Font Weight",
+      "options": [
+        { "value": "100", "label": "Thin" },
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "text",
+      "id": "project_heading",
+      "label": "Project Heading",
+      "default": "BRAND DIRECTION DIGITAL"
+    },
+    {
+      "type": "number",
+      "id": "brand-digi-font-size",
+      "label": "brand-digi-font-size",
+      "default": 30
+    },
+    {
+      "type": "text",
+      "id": "collaborate_text",
+      "label": "Collaboration Text",
+      "default": "Collaborating with ambitious brands that have powerful stories to tell. Work independently and with creative freelancers, studios, and agencies."
+    },
+    {
+      "type": "number",
+      "id": "coll-font-size",
+      "label": "coll font-size",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "font_weight_coll",
+      "label": "Font Weight",
+      "options": [
+        { "value": "100", "label": "Thin" },
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "text",
+      "id": "explore_text",
+      "label": "Explore Button Text",
+      "default": "Explore"
+    },
+    {
+      "type": "text",
+      "id": "frame_text",
+      "label": "frame Button Text",
+      "default": "Frame"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "APB_tennis_banner_section"
+    }
+  ]
+}
+{% endschema %}
