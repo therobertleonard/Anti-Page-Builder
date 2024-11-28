@@ -14,6 +14,7 @@ import { useNavigate } from "@remix-run/react";
 import { Form } from "@remix-run/react";
 import fs from 'fs/promises';
 import path from 'path';
+import {ExternalIcon} from '@shopify/polaris-icons';
 
 // Loader function to fetch purchased sections
 export const loader = async ({ request }) => {
@@ -43,8 +44,18 @@ export const loader = async ({ request }) => {
             category: true,
         },
     });
+    console.log(shopId);
+    const match = shopId.match(/^([a-z0-9\-]+)\.myshopify\.com/);
+    let storeName = null;
 
-    return purchasedSections;
+    if (match) {
+        storeName = match[1];
+    } else {
+        console.log("Invalid shop URL format.");
+    }
+
+
+    return { purchasedSections, storeName: storeName };
 };
 
 export const action = async ({ request }) => {
@@ -67,10 +78,15 @@ export const action = async ({ request }) => {
         const asset = new admin.rest.resources.Asset({
             session: session
         });
-        console.log(`sections/APB_${sanitizedTitle}.liquid`);
+
+        const theme = await admin.rest.resources.Theme.all({
+            session: session,
+        })
+        const mainTheme = theme.data.find(theme => theme.role === 'main');
+        const ThemeId = mainTheme.id;
 
         // Set the theme ID and asset properties
-        asset.theme_id = 137000124553; // Replace with your actual theme ID
+        asset.theme_id = ThemeId; // Replace with your actual theme ID
         asset.key = `sections/APB_${title}.liquid`; // Adjust the key as needed
         asset.value = fileContent;
 
@@ -93,7 +109,9 @@ export const action = async ({ request }) => {
 
 
 export default function PurchasedSections() {
-    const sections = useLoaderData();
+    const { purchasedSections, storeName } = useLoaderData();
+    console.log(storeName);
+    const sections = purchasedSections;
     const actionData = useActionData();
     const [activeSection, setActiveSection] = useState(null);
     const [activeToast, setActiveToast] = useState(false);
@@ -128,7 +146,15 @@ export default function PurchasedSections() {
 
     return (
         <Frame>
-            <Page fullWidth title="Sections" backAction={{ content: "Settings", url: "/app" }}>
+            <Page fullWidth title="Sections" backAction={{ content: "Settings", url: "/app" }}
+                secondaryActions={[
+                    {
+                        content: 'Customiation',
+                        external:true,
+                        icon: ExternalIcon,
+                        onAction: () => { window.open(`https://admin.shopify.com/store/${storeName}/themes/current/editor`) }
+                    }
+                ]}>
                 <Grid gap={200}>
                     {sections.length === 0 ? (
                         <Text>No sections available for purchase.</Text>
