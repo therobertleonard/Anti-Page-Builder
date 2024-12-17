@@ -68,14 +68,30 @@ export const action = async ({ request }) => {
 
   // Construct the directory path: sections/{category}
   const categoryDirectory = path.join(__dirname, "../Sections", category.name);
-  await fs.mkdir(categoryDirectory, { recursive: true }); // Ensure the directory exists
+
+  // Check if category directory exists, if not, create it
+  try {
+    await fs.access(categoryDirectory);
+  } catch (err) {
+    // Directory doesn't exist, create it
+    await fs.mkdir(categoryDirectory, { recursive: true });
+  }
 
   // Construct the file path: sections/{category}/{sanitized_title}.liquid
   const filePath = path.join(categoryDirectory, `${sanitizedTitle}${fileExtension}`);
 
-  // Save the uploaded file
-  const fileContents = await uploadedFile.arrayBuffer();
-  await fs.writeFile(filePath, Buffer.from(fileContents));
+  // Check if the file already exists to avoid overwriting
+  try {
+    await fs.access(filePath); // If this doesn't throw, the file exists
+    return json({
+      success: false,
+      error: "A file with this name already exists. Please choose a different title.",
+    });
+  } catch (err) {
+    // File does not exist, proceed to write it
+    const fileContents = await uploadedFile.arrayBuffer();
+    await fs.writeFile(filePath, Buffer.from(fileContents));
+  }
 
   // Save the section to the database
   const section = await db.section.create({
@@ -93,7 +109,6 @@ export const action = async ({ request }) => {
 
   return json({ success: true, section });
 };
-
 
 export default function AddSectionPage() {
   const [title, setTitle] = useState("");
