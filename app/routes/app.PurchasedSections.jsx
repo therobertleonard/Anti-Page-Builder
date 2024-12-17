@@ -58,6 +58,7 @@ export const loader = async ({ request }) => {
     return { purchasedSections, storeName: storeName };
 };
 
+
 export const action = async ({ request }) => {
     try {
         // Authenticate the admin session
@@ -67,10 +68,28 @@ export const action = async ({ request }) => {
         const category = formData.get("category");
         const sanitizedTitle = title.replace(/\s+/g, '_');
 
-        // Construct the file path without encoding
-        const filePath = path.join(process.cwd(), 'app', 'Sections', category, `${title}.liquid`);
+        // Construct the file path for app/Sections and build/Sections
+        const appPath = path.join(process.cwd(), 'app', 'Sections', category, `${sanitizedTitle}.liquid`);
+        const buildPath = path.join(process.cwd(), 'build', 'Sections', category, `${sanitizedTitle}.liquid`);
 
-        // Read the file content
+        let filePath = appPath;
+
+        // Check if the file exists in app/Sections
+        try {
+            await fs.access(appPath); // Check if the file exists in app/Sections
+        } catch (error) {
+            // If the file doesn't exist in app/Sections, check build/Sections
+            console.log(`File not found in app/Sections, checking in build/Sections...`);
+            try {
+                await fs.access(buildPath); // Check if the file exists in build/Sections
+                filePath = buildPath; // If found, update the filePath to point to build/Sections
+            } catch (error) {
+                // If the file doesn't exist in both locations, throw an error
+                throw new Error(`Section file not found in either app/Sections or build/Sections.`);
+            }
+        }
+
+        // Read the file content from the correct path (either app/Sections or build/Sections)
         const fileContent = await fs.readFile(filePath, 'utf-8');
         console.log('File Content:', fileContent);
 
@@ -81,16 +100,16 @@ export const action = async ({ request }) => {
 
         const theme = await admin.rest.resources.Theme.all({
             session: session,
-        })
+        });
         const mainTheme = theme.data.find(theme => theme.role === 'main');
         const ThemeId = mainTheme.id;
 
         // Set the theme ID and asset properties
         asset.theme_id = ThemeId; // Replace with your actual theme ID
-        asset.key = `sections/APB_${title}.liquid`; // Adjust the key as needed
+        asset.key = `sections/APB_${sanitizedTitle}.liquid`; // Adjust the key as needed
         asset.value = fileContent;
 
-        // Save the asset to Shopify with update option
+        // Save the asset to Shopify with the update option
         await asset.save({ update: true });
 
         return { success: true, message: "Section added successfully!" };
@@ -106,7 +125,6 @@ export const action = async ({ request }) => {
         return { success: false, error: error.message || "Failed to add section." };
     }
 };
-
 
 export default function PurchasedSections() {
     const { purchasedSections, storeName } = useLoaderData();
