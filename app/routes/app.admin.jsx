@@ -33,7 +33,7 @@ export let action = async ({ request }) => {
           id: sectionId,
         },
       });
-      return redirect('/app/adminIndex');
+      return redirect('/app/admin');
     } catch (error) {
       console.error('Error deleting section:', error);
       return { error: 'Failed to delete section.' };
@@ -89,7 +89,7 @@ export default function AdminIndex() {
     formData.append("sectionId", sectionToDelete.id);
 
     try {
-      const response = await fetch('/app/adminIndex', {
+      const response = await fetch('/app/admin', {
         method: 'POST',
         body: formData,
       });
