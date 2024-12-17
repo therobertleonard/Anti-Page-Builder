@@ -1,0 +1,419 @@
+<section class="{{ section.settings.custom-class }}" 
+         style="margin-top: {{ section.settings.margin-top }}px; 
+                margin-bottom: {{ section.settings.margin-bottom }}px;">
+    
+    <div class="main-text-section">
+        <div class="page-width">
+            <div class="inner-page-section">
+                {% comment %}
+                <!-- Main Heading Section -->
+              {% endcomment %}
+                <h1 class="main-heading">
+                    {{ section.settings.heading-class-section }}
+                </h1>
+                
+                {% comment %}
+                <!-- Main Content Section with dynamic alignment and gap settings -->
+                This section contains both the left and right content areas.
+                The gap between them is dynamically set using 'gap_size', and the vertical alignment is controlled by the 'vertical_alignment' setting.
+                {% endcomment %}
+                <div class="main-full-section {{ section.settings.alignment-content }}" 
+                     style="gap: {{ section.settings.gap_size }}px; align-items: {{ section.settings.vertical_alignment }}">
+                    
+                    <!-- Left Section -->
+                    <div class="left-section-class">
+                        {% comment %}
+                        <!-- Left Section Heading -->
+                        The left section has its own heading with dynamic font size, color, and letter-spacing settings.
+                        {% endcomment %}
+                        <h2 style="font-size: {{ section.settings.main_text_font_size }}px; 
+                                   color: {{ section.settings.main_text_color }}; 
+                                   letter-spacing: {{ section.settings.main_text_letter_spacing }}px;">
+                            {{ section.settings.left-heading-text }}
+                        </h2>
+
+                        {% comment %}
+                        <!-- Left Grandchild Section -->
+                        This section displays dynamic blocks (top blocks) in the left content area, with customizable widths and column gaps.
+                        {% endcomment %}
+                        <div class="left-grandchild-main" 
+                             style="max-width: {{ section.settings.left-dynamic_max_width }}%; 
+                                    width: {{ section.settings.left-dynamic_width }}%; 
+                                    gap: {{ section.settings.coloums_gap_size }}px;">
+                            
+                            {% comment %}
+                            <!-- Loop Through Left Section Blocks -->
+                            Dynamically display blocks within the left section. Each block contains an image, heading, and paragraph, with dynamic styling options.
+                            {% endcomment %}
+                            {% for block in section.blocks %}
+                                <div class="left-top-section">
+                                    
+                                    {% comment %}
+                                    <!-- Display Image for Top Section -->
+                                    If the block has an image, display it. If not, use a default image.
+                                    {% endcomment %}
+                                    <h6>
+                                        <img src="{% if block.settings.image-all-1-section != blank %}{{ block.settings.image-all-1-section | img_url: 'master' }}{% else %}https://cdn.shopify.com/s/files/1/0674/8363/1794/files/1d1254ca5ef442caf2b64b046f39890c0254ece7-41x40.svg?v=1729833027{% endif %}" 
+                                             alt="Top Section Image">
+                                    </h6>
+
+                                    <div class="heading-class">
+                                        {% comment %}
+                                        <!-- Display Top Heading for Each Block -->
+                                        Each block can have a dynamic heading with custom styles.
+                                        {% endcomment %}
+                                        <h3 style="font-size: {{ block.settings.hdg-font-size }}px; 
+                                                   color: {{ block.settings.hdg-color }}; 
+                                                   letter-spacing: {{ block.settings.hdg_letter_spacing }}px;">
+                                            {{ block.settings.top-heading-text }}
+                                        </h3>
+
+                                        {% comment %}
+                                        <!-- Display Paragraph Text for Each Block -->
+                                        Each block can also have a paragraph with dynamic text and styles (font size, color, letter-spacing).
+                                        {% endcomment %}
+                                        <div class="paragrapgh-text" 
+                                             style="font-size: {{ block.settings.para-font-size }}px; 
+                                                    color: {{ block.settings.para-color }}; 
+                                                    letter-spacing: {{ block.settings.para_letter_spacing }}px;">
+                                            {{ block.settings.para-heading-text }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    {% comment %}
+                    <!-- Right Section -->
+                    The right section contains an image, which can be customized with a dynamic source URL. If no image is provided, a default image is shown.
+                    {% endcomment %}
+                    <div class="right-side-image" 
+                         style="max-width: {{ section.settings.right-dynamic_max_width }}%; 
+                                width: {{ section.settings.right-dynamic_width }}%;">
+                        <div class="right-section-class">
+                            {% comment %}
+                            <!-- Display Image in Right Section -->
+                            Check if the right section has an image. If the image is missing, display a fallback image.
+                            {% endcomment %}
+                            <img src="{% if section.settings.image-down-section != blank %}{{ section.settings.image-down-section | img_url: '1000x1000' }}{% else %}https://cdn.shopify.com/s/files/1/0674/8363/1794/files/pexels-emir-bozkurt-237273318-18445722.jpg?v=1729836271{% endif %}" 
+                                 alt="Right Section Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!-- style css -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+  h2, h3, p {
+    font-family: "Raleway", sans-serif;
+}
+  .left-section-class h2 {
+    margin: 0px 0px 10px;
+}
+  .heading-class h3 {
+    margin: 25px 0px 4px;
+}
+  .left-grandchild-main {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.main-full-section {
+    display: flex;
+    justify-content: space-between;
+}
+.right-section-class img {
+    width: 100%;
+}
+  .paragrapgh-text p {
+    margin: 0px;
+}
+.left-top-section h6 {
+    background: #f3f1f0;
+    max-width: 100%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 60px;
+}
+
+  /* media query */
+  @media(max-width: 767px){
+.left-top-section h6 {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    margin: 0px;
+}
+    .left-top-section h6 img {
+    width: 30px;
+    height: 30px;
+}
+  .main-full-section {
+    flex-direction: column-reverse;
+}
+  .left-section-class h2 {
+    font-size: 26px !important;
+    letter-spacing: 0px !important;
+    margin: 0px 0px 22px;
+}
+  .left-grandchild-main {
+    grid-template-columns: auto;
+}
+  .left-top-section {
+    display: flex;
+    gap: 20px;
+}
+  .left-top-section {
+    display: flex;
+    gap: 20px;
+}
+  .heading-class h3 {
+    margin: 0px 0px 9px;
+    font-size: 18px !important;
+}
+  .paragrapgh-text {
+    font-size: 16px !important;
+}
+    }
+  /* End here */
+</style>
+
+{% schema %}  
+{
+    "name": "APB Featured Section",
+    "settings": [
+        {
+            "type": "range",
+            "id": "margin-top",
+            "label": "Margin Top",
+            "default": 60,
+            "max": 60,
+            "min": 0,
+            "step": 1,
+            "unit": "px"
+        },
+        {
+            "type": "range",
+            "id": "margin-bottom",
+            "label": "Margin Bottom",
+            "default": 60,
+            "max": 60,
+            "min": 0,
+            "step": 1,
+            "unit": "px"
+        },
+        {
+            "type": "range",
+            "id": "gap_size",
+            "label": "Gap Size (px)",
+            "min": 0,
+            "max": 100,
+            "default": 20,
+            "step": 1
+        },
+        {
+            "type": "select",
+            "id": "alignment-content",
+            "label": "Select Alignment",
+            "default": "left",
+            "options": [
+                { "value": "center", "label": "Center" },
+                { "value": "top", "label": "Top" },
+                { "value": "bottom", "label": "Bottom" },
+                { "value": "left", "label": "Left" },
+                { "value": "right", "label": "Right" }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "vertical_alignment",
+            "label": "Vertical Alignment",
+            "default": "center",
+            "options": [
+                { "value": "top", "label": "Top" },
+                { "value": "center", "label": "Center" },
+                { "value": "bottom", "label": "Bottom" }
+            ]
+        },
+        {
+            "type": "text",
+            "id": "custom-class",
+            "label": "Custom Class"
+        },
+        {
+            "type": "text",
+            "id": "heading-class-section",
+            "label": "Main Heading"
+        },
+        {
+            "type": "text",
+            "id": "left-heading-text",
+            "label": "Left Heading Text",
+            "default": "Benefits of daily use"
+        },
+               {
+      "type": "range",
+      "id": "main_text_font_size",
+      "label": "Font Size (px)",
+      "default": 40,
+      "min": 10,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "type": "color",
+      "id": "main_text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "main_text_letter_spacing",
+      "label": "Letter Spacing (px)",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.1
+    },
+        {
+            "type": "image_picker",
+            "id": "image-down-section",
+            "label": "Image Down Section"
+        },
+        {
+            "type": "range",
+            "id": "left-dynamic_width",
+            "label": "Left Section Width (%)",
+            "min": 0,
+            "max": 100,
+            "default": 100,
+            "step": 1
+        },
+        {
+            "type": "range",
+            "id": "left-dynamic_max_width",
+            "label": "Left Section Max Width (%)",
+            "min": 0,
+            "max": 100,
+            "default": 100,
+            "step": 1
+        },
+        {
+            "type": "range",
+            "id": "right-dynamic_width",
+            "label": "Right Section Width (%)",
+            "min": 0,
+            "max": 100,
+            "default": 100,
+            "step": 1
+        },
+        {
+            "type": "range",
+            "id": "right-dynamic_max_width",
+            "label": "Right Section Max Width (%)",
+            "min": 0,
+            "max": 100,
+            "default": 100,
+            "step": 1
+        },
+        {
+          "type": "range",
+          "id": "coloums_gap_size",
+          "label": "coloums Gap Size (px)",
+          "min": 0,
+          "max": 100,
+          "default": 20,
+          "step": 1
+        },
+    ],
+    "blocks": [
+        {
+            "name": "Columns",
+            "type": "columns_items",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image-all-1-section",
+                    "label": "Image for Top Section"
+                },
+                {
+                    "type": "text",
+                    "id": "top-heading-text",
+                    "label": "Top Heading Text",
+                    "default": "Wellbeing & Foundational Health"
+                },
+                {
+                    "type": "number",
+                    "id": "hdg-font-size",
+                    "label": "Heading Font Size (px)",
+                    "default": 20
+                },
+                {
+                    "type": "color",
+                    "id": "hdg-color",
+                    "label": "Heading Color",
+                    "default": "#000"
+                },
+                {
+                    "type": "range",
+                    "id": "hdg_letter_spacing",
+                    "label": "Heading Letter Spacing (px)",
+                    "min": 0,
+                    "max": 50,
+                    "default": 0,
+                    "step": 1
+                },
+                {
+                    "type": "richtext",
+                    "id": "para-heading-text",
+                    "label": "Paragraph Heading",
+                    "default": "<p>AG1 supports key health areas every day: mental fitness, bones, heart, skin, hair, nails & hormones.</p>"
+                },
+                {
+                    "type": "number",
+                    "id": "para-font-size",
+                    "label": "Paragraph Font Size (px)",
+                    "default": 18
+                },
+                {
+                    "type": "color",
+                    "id": "para-color",
+                    "label": "Paragraph Color",
+                    "default": "#000"
+                },
+                {
+                    "type": "range",
+                    "id": "para_letter_spacing",
+                    "label": "Paragraph Letter Spacing (px)",
+                    "min": 0,
+                    "max": 50,
+                    "default": 0,
+                    "step": 1
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "APB_Featured_Section",
+            "blocks": [
+                { "type": "columns_items" },
+                { "type": "columns_items" },
+                { "type": "columns_items" },
+                { "type": "columns_items" }
+            ]
+        }
+    ]
+}
+{% endschema %}

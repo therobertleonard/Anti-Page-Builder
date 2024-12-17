@@ -1,0 +1,449 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- /sections/three-column-feature.liquid -->
+<section class="three-column-feature">
+  <div class="page-widthh">
+    <div class="slider_section">
+      {% comment %} --------Loop through each block in the section ---------{% endcomment %}
+      {% for block in section.blocks %}
+        <div class="feature-cards">
+          <!-- Left Card -->
+          <div class="feature-card text-card" style="background-color: {{ block.settings.left_bg_color }}; 
+            padding: {{ block.settings.box_padding }}px;">
+            {% comment %}-------- Display the subheading with dynamic styles--------- {% endcomment %}
+            <p class="subheading" style="font-size: {{ block.settings.hdg_text }}px;  
+              color: {{ block.settings.hdg_text_color }}; 
+              letter-spacing: {{ block.settings.main_text_letter_spacing }}px; font-family: {{ block.settings.font_family_hdg }}; 
+              font-weight: {{ block.settings.font_weight_hdg }};">{{ block.settings.left_subheading }}</p>
+            {% comment %}--------- Display the main title with dynamic styles------- {% endcomment %}
+            <h2 style="font-size: {{ block.settings.tittle_text }}px;  
+              color: {{ block.settings.tittle_text_color }}; 
+              letter-spacing: {{ block.settings.tittle_text_letter_spacing }}px; font-family: {{ block.settings.font_family_tittle }}; 
+              font-weight: {{ block.settings.font_weight_tittle }};">{{ block.settings.left_title }}</h2>
+            {% comment %}------- Display the description with dynamic styles------ {% endcomment %}
+            <p style="font-size: {{ block.settings.desc_text }}px;  
+              color: {{ block.settings.desc_text_color }}; 
+              letter-spacing: {{ block.settings.desc_text_letter_spacing }}px; font-family: {{ block.settings.font_family_desc }}; 
+              font-weight: {{ block.settings.font_weight_desc }};">{{ block.settings.left_description }}</p>
+          </div>
+
+          {% comment %}------- Center Image Section------- {% endcomment %}
+          <div class="feature-card image-card">
+            <img src="{% if block.settings.center_image != blank %} {{ block.settings.center_image | img_url: 'small' }}
+              {% else %} https://cdn.shopify.com/s/files/1/0887/8194/7244/files/maria-fernanda-pissioli-hhyAlXfmlag-unsplash.webp?v=1730706199 {% endif %}">
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+
+<style>
+  .feature-card.text-card h2 {
+    line-height: 50px;
+}
+button.slick-prev.slick-arrow:after {
+    position: absolute;
+    content: "\f104";
+    font-size: 30px;
+    color: #ffffff;
+    font-family: fontAwesome;
+}
+button.slick-arrow {
+    background: #000;
+    border: 0px;
+    font-size: 0px;
+    position: absolute;
+    z-index: 2;
+    top: 44%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    cursor: pointer;
+}
+button.slick-arrow.slick-disabled {
+    display: none !important;
+}
+  button.slick-prev.slick-arrow {
+    left: 70px;
+}
+button.slick-next.slick-arrow:after {
+    position: absolute;
+    content: "\f105";
+    font-size: 30px;
+    color: #ffffff;
+    font-family: fontAwesome;
+}
+  button.slick-next.slick-arrow {
+    right: 70px;
+}
+  .three-column-feature {
+    padding: 2em 0;
+    text-align: center;
+  }
+.feature-card {
+    flex: 1;
+    border-radius: 15px 0px 0px 15px;
+    color: white;
+    text-align: center;
+      display: flex;
+    justify-content: space-between;
+    gap: 1em;
+}
+.text-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(230, 64, 123, 1) 100%);
+    padding: 120px 40px 120px !important;
+}
+  section.three-column-feature {
+    background-image: linear-gradient(180deg, rgba(230, 64, 123, 1), rgba(255, 255, 255, 1) 100%);
+}
+.image-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 0px 15px 15px 0px;
+    object-fit: cover;
+}
+  .subheading {
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+.feature-cards.slick-slide {
+    display: flex;
+    gap: 0px;
+    margin-right: 30px;
+}
+  .feature-card.text-card p{
+    margin: 0px;
+}
+  .feature-card.text-card h2 {
+    margin: 0px;
+}
+  .three-column-feature .slick-list.draggable {
+    padding-left: 20rem !important;
+    padding-right: 20rem !important;
+}
+
+  /* media query */
+  @media(max-width: 767px){
+    section.three-column-feature ul.slick-dots {
+    display: none !important;
+}
+  .feature-cards.slick-slide {
+    flex-direction: column-reverse;
+    margin-right: 0px;
+}
+  .text-card {
+    padding: 50px 20px 50px !important;
+    background-image: linear-gradient(180deg, rgb(247 151 185), rgba(230, 64, 123, 1) 100%);
+   }
+  .image-card img {
+    border-radius: 15px 15px 0px 0px;
+}
+  .feature-card {
+    border-radius: 0px 0px 15px 15px;
+}
+  .three-column-feature .slick-list.draggable {
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+}
+    button.slick-arrow {
+    top: 37%;
+}
+    button.slick-prev.slick-arrow {
+    left: 30px;
+}
+    button.slick-next.slick-arrow {
+    right: 30px;
+}
+    .three-column-feature {
+    padding: 2em 14px;
+}
+    }
+
+  @media(max-width: 992px) and (min-width: 768px){
+        section.three-column-feature ul.slick-dots {
+    display: none !important;
+}
+    .feature-card.text-card p {
+    font-size: 10px !important;
+}
+    .feature-card.text-card h2 {
+    line-height: 27px !important;
+    font-size: 24px !important;
+}
+    .text-card {
+    padding: 20px 20px 20px !important;
+}
+  }
+  /* End here */
+</style>
+
+<script>
+   $('.slider_section').slick({
+  dots: false,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  centerMode: true,
+  vertical: false,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
+});
+
+</script>
+{% schema %}
+{
+    "blocks": [
+        {
+            "name": "featured_card_slider",
+            "type": "featured_card_slider",
+            "settings": [
+                {
+      "type": "color_background",
+      "id": "left_bg_color",
+      "label": "Left Card Background Color",
+      "default": "(180deg, rgba(255, 255, 255, 1), rgba(230, 64, 123, 1) 100%)"
+    },
+     {
+          "type": "range",
+          "id": "box_padding",
+          "label": "box_padding (px)",
+          "default": 30,
+          "min": 0,
+          "max": 60,
+          "step": 1
+        },
+    {
+      "type": "text",
+      "id": "left_subheading",
+      "label": "Left Card Subheading",
+      "default": "Elevate Your Everyday"
+    },
+                   {
+        "type": "number",
+        "id": "hdg_text",
+        "label": "hdg text Font Size",
+        "default": 16
+      },
+         {
+        "type": "color",
+        "id": "hdg_text_color",
+        "label": "hdg text color",
+        "default": "#fff"
+      },
+          {
+          "type": "range",
+          "id": "main_text_letter_spacing",
+          "label": "hdg text Letter Spacing (px)",
+          "default": 0,
+          "min": 0,
+          "max": 10,
+          "step": 0.1
+        },
+      {
+        "type": "select",
+        "id": "font_family_hdg",
+        "label": "Font Family",
+        "options": [
+          { "value": "'Arial', sans-serif", "label": "Arial" },
+          { "value": "'Georgia', serif", "label": "Georgia" },
+          { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+          { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+          { "value": "'Courier New', monospace", "label": "Courier New" },
+          { "value": "'Roboto', sans-serif", "label": "Roboto" },
+          { "value": "'Raleway', sans-serif", "label": "Raleway" },
+           { "value": "'Montserrat', sans-serif", "label": "Montserrat" }
+        ],
+        "default": "'Montserrat', sans-serif"
+      },
+             {
+        "type": "select",
+        "id": "font_weight_hdg",
+        "label": "Font Weight",
+        "options": [
+          { "value": "100", "label": "Thin" },
+          { "value": "300", "label": "Light" },
+          { "value": "400", "label": "Regular" },
+          { "value": "600", "label": "Semi-Bold" },
+          { "value": "700", "label": "Bold" },
+          { "value": "900", "label": "Black" }
+        ],
+        "default": "400"
+      },
+    {
+      "type": "text",
+      "id": "left_title",
+      "label": "Left Card Title",
+      "default": "Ultimate Performance"
+    },
+                        {
+        "type": "number",
+        "id": "tittle_text",
+        "label": "hdg tittle Font Size",
+        "default": 48
+      },
+         {
+        "type": "color",
+        "id": "tittle_text_color",
+        "label": "tittle text color",
+        "default": "#fff"
+      },
+          {
+          "type": "range",
+          "id": "tittle_text_letter_spacing",
+          "label": "tittle text Letter Spacing (px)",
+          "default": 0,
+          "min": 0,
+          "max": 10,
+          "step": 0.1
+        },
+                    {
+        "type": "select",
+        "id": "font_family_tittle",
+        "label": "Font Family",
+        "options": [
+          { "value": "'Arial', sans-serif", "label": "Arial" },
+          { "value": "'Georgia', serif", "label": "Georgia" },
+          { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+          { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+          { "value": "'Courier New', monospace", "label": "Courier New" },
+          { "value": "'Roboto', sans-serif", "label": "Roboto" },
+          { "value": "'Raleway', sans-serif", "label": "Raleway" },
+           { "value": "'Montserrat', sans-serif", "label": "Montserrat" }
+        ],
+        "default": "'Montserrat', sans-serif"
+      },
+             {
+        "type": "select",
+        "id": "font_weight_tittle",
+        "label": "Font Weight",
+        "options": [
+          { "value": "100", "label": "Thin" },
+          { "value": "300", "label": "Light" },
+          { "value": "400", "label": "Regular" },
+          { "value": "600", "label": "Semi-Bold" },
+          { "value": "700", "label": "Bold" },
+          { "value": "900", "label": "Black" }
+        ],
+        "default": "400"
+      },
+    {
+      "type": "textarea",
+      "id": "left_description",
+      "label": "Left Card Description",
+      "default": "From running to training, our shoes offer superior comfort, support, and durability. Experience the difference today."
+    },
+                   {
+        "type": "number",
+        "id": "desc_text",
+        "label": "desc text Font Size",
+        "default": 16
+      },
+         {
+        "type": "color",
+        "id": "desc_text_color",
+        "label": "desc text color",
+        "default": "#fff"
+      },
+          {
+          "type": "range",
+          "id": "desc_text_letter_spacing",
+          "label": "desc text Letter Spacing (px)",
+          "default": 0,
+          "min": 0,
+          "max": 10,
+          "step": 0.1
+        },
+          {
+        "type": "select",
+        "id": "font_family_desc",
+        "label": "Font Family",
+        "options": [
+          { "value": "'Arial', sans-serif", "label": "Arial" },
+          { "value": "'Georgia', serif", "label": "Georgia" },
+          { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+          { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+          { "value": "'Courier New', monospace", "label": "Courier New" },
+          { "value": "'Roboto', sans-serif", "label": "Roboto" },
+          { "value": "'Raleway', sans-serif", "label": "Raleway" },
+           { "value": "'Montserrat', sans-serif", "label": "Montserrat" }
+        ],
+        "default": "'Montserrat', sans-serif"
+      },
+             {
+        "type": "select",
+        "id": "font_weight_desc",
+        "label": "Font Weight",
+        "options": [
+          { "value": "100", "label": "Thin" },
+          { "value": "300", "label": "Light" },
+          { "value": "400", "label": "Regular" },
+          { "value": "600", "label": "Semi-Bold" },
+          { "value": "700", "label": "Bold" },
+          { "value": "900", "label": "Black" }
+        ],
+        "default": "400"
+      },
+    {
+      "type": "image_picker",
+      "id": "center_image",
+      "label": "Center Image"
+    }
+            ]
+        }
+    ],
+  "presets": [
+    {
+      "name": "APB_featured_card_slider",
+      "category": "Custom Sections",
+      "blocks": [
+        {
+            "type": "featured_card_slider",
+        },
+        {
+            "type": "featured_card_slider",
+        },
+        {
+            "type": "featured_card_slider",
+        }
+      ]
+    },
+  ]
+}
+{% endschema %}

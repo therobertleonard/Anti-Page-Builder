@@ -1,0 +1,510 @@
+ <!-- Section Wrapper -->
+ <div class="section_wrapper_sec {{ section.settings.custom_class }}" 
+ style="background-color:{{ section.settings.bg-color-1 }}; 
+        padding-top: {{ section.settings.main-padding-top }}px; 
+        padding-bottom: {{ section.settings.main-padding-bottom }}px;">
+
+<div class="page-width">
+    <div class="custom-content-area">
+
+        {% comment %}
+        <!-- Heading Section -->
+        This section displays the main heading, with customizable font size, color, and letter spacing.
+        {% endcomment %}
+        <div class="hdg-set-class {{ section.settings.vertical_alignment }}">
+            <h2 style="font-size:{{ section.settings.mn-hdg-font-size }}px; 
+                       color:{{ section.settings.mn-hdg-color }}; 
+                       letter-spacing: {{ section.settings.mn_hdg_letter_spacing }}px;">
+                {{ section.settings.main_heading_text }}
+            </h2>
+        </div>
+
+        {% comment %}
+        <!-- Boxes Section -->
+        A flexible section that dynamically generates boxes. Each box can display an image, heading, and paragraph, with customizable styles.
+        {% endcomment %}
+        <div class="boxes-section" style="display: flex; gap: {{ section.settings.gap_size }}px;">
+            {% for block in section.blocks %}
+
+            {% comment %}
+            <!-- Individual Box -->
+            Each box is customized with padding, border, and background color. Inside each box is an image and content (heading and paragraph).
+            {% endcomment %}
+            <div class="level-box" 
+                 style="padding:{{ block.settings.box-padding }}px; 
+                        border: {{ block.settings.border_width }}px {{ block.settings.border_style }} {{ block.settings.border_color }}; background-color:{{ block.settings.box-bg-color }}">
+                
+                {% comment %}
+                <!-- Image Section -->
+                Displays an image inside the box. If no image is provided, a default image is shown.
+                {% endcomment %}
+                <div class="under-image-box" style="border: {{ block.settings.border_width_image }}px {{ block.settings.border_style_image }} {{ block.settings.border_color_image }};">
+                    <img src="{% if block.settings.spl_image_1 != blank %}{{ block.settings.spl_image_1 | img_url: 'medium' }}{% else %}https://cdn.shopify.com/s/files/1/0674/8363/1794/files/image_6_1000x_ea5f08c7-60bd-4c76-8fef-d6063cac5b51.webp?v=1729761387{% endif %}" 
+                         alt="Box Image">
+                </div>
+
+                {% comment %}
+                <!-- Content Section -->
+                This section contains the heading and paragraph content within the box. Both have customizable styles like font size, color, and letter spacing.
+                {% endcomment %}
+                <div class="box-content">
+                    <div class="hdg-content {{ block.settings.vertical_alignment_number }}">
+                        <h4 class="text-number" 
+                            style="font-size:{{ block.settings.text-numder-size }}px; 
+                                   color:{{ block.settings.number-color }}; 
+                                   letter-spacing: {{ block.settings.number_letter_spacing }}px;">
+                            {{ block.settings.text_number }}
+                        </h4>
+                    </div>
+                    <div class="para-content {{ block.settings.vertical_alignment_para }}" 
+                         style="font-size:{{ block.settings.para-font-size }}px !important; 
+                                color:{{ block.settings.para-color }} !important; 
+                                letter-spacing: {{ block.settings.para_letter_spacing }}px !important;">
+                        {{ block.settings.add_text_paragraph }}
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+
+        {% comment %}
+        <!-- Button Section -->
+        A section for a customizable button that can be styled with dynamic properties like font size, color, background color, border, padding, and width.
+        {% endcomment %}
+        <div class="box-section-button {{ section.settings.vertical_alignment_button }} {{ section.settings.button-url }}">
+            <button type="text" 
+                    style="font-size:{{ section.settings.button-numder-size }}px; 
+                           color:{{ section.settings.button-color }}; 
+                           letter-spacing: {{ section.settings.button_letter_spacing }}px; 
+                           border: {{ section.settings.border_width_button }}px {{ section.settings.border_style_button }} {{ section.settings.border_color_button }}; 
+                           background-color:{{ section.settings.button-bg-color }}; 
+                           padding:{{ section.settings.button-padding }}px; 
+                           max-width: {{ section.settings.button-dynamic_max_width }}%; 
+                           width: {{ section.settings.button-dynamic_width }}%; 
+                           margin-top: {{ section.settings.button-margin-top }}px;">
+                {{ section.settings.button-now }}
+            </button>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<style>
+  .under-image-box img {
+    width: 100%;
+}
+  .hdg-set-class h2 {
+margin-top: 0px;
+}
+  .boxes-section {
+    display: flex;
+}
+  .box-content p {
+    margin: 15px 0px 0px;
+}
+h4.text-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    border: 1px solid #312a32;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+  .box-content {
+    padding: 13px 0px 6px;
+}
+  .box-section-button button {
+    cursor: pointer;
+    border-radius: 40px;
+}
+  
+  /* media query */
+  @media(max-width: 767px){
+  .boxes-section {
+display: flex;
+flex-wrap: wrap !important;
+}
+.box-section-button button {
+width: 100% !important;
+max-width: 100% !important;
+font-size: 16px !important;
+}
+}
+  /* End here */
+</style>
+<!-- JSON Schema -->
+{% schema %}
+{
+  "name": "APB Setup Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class"
+    },
+    {
+      "type": "range",
+      "id": "main-padding-top",
+      "label": "Main Padding Top",
+      "min": 0,
+      "max": 80,
+      "default": 30,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "main-padding-bottom",
+      "label": "Main Padding Bottom",
+      "min": 0,
+      "max": 80,
+      "default": 30,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "bg-color-1",
+      "label": "Background Color 1",
+      "default": "#bb8fc1"
+    },
+    {
+      "type": "text",
+      "id": "main_heading_text",
+      "label": "Main Heading Text",
+      "default": "EASY SET UP IN 3 STEPS"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "number",
+      "id": "mn-hdg-font-size",
+      "label": "Main Heading Font Size",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "mn-hdg-color",
+      "label": "Main Heading Color",
+      "default": "#fff"
+    },
+    {
+      "type": "range",
+      "id": "mn_hdg_letter_spacing",
+      "label": "Main Heading Letter Spacing (px)",
+      "min": 0,
+      "max": 50,
+      "default": 0,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "gap_size",
+      "label": "Gap Size (px)",
+      "min": 0,
+      "max": 100,
+      "default": 20,
+      "step": 1
+    },
+    {
+      "type": "text",
+      "id": "button-now",
+      "label": "button text",
+      "default": "Shop Now" 
+    },
+     {
+      "type": "select",
+      "id": "vertical_alignment_button",
+      "label": "Vertical Alignment button",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+      {
+          "type": "number",
+          "id": "button-numder-size",
+          "label": "Text button Size",
+          "default": 30
+        },
+        {
+          "type": "color",
+          "id": "button-color",
+          "label": "button Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "button_letter_spacing",
+          "label": "button Letter Spacing (px)",
+          "min": 0,
+          "max": 50,
+          "default": 0,
+          "step": 1
+        },
+     {
+      "type": "color",
+      "id": "button-bg-color",
+      "label": "button bg-color",
+        "default": "#fef9f3"
+          },
+       {
+          "type": "select",
+          "id": "border_style_button",
+          "label": "Border Style",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "solid", "label": "Solid" },
+            { "value": "dashed", "label": "Dashed" },
+            { "value": "dotted", "label": "Dotted" }
+          ],
+          "default": "solid"
+        },
+        {
+          "type": "color",
+          "id": "border_color_button",
+          "label": "button border Color",
+          "default": "#432a54"
+        },
+        {
+          "type": "range",
+          "id": "border_width_button",
+          "label": "button Width (px)",
+          "min": 0,
+          "max": 10,
+          "default": 1,
+          "step": 1
+        },
+           {
+          "type": "range",
+          "id": "button-padding",
+          "label": "button Padding",
+          "min": 0,
+          "max": 30,
+          "default": 10,
+          "step": 1,
+          "unit": "px"
+        },
+            {
+      "type": "range",
+      "id": "button-dynamic_width",
+      "label": "button section Width (%)",
+      "min": 0,
+      "max": 100,
+      "default": 30,
+      "step": 1
+    },
+        {
+      "type": "range",
+      "id": "button-dynamic_max_width",
+      "label": "button section Max Width (%)",
+      "min": 0,
+      "max": 100,
+      "default": 30,
+      "step": 1
+    },
+             {
+      "type": "range",
+      "id": "button-margin-top",
+      "label": "button margin top",
+      "min": 0,
+      "max": 80,
+      "default": 30,
+      "step": 1,
+       "unit": "px"
+    },
+               {
+      "type": "url",
+      "id": "button-url",
+      "label": "button url"
+    },
+    
+  ],
+  "blocks": [
+    {
+      "type": "boxes_items",
+      "name": "Box Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "spl_image_1",
+          "label": "Image Section"
+        },
+        {
+          "type": "range",
+          "id": "box-padding",
+          "label": "Box Padding",
+          "min": 0,
+          "max": 30,
+          "default": 10,
+          "step": 1,
+          "unit": "px"
+        },
+        {
+          "type": "select",
+          "id": "border_style",
+          "label": "Border Style",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "solid", "label": "Solid" },
+            { "value": "dashed", "label": "Dashed" },
+            { "value": "dotted", "label": "Dotted" }
+          ],
+          "default": "solid"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Border Color",
+          "default": "#432a54"
+        },
+        {
+          "type": "range",
+          "id": "border_width",
+          "label": "Border Width (px)",
+          "min": 0,
+          "max": 10,
+          "default": 1,
+          "step": 1
+        },
+         {
+          "type": "color",
+          "id": "box-bg-color",
+          "label": "box bg color",
+            "default": "#fff"
+          },
+        {
+          "type": "text",
+          "id": "text_number",
+          "label": "Add Text Number",
+          "default": "1"
+        },
+           {
+          "type": "select",
+          "id": "border_style_image",
+          "label": "Border Style",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "solid", "label": "Solid" },
+            { "value": "dashed", "label": "Dashed" },
+            { "value": "dotted", "label": "Dotted" }
+          ],
+          "default": "solid"
+        },
+        {
+          "type": "color",
+          "id": "border_color_image",
+          "label": "Border Color",
+          "default": "#432a54"
+        },
+        {
+          "type": "range",
+          "id": "border_width_image",
+          "label": "Border Width (px)",
+          "min": 0,
+          "max": 10,
+          "default": 1,
+          "step": 1
+        },
+            {
+          "type": "select",
+          "id": "vertical_alignment_number",
+          "label": "Vertical Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "number",
+          "id": "text-numder-size",
+          "label": "Text Number Size",
+          "default": 30
+        },
+        {
+          "type": "color",
+          "id": "number-color",
+          "label": "Number Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "number_letter_spacing",
+          "label": "Number Letter Spacing (px)",
+          "min": 0,
+          "max": 50,
+          "default": 0,
+          "step": 1
+        },
+        {
+          "type": "richtext",
+          "id": "add_text_paragraph",
+          "label": "Add Text Paragraph",
+          "default": "<p>Rip open the package</p>"
+        },
+        {
+          "type": "number",
+          "id": "para-font-size",
+          "label": "Paragraph Font Size",
+          "default": 18
+        },
+             {
+          "type": "select",
+          "id": "vertical_alignment_para",
+          "label": "Vertical Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "color",
+          "id": "para-color",
+          "label": "Paragraph Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "para_letter_spacing",
+          "label": "Paragraph Letter Spacing (px)",
+          "min": 0,
+          "max": 50,
+          "default": 1,
+          "step": 1
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "APB_Easy_Setup_Section",
+      "blocks": [
+        { "type": "boxes_items" },
+        { "type": "boxes_items" },
+        { "type": "boxes_items" }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

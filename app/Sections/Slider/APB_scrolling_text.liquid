@@ -1,0 +1,178 @@
+<div class="custom-logo-slider" style="background-color:{{ section.settings.color_accent1 }};"> 
+   
+    <div class="logo-slider-inner">
+	{% comment %}
+	  <!----------slider-1--------------->
+	{% endcomment %}
+	<div
+      class="slider"
+      style="--width: 200px; --height: 100px; --imageQuantity: 10"
+    > 
+	   <div class="list">
+	        {% for i in (1..5) %}
+	        {%- for block in section.blocks -%}
+	        <div class="item">
+              {%- if block.settings.texthead != blank -%}
+	         <p style="font-size: {{ block.settings.slide-text-size }}px; color:{{ block.settings.slide-text_color }};">{{ block.settings.texthead }}</p>
+              {%- endif -%}
+            </div>
+			{% endfor %}
+			{% endfor %}
+	   </div>
+	</div>
+	<!----------slider-2--------------->
+	
+	</div>
+</div>
+
+<style>
+.custom-logo-slider {
+  width: 100%;
+  padding-top: {{ section.settings.p_t }}px;
+  padding-bottom: {{ section.settings.p_b }}px;
+}
+
+.item p {
+  margin: 0px;
+  line-height: 100%;
+  color: {{ section.settings.textcolor }};
+}
+
+.logo-slider-inner .slider {
+  padding-block: 12px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.logo-slider-inner .list {
+  display: flex;
+  width: calc(
+    var(--width) * var(--imageQuantity) * 2
+  ); /* Double the width for seamless looping */
+  gap: 60px;
+  animation: autoScroll 20s linear infinite; /* Animation */
+}
+
+.logo-slider-inner .list:hover {
+  animation-play-state: paused !important; /* Pause on hover */
+}
+
+.logo-slider-inner .item {
+  flex-shrink: 0;
+}
+
+.logo-slider-inner .item img {
+  transition: filter 0.5s ease-in-out;
+}
+
+@keyframes autoScroll {
+  0% {
+    transform: translateX(calc(-1 * var(--width) * var(--imageQuantity)));
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.logo-slider-inner .slider[reverse="false"] .list {
+  animation: autoScroll 20s linear infinite; /* Ensure correct animation */
+}
+
+@media only screen and (max-width: 767px) {
+  .logo-slider-inner .item {
+    padding: 0;
+  }
+  .heading-box h2 {
+    font-size: 52px;
+    line-height: 56px;
+  }
+}
+
+</style>
+ 
+{% schema %}
+{
+  "name": "text-list-2",
+  "settings": [
+      { 
+      "type": "color", 
+      "id": "color_accent1", 
+      "label": "Background Color", 
+      "default": "#000" 
+    },
+    { 
+      "type": "color", 
+      "id": "textcolor", 
+      "label": "text-color", 
+      "default": "#FFFFFF" 
+    },
+    {
+        "type": "range",
+        "id": "p_t",
+        "default": 50,
+        "label": "Padding Top",
+        "max": 300,
+        "min": 0,
+        "step": 5,
+        "unit": "Px"
+      }, {
+        "type": "range",
+        "id": "p_b",
+        "default": 50,
+        "label": "Padding Bottom",
+        "max": 300,
+        "min": 0,
+        "step": 5,
+        "unit": "Px"
+      }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "item",
+      "settings": [
+	    {
+      "type": "inline_richtext",
+      "id": "texthead",
+      "default": "Heading",
+      "label": "Heading"
+      },
+           { 
+      "type": "color", 
+      "id": "slide-text-color", 
+      "label": "text-color", 
+      "default": "#FFFFFF" 
+    },
+             {
+          "type": "number",
+          "id": "slide-text-size",
+          "label": "Text size",
+          "default": 16
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "APB_scrolling_text",
+      "blocks": [
+        {
+          "type": "item",
+        },
+        {
+          "type": "item",
+        },
+       {
+          "type": "item",
+        },
+         {
+          "type": "item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %} 

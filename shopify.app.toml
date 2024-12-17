@@ -3,7 +3,7 @@
 client_id = "77e53684733f532fb1e88898becfeed3"
 name = "section-app"
 handle = "section-app-20"
-application_url = "https://starring-printer-atlanta-protocol.trycloudflare.com"
+application_url = "https://given-conference-mix-avatar.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,13 +17,13 @@ scopes = "write_products,write_themes"
 
 [auth]
 redirect_urls = [
-  "https://starring-printer-atlanta-protocol.trycloudflare.com/auth/callback",
-  "https://starring-printer-atlanta-protocol.trycloudflare.com/auth/shopify/callback",
-  "https://starring-printer-atlanta-protocol.trycloudflare.com/api/auth/callback"
+  "https://given-conference-mix-avatar.trycloudflare.com/auth/callback",
+  "https://given-conference-mix-avatar.trycloudflare.com/auth/shopify/callback",
+  "https://given-conference-mix-avatar.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
-api_version = "2024-07"
+api_version = "2024-01"
 
 [pos]
 embedded = false

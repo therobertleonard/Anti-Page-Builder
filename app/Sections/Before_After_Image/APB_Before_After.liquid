@@ -1,0 +1,628 @@
+{%- liquid 
+  assign padding_horizontal = section.settings.padding_horizontal
+  assign padding_horizontal_mobile = section.settings.padding_horizontal_mobile
+  assign padding_top = section.settings.padding_top
+  assign padding_bottom = section.settings.padding_bottom
+  assign full_width = section.settings.full_width
+  assign content_width = section.settings.content_width
+-%}
+
+{%- unless full_width %}
+  <style>
+    /* Apply max-width to the section only if it's not full-width */
+    .section-{{ section.id }}-settings {
+      max-width: {{ content_width }}rem;
+    }
+  </style>
+{%- endunless %}
+
+<style>
+  /* General section styling */
+  .section-{{ section.id }}-settings {
+    margin: 0 auto;
+    padding-top: {{ padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-left: {{ padding_horizontal_mobile }}rem;
+    padding-right: {{ padding_horizontal_mobile }}rem;
+  }
+
+  /* Adjustments for screens larger than 1024px */
+  @media (min-width: 1024px) {
+    .section-{{ section.id }}-settings {
+      padding: 0 5rem;
+      padding-top: {{ padding_top }}px;
+      padding-bottom: {{ padding_bottom }}px;
+      padding-left: {{ padding_horizontal }}rem;
+      padding-right: {{ padding_horizontal }}rem;
+    }
+  }
+</style>
+{% comment %}
+<!-- Main container for the comparison section -->
+{% endcomment %}
+<div class="custom_comp-section" data-component="image-comparison-slider" style="background-color: {{ section.settings.bg_color }};">
+  <div class="image-comparison section-{{ section.id }}-settings">
+
+    {% comment %}
+   ------------------ Optional title and description for the comparison section----------------------
+    {% endcomment %}
+    {%- if section.settings.comp_title1 != blank -%}
+      <div class="comparison-content">
+        <h2 style="font-size: {{ section.settings.fontsize }}px; color: {{ section.settings.h-color }};">
+          {{ section.settings.comp_title1 }}
+        </h2>
+        <div class="comp_des" style="font-size: {{ section.settings.parasize }}px; color: {{ section.settings.text-color }};">
+          {{ section.settings.compar-descri }}
+        </div>
+      </div>
+    {%- endif %}
+{% comment %}
+    <!-- Wrapper for the image comparison slider -->
+    {% endcomment %}
+    <div class="image-comparison__slider-wrapper">
+      <label for="image-comparison-range" class="image-comparison__label"></label>
+      <input type="range" min="0" max="100" value="50" class="image-comparison__range" id="image-compare-range" data-image-comparison-range="">
+
+      <div class="image-comparison__image-wrapper">
+
+        {% comment %}
+       ------------- Overlay image section-------------
+        {% endcomment %}
+        <div class="image-comparison__image-wrapper image-comparison__image-wrapper--overlay" data-image-comparison-overlay="">
+          <figure class="image-comparison__figure image-comparison__figure--overlay">
+            <picture class="image-comparison__picture">
+              {% comment %}
+             --------------- First image: check if a custom image is provided; otherwise, use default---------------
+              {% endcomment %}
+              {% if section.settings.first_bg != blank %}
+                {% assign img_p = section.settings.first_bg | img_url: 'master' %}
+              {% else %}
+                {% assign img_p = "https://cdn.shopify.com/s/files/1/0674/8363/1794/files/yellow-couch-by-black-and-white-mural_925x_f054529f-3362-4f06-95c6-e7856ddac365.jpg?v=1726729098" %}
+              {% endif %}
+              <img class="image-comparison__image" src="{{ img_p }}" width="auto" height="auto">
+            </picture>
+
+            {% comment %}
+          -----------------  Optional bottom text for the overlay image-------------------------
+            {% endcomment %}
+            {% if section.settings.lt_bottom_text != blank %}
+              <figcaption class="image-comparison__caption image-comparison__caption--before" style="background-color: {{ section.settings.bg_color_l }};">
+                <span class="image-comparison__caption-body" style="font-size: {{ section.settings.besize }}px; color: {{ section.settings.be-color }};">
+                  {{ section.settings.lt_bottom_text }}
+                </span>
+              </figcaption>
+            {% endif %}
+          </figure>
+        </div>
+
+        {% comment %}
+       ------------------ Slider thumb (for dragging between images)-----------------
+        {% endcomment %}
+        <div class="image-comparison__slider" data-image-comparison-slider="">
+          <span class="image-comparison__thumb" data-image-comparison-thumb="">
+            <svg class="image-comparison__thumb-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="10" viewBox="0 0 18 10" fill="currentColor">
+              <path class="image-comparison__thumb-icon--left" d="M12.121 4.703V.488c0-.302.384-.454.609-.24l4.42 4.214a.33.33 0 0 1 0 .481l-4.42 4.214c-.225.215-.609.063-.609-.24V4.703z"></path>
+              <path class="image-comparison__thumb-icon--right" d="M5.879 4.703V.488c0-.302-.384-.454-.609-.24L.85 4.462a.33.33 0 0 0 0 .481l4.42 4.214c.225.215.609.063.609-.24V4.703z"></path>
+            </svg>
+          </span>
+        </div>
+
+        {% comment %}
+       -------------------- Second image section---------------------
+        {% endcomment %}
+        <div class="image-comparison__image-wrapper">
+          <figure class="image-comparison__figure">
+            <picture class="image-comparison__picture">
+              {% comment %}
+            ----------------------  Second image: check if a custom image is provided; otherwise, use default-----------------------
+              {% endcomment %}
+              {% if section.settings.second_bg != blank %}
+                {% assign img_pp = section.settings.second_bg | img_url: 'master' %}
+              {% else %}
+                {% assign img_pp = "https://cdn.shopify.com/s/files/1/0674/8363/1794/files/large-grey-sofa-by-brick-wall_925x_aa6502a0-cbda-4abc-a1a5-458d6e254bc6.jpg?v=1726729093" %}
+              {% endif %}
+              <img class="image-comparison__image" src="{{ img_pp }}" width="auto" height="auto">
+            </picture>
+
+            {% comment %}
+           -------------------- Optional bottom text for the second image---------------------------
+            {% endcomment %}
+            {% if section.settings.rt_bottom_text != blank %}
+              <figcaption class="image-comparison__caption image-comparison__caption--after" style="background-color: {{ section.settings.bg_color_b }};">
+                <span class="image-comparison__caption-body" style="font-size: {{ section.settings.lesize }}px; color: {{ section.settings.le-color }};">
+                  {{ section.settings.rt_bottom_text }}
+                </span>
+              </figcaption>
+            {% endif %}
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    {% comment %}
+    -------------------------Optional button below the comparison slider---------------------------
+    {% endcomment %}
+    <div class="compare-button">
+      {% if section.settings.button_link != blank and section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link }}" class="button" style="color: {{ section.settings.cont_col3 }}; background-color: {{ section.settings.color_accent2 }};">
+          {{ section.settings.button_label | escape }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<style>
+  .image-comparison .banner__buttons {
+    margin-top: 4rem;
+    width: 100%;
+    display: block;
+    max-width: 100%;
+    text-align: center;
+}
+section.custom_comp-section {
+    padding-bottom: 8rem;
+}
+
+.image-comparison__slider-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.image-comparison.container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.image-comparison__label {
+  font-size: 0;
+  line-height: 0;
+}
+
+.image-comparison__label,
+.image-comparison__range {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: none;
+  cursor: ew-resize;
+  z-index: 99;
+}
+
+@media (hover) {
+  .image-comparison__range:hover ~ .image-comparison__slider .image-comparison__thumb {
+    transform: scale(1.2);
+  }
+}
+.image-comparison__image-wrapper--overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(50% + 1px);
+  height: 100%;
+  overflow: hidden;
+}
+.image-comparison__figure {
+  margin: 0;
+}
+.image-comparison__figure:not(.image-comparison__figure--overlay) {
+  position: relative;
+  padding-top: 66.666666667%;
+}
+.image-comparison__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 0 50%;
+     object-position: 0 50%;
+  overflow: hidden;
+}
+  .comparison-content h2 {
+    text-align: center;
+    margin: 0;
+}
+.image-comparison__figure--overlay .image-comparison__image {
+  z-index: 1;
+}
+.image-comparison__caption {
+  position: absolute;
+  bottom: {{ section.settings.cus_pt1 }}%;
+  min-width: -webkit-max-content;
+  min-width: -moz-max-content;
+  min-width: max-content;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+  
+@media screen and (max-width: 767px) {
+  .image-comparison__caption {
+    font-size: 12px;
+}
+.image-comparison {
+    padding: 10px;
+}
+.block-bottom-content {
+    padding: 16px;
+}
+}
+.image-comparison__caption--before {
+  left: 12px;
+  z-index: 2;
+}
+.image-comparison__caption--after {
+  right: 12px;
+  text-align: right;
+}
+.image-comparison__caption-body {
+    max-width: 100%;
+    padding: 6px 12px;
+}
+.image-comparison__slider {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background-color: #ffff;
+  transition: background-color 0.3s ease-in-out;
+  z-index: 1;
+}
+.image-comparison__range--active ~ .image-comparison__slider {
+  background-color: rgba(255, 255, 255, 0);
+}
+.image-comparison__thumb {
+  position: absolute;
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffff;
+  color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 22px 0 rgba(0, 0, 0, 0.5);
+  transform-origin: center;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+  svg.image-comparison__thumb-icon path {
+    fill: #000;
+}
+.image-comparison__range::-webkit-slider-runnable-track {
+  width: 40px;
+  height: 40px;
+  opacity: 0;
+}
+.image-comparison__range::-moz-range-thumb {
+  width: 40px;
+  height: 40px;
+  opacity: 0;
+}
+.image-comparison__range::-webkit-slider-thumb {
+  width: 40px;
+  height: 40px;
+  opacity: 0;
+}
+.image-comparison__range::-ms-fill-lower {
+  background-color: transparent;
+}
+.image-comparison__range::-ms-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  color: transparent;
+  outline: none;
+  cursor: col-resize;
+}
+.image-comparison__range::-ms-thumb {
+  width: 0.5%;
+  height: 100%;
+  opacity: 0;
+}
+.image-comparison__range::-ms-tooltip {
+  display: none;
+}
+.comparison-content h1 {
+    margin: 0;
+    padding-top: 20px;
+    text-align: center;
+}
+  .image-comparison p {
+    margin-top: 0px;
+    text-align: center;
+}
+.compare-button {
+    text-align: center;
+    margin-top: 40px;
+}
+</style>
+
+<script>
+    const imageComparisonSlider = document.querySelector('[data-component="image-comparison-slider"]')
+
+function setSliderstate(e, element) {
+  const sliderRange = element.querySelector('[data-image-comparison-range]');
+
+  if (e.type === 'input') {
+    sliderRange.classList.add('image-comparison__range--active');
+    return;
+  }
+
+  sliderRange.classList.remove('image-comparison__range--active');
+  element.removeEventListener('mousemove', moveSliderThumb);
+}
+
+function moveSliderThumb(e) {
+  const sliderRange = document.querySelector('[data-image-comparison-range]');
+  const thumb = document.querySelector('[data-image-comparison-thumb]');
+  let position = e.layerY - 20;
+
+  if (e.layerY <= sliderRange.offsetTop) {
+    position = -20;
+  }
+
+  if (e.layerY >= sliderRange.offsetHeight) {
+    position = sliderRange.offsetHeight - 20;
+  }
+
+  thumb.style.top = `${position}px`;
+}
+
+function moveSliderRange(e, element) {
+  const value = e.target.value;
+  const slider = element.querySelector('[data-image-comparison-slider]');
+  const imageWrapperOverlay = element.querySelector('[data-image-comparison-overlay]');
+
+  slider.style.left = `${value}%`;
+  imageWrapperOverlay.style.width = `${value}%`;
+
+  element.addEventListener('mousemove', moveSliderThumb);
+  setSliderstate(e, element);
+}
+
+function init(element) {
+  const sliderRange = element.querySelector('[data-image-comparison-range]');
+
+  if ('ontouchstart' in window === false) {
+    sliderRange.addEventListener('mouseup', e => setSliderstate(e, element));
+    sliderRange.addEventListener('mousedown', moveSliderThumb);
+  }
+
+  sliderRange.addEventListener('input', e => moveSliderRange(e, element));
+  sliderRange.addEventListener('change', e => moveSliderRange(e, element));
+}
+
+init(imageComparisonSlider);
+</script>
+
+{% schema  %} 
+{
+    "name": "APB Before After Image #1",
+    "settings": [
+       {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color",
+           "default": "#FFFFFF"
+        },
+        {
+        "type": "range",
+        "id": "content_width",
+        "min": 0,
+        "max": 400,
+        "step": 5,
+        "unit": "rem",
+        "label": "Section content width",
+        "default": 140
+      },
+        {
+            "type": "inline_richtext",
+            "id": "comp_title1",
+            "label": "Title",
+            "default": "Before and after"
+        },
+        {
+          "type": "number",
+          "id": "fontsize",
+          "label": "Heading size",
+          "default": 50
+        },
+        {
+            "type": "richtext",
+            "id": "compar-descri",
+            "label": "Description",
+            "default": "<p>This product will change everything, forever.</p>"
+        },
+           {
+          "type": "color",
+          "id": "h-color",
+          "label": "Heading Color",
+          "default": "#000"
+        },
+         {
+          "type": "number",
+          "id": "parasize",
+          "label": "Text size",
+          "default": 16
+        },
+         {
+          "type": "color",
+          "id": "text-color",
+          "label": "Text Color",
+          "default": "#000"
+        },
+        {
+            "type": "image_picker",
+            "id": "first_bg",
+            "label": "First Image"
+        },
+
+
+          {
+            "type": "range",
+            "id": "cus_pt1",
+            "label": " Top & Bottom",
+            "max": 100,
+            "default": 12,
+            "min": 0,
+            "unit": "%"
+        },
+        {
+            "type": "text",
+            "id": "lt_bottom_text",
+            "label": "Left text",
+            "default": "Before"
+        },
+         {
+          "type": "color",
+          "id": "bg_color_l",
+          "label": "Background Color",
+           "default": "#FFFFFF"
+        },
+         {
+          "type": "number",
+          "id": "besize",
+          "label": "Text size",
+          "default": 16
+        },
+         {
+          "type": "color",
+          "id": "be-color",
+          "label": "Text Color",
+          "default": "#000"
+        },
+        {
+            "type": "image_picker",
+            "id": "second_bg",
+            "label": "Image"
+        },
+        {
+            "type": "text",
+            "id": "rt_bottom_text",
+            "label": "Right text",
+            "default": "after"
+        },
+          {
+          "type": "color",
+          "id": "bg_color_b",
+          "label": "Background Color",
+           "default": "#FFFFFF"
+        },
+         {
+          "type": "number",
+          "id": "lesize",
+          "label": "Text size",
+          "default": 16
+        },
+         {
+          "type": "color",
+          "id": "le-color",
+          "label": "Text Color",
+          "default": "#000"
+        },
+       {
+      "type": "color",
+      "id": "cont_col3",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "color_accent2",
+      "label": "Button Background Color",
+      "default": "#FFFFFF"
+    },
+        {
+          "type": "text",
+          "id": "button_label",
+            "label": "Buton"
+          },
+        {
+          "type": "url",
+          "id": "button_link",
+            "label": "Buton Link"
+          },
+      {
+        "type": "header",
+        "content": "Section padding (inside)"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 36
+      },
+      {
+         "type": "range",
+         "id": "padding_bottom",
+         "min": 0,
+         "max": 100,
+         "step": 4,
+         "unit": "px",
+         "label": "Padding bottom",
+         "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_horizontal",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "rem",
+        "label": "Padding sides",
+        "default": 5
+      },
+      {
+        "type": "range",
+        "id": "padding_horizontal_mobile",
+        "min": 0,
+        "max": 15,
+        "step": 0.5,
+        "unit": "rem",
+        "label": "Padding sides mobile",
+        "default": 1.5
+      }
+	
+    ],
+    "presets": [
+        {
+            "name": "APB Before After Image #1"
+        }
+    ]
+}
+{% endschema %}

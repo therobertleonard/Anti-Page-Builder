@@ -1,0 +1,434 @@
+<div class="matte-perfection-section {{ section.settings.custom_class }}">
+  <div class="matte-perfection-container">
+    {% comment %}
+      <!-- Matte perfection text section -->
+    {% endcomment %}
+    <div
+      class="matte-perfection-text"
+      style="
+        background-color:{{ section.settings.bg_color }};
+        padding:{{ section.settings.box-padding }}px; border-radius: {{ section.settings.box_border_radius }}px;
+      "
+    >
+      {% comment %}
+        <!-- Rating Text -->
+        This section displays the rating text, with the rating stars dynamically populated using `section.settings.rating_text`.
+        The style (font size, color, letter spacing, font family, and font weight) is configurable via section settings.
+      {% endcomment %}
+      <div class="rating-text">
+        <span class="rating-stars">{{ section.settings.rating_text }}</span>
+
+        {% comment %}
+          <!-- Trusted Text -->
+          The "trusted text" is displayed here. Its style is dynamically controlled via section settings (font size, color, etc.).
+        {% endcomment %}
+        <span
+          class="trusted-text"
+          style="
+            font-size: {{ section.settings.box_hdg_fond_size }}px; color: {{ section.settings.box_hdg_fond_color }};
+            letter-spacing: {{ section.settings.box_hdg_text_letter_spacing }}px;
+            font-family: {{ section.settings.font_family_box_hdg }}; font-weight: {{ section.settings.font_weight_box_hdg }};
+          "
+        >
+          {{ section.settings.trusted_text }}
+        </span>
+      </div>
+
+      {% comment %}
+        <!-- Main Heading -->
+        The main heading of this section, with its dynamic styles controlled by section settings such as font size, color, and letter spacing.
+      {% endcomment %}
+      <h2
+        class="matte-heading"
+        style="
+          font-size: {{ section.settings.main_hdg_fond_size }}px; color: {{ section.settings.main_hdg_fond_color }};
+          letter-spacing: {{ section.settings.box_hdg_text_letter_spacing }}px;
+          font-family: {{ section.settings.font_family_main_hdg }}; font-weight: {{ section.settings.font_weight_box_hdg }};
+        "
+      >
+        {{ section.settings.heading }}
+      </h2>
+
+      {% comment %}
+        <!-- Subheading -->
+        This is the subheading under the main heading. Its text, font size, color, letter spacing, font family, and weight are all customizable.
+      {% endcomment %}
+      <p
+        class="matte-subheading"
+        style="
+          font-size: {{ section.settings.box_para_fond_size }}px; color: {{ section.settings.box_para_fond_color }};
+          letter-spacing: {{ section.settings.box_hdg_text_letter_spacing }}px;
+          font-family: {{ section.settings.font_family_box_para }}; font-weight: {{ section.settings.font_weight_box_para }};
+        "
+      >
+        {{ section.settings.subheading }}
+      </p>
+
+      {% comment %}
+        <!-- Button Section -->
+        A button is displayed with a link. The button's label and link URL are dynamically populated from section settings.
+      {% endcomment %}
+      <a href="{{ section.settings.button_link }}" class="matte-button">{{ section.settings.button_label }}</a>
+
+      {% comment %}
+        <!-- Brand Image -->
+        This section includes a brand image that can be dynamically updated. If no image is provided, a default image is used.
+        The image source is pulled from `section.settings.small_image`. The alt text is dynamically populated.
+      {% endcomment %}
+      <p class="matte-brand">
+        <img
+          src="
+            {% if section.settings.small_image != blank %} {{ section.settings.small_image | img_url: 'small' }}
+            {% else %} https://cdn.shopify.com/s/files/1/0887/8194/7244/files/Group_542.png?v=1730282459 {% endif %}
+          "
+        >
+        {{ section.settings['skin-text'] }}
+      </p>
+    </div>
+
+    <!-- Matte perfection video section -->
+    <div class="matte-perfection-video">
+      {% comment %}
+        <!-- Video Section -->
+        This block checks if a video has been provided in the settings (`section.settings.a_video`). If no video is provided,
+        a fallback video URL is used.
+      {% endcomment %}
+      {% if section.settings.a_video %}
+        {% assign video = section.settings.a_video %}
+      {% else %}
+        {% assign video = 'https://cdn.shopify.com/videos/c/o/v/2edcd54aac1b464c9489068d3470d1c1.mp4' %}
+      {% endif %}
+
+      {% comment %}
+        <!-- Video Element -->
+        The video is embedded here with autoplay, muted, and loop functionality. The source of the video is set dynamically from
+        either the provided video URL or the fallback video.
+      {% endcomment %}
+      <video autoplay muted loop>
+        <source src="{{ video }}">
+      </video>
+    </div>
+  </div>
+</div>
+
+<style>
+  .matte-perfection-video video {
+      height: 500px;
+      width: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 10px;
+  }
+    .matte-perfection-section {
+      justify-content: center;
+      padding: 40px;
+    }
+  .matte-perfection-container {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      align-items: center;
+      gap: 10px;
+  }
+  .matte-perfection-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+  }
+    .rating-text {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #ff0000;
+    }
+    .matte-heading {
+      margin: 10px 0;
+    }
+  .matte-subheading {
+      margin: 6px 0 10px;
+      line-height: 30px;
+  }
+  .matte-button {
+      padding: 10px 20px;
+      background-color: #ff0000;
+      color: white;
+      text-decoration: none;
+      margin: 20px 0;
+      font-weight: bold;
+      max-width: 240px;
+      text-align: center;
+      border-radius: 40px;
+      font-family: Montserrat, sans-serif;
+      letter-spacing: 0px;
+  }
+  .matte-brand {
+      margin: 0px;
+      font-size: 16px;
+      letter-spacing: 0px;
+      color: #000;
+      font-family: Montserrat, sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+  }
+    p.matte-brand img {
+      width: 25px;
+      height: 25px;
+  }
+    .matte-perfection-image img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .matte-video-pause {
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 5px 10px;
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+    }
+
+    /* media query */
+    @media(max-width:767px){
+    .matte-perfection-section {
+      padding: 20px;
+  }
+    .customer-info p {
+      font-size: 15px !important;
+  }
+    strong.name-text {
+      font-size: 17px !important;
+  }
+    h2.testimonial-heading {
+      font-size: 25px !important;
+  }
+    p.testimonial-text {
+      font-size: 16px !important;
+      line-height: 24px !important;
+  }
+    .testimonial-container {
+      gap: 0px;
+  }
+    .matte-perfection-container {
+     grid-template-columns: auto;
+  }
+    .matte-perfection-text {
+      padding: 20px !important;
+  }
+    h2.matte-heading {
+      font-size: 38px !important;
+  }
+    span.trusted-text {
+      font-size: 16px !important;
+  }
+      .matte-subheading {
+      font-size: 17px !important;
+  }
+      }
+</style>
+{% schema %}
+{
+  "name": "Matte Perfection Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "custom_class"
+    },
+        {
+      "type": "text",
+      "id": "trusted_text",
+      "label": "Trusted Text",
+      "default": "Trusted by 100,000+ customers"
+    },
+                                {
+          "type": "number",
+          "id": "box_hdg_fond_size",
+          "label": "box_hdg_fond_size",
+          "default": 20
+        },
+               {
+          "type": "color",
+          "id": "box_hdg_fond_color",
+          "label": "box_hdg_fond_color",
+          "default": "#000"
+        },
+                 {
+          "type": "range",
+          "id": "box_hdg_text_letter_spacing",
+          "label": "box hdg Letter Spacing (px)",
+          "default": 0,
+          "min": 0,
+          "max": 10,
+          "step": 0.1
+        },
+                        {
+    "type": "select",
+    "id": "font_family_box_hdg",
+    "label": "Font Family",
+    "options": [
+      { "value": "'Arial', sans-serif", "label": "Arial" },
+      { "value": "'Georgia', serif", "label": "Georgia" },
+      { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+      { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+      { "value": "'Courier New', monospace", "label": "Courier New" },
+      { "value": "'Roboto', sans-serif", "label": "Roboto" },
+      { "value": "'Raleway', sans-serif", "label": "Raleway" }
+    ],
+    "default": "'Raleway', sans-serif"
+  },
+         {
+    "type": "select",
+    "id": "font_weight_box_hdg",
+    "label": "Font Weight",
+    "options": [
+      { "value": "100", "label": "Thin" },
+      { "value": "300", "label": "Light" },
+      { "value": "400", "label": "Regular" },
+      { "value": "600", "label": "Semi-Bold" },
+      { "value": "700", "label": "Bold" },
+      { "value": "900", "label": "Black" }
+    ],
+    "default": "400"
+  },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Rating Text",
+      "default": "★★★★★"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "bg color",
+        "default": "#faece5"
+    },
+      {
+          "type": "range",
+          "id": "box-padding",
+          "label": "Padding",
+          "min": 0,
+          "max": 80,
+          "default": 40,
+          "step": 1,
+          "unit": "px"
+        },
+                 {
+              "type": "range",
+              "id": "box_border_radius",
+              "label": "box Border Radius (px)",
+              "default": 10,
+              "min": 0,
+              "max": 50,
+              "step": 1
+      },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Matte Perfection"
+    },
+                              {
+          "type": "number",
+          "id": "main_hdg_fond_size",
+          "label": "main_hdg_fond_size",
+          "default": 50
+        },
+               {
+          "type": "color",
+          "id": "main_hdg_fond_color",
+          "label": "main_hdg_fond_color",
+          "default": "#000"
+        },
+                            {
+    "type": "select",
+    "id": "font_family_main_hdg",
+    "label": "Font Family",
+    "options": [
+      { "value": "'Arial', sans-serif", "label": "Arial" },
+      { "value": "'Georgia', serif", "label": "Georgia" },
+      { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+      { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+      { "value": "'Courier New', monospace", "label": "Courier New" },
+      { "value": "'Roboto', sans-serif", "label": "Roboto" },
+      { "value": "'Raleway', sans-serif", "label": "Raleway" }
+    ],
+    "default": "'Raleway', sans-serif"
+  },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "New in: from bold and vibrant hues to subtle and sophisticated shades."
+    },
+                             {
+          "type": "number",
+          "id": "box_para_fond_size",
+          "label": "box_para_fond_size",
+          "default": 20
+        },
+               {
+          "type": "color",
+          "id": "box_para_fond_color",
+          "label": "box_para_fond_color",
+          "default": "#000"
+        },
+                           {
+    "type": "select",
+    "id": "font_family_box_para",
+    "label": "Font Family",
+    "options": [
+      { "value": "'Arial', sans-serif", "label": "Arial" },
+      { "value": "'Georgia', serif", "label": "Georgia" },
+      { "value": "'Helvetica', sans-serif", "label": "Helvetica" },
+      { "value": "'Times New Roman', serif", "label": "Times New Roman" },
+      { "value": "'Courier New', monospace", "label": "Courier New" },
+      { "value": "'Roboto', sans-serif", "label": "Roboto" },
+      { "value": "'Raleway', sans-serif", "label": "Raleway" }
+    ],
+    "default": "'Raleway', sans-serif"
+  },
+             {
+    "type": "select",
+    "id": "font_weight_box_para",
+    "label": "Font Weight",
+    "options": [
+      { "value": "100", "label": "Thin" },
+      { "value": "300", "label": "Light" },
+      { "value": "400", "label": "Regular" },
+      { "value": "600", "label": "Semi-Bold" },
+      { "value": "700", "label": "Bold" },
+      { "value": "900", "label": "Black" }
+    ],
+    "default": "400"
+  },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Shop New Collection"
+    },
+    {
+      "type": "text",
+      "id": "skin-text",
+      "label": "skin-text",
+      "default": "Skincare Technology Company",
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+    },
+    {
+      "type": "url",
+      "id": "a_video",
+      "label": "Video Url"
+    },
+  ],
+  "presets": [
+    {
+      "name": "APB_mate_perfect_section"
+    }
+  ]
+}
+{% endschema %}

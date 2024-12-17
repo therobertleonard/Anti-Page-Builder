@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { json } from "@remix-run/node";
 import { useActionData, useSubmit } from "@remix-run/react";
-import { Button, TextField, Form, Page, Frame, Toast } from "@shopify/polaris";
+import { Button, TextField, Form, Page, Frame, Toast, Card, BlockStack } from "@shopify/polaris";
 import { useNavigate } from "react-router-dom";
-import db from '../db.server';
+
+import { PrismaClient } from "@prisma/client";
+const db = new PrismaClient();
 
 // Main action function to handle form submission and category creation
 export const action = async ({ request }) => {
@@ -28,10 +30,30 @@ export default function AddCategory() {
   const [showToast, setShowToast] = useState(false); // State to control toast visibility
   const submit = useSubmit();
   const data = useActionData();
+  const [errors, setErrors] = useState({});
 
   // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const errors = {};
+
+    if (!name) {
+      errors.name = "Category Name is required.";
+    } else if (/\s/.test(name)) {
+      errors.name = "Category Name cannot contain spaces.";
+    }
+
+    if (!description) {
+      errors.description = "Description is required.";
+    }
+
+    // If there are validation errors, set them and exit
+    if (Object.keys(errors).length > 0) {
+      setErrors(errors);
+      return;
+    }
+
     await submit(
       {
         name,
@@ -50,31 +72,36 @@ export default function AddCategory() {
 
   return (
     <Frame>
-      <Page>
-        <div className="add-category-container">
+      <Page title="Add Section Category" backAction={{ content: "Home", url: "/app/admin" }}>
+        <Card>
           <Form noValidate onSubmit={handleSubmit}>
-            <TextField
-              label="Category Name"
-              type="text"
-              onChange={setName}
-              value={name}
-              required
-            />
-            <TextField
-              label="Description"
-              type="text"
-              onChange={setDescription}
-              value={description}
-              required
-            />
-            <Button submit>Create Category</Button>
+            <BlockStack vertical gap={200}>
+              <TextField
+                label="Category Name"
+                type="text"
+                onChange={setName}
+                value={name}
+                error={errors.name}
+                required
+              />
+              <TextField
+                label="Description"
+                type="text"
+                onChange={setDescription}
+                value={description}
+                error={errors.description}
+                required
+              />
+              <Button submit variant="primary">Create Category</Button>
+            </BlockStack>
           </Form>
-        </div>
+
+        </Card>
 
         {/* Show toast when category is successfully created */}
         {showToast && (
-          <Toast 
-            content="Category created successfully!" 
+          <Toast
+            content="Category created successfully!"
             onDismiss={() => setShowToast(false)} // Hide toast on dismiss
           />
         )}
