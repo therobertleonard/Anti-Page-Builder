@@ -3,7 +3,7 @@
 client_id = "dfd2f3aec72871f3b4a02a4ce439142f"
 name = "SectionApp"
 handle = "sectionapp-5"
-application_url = "https://some-embassy-fake-smoking.trycloudflare.com"
+application_url = "https://diabetes-bibliography-vary-ribbon.trycloudflare.com"
 embedded = true
 
 [build]
@@ -16,9 +16,9 @@ scopes = ""
 
 [auth]
 redirect_urls = [
-  "https://some-embassy-fake-smoking.trycloudflare.com/auth/callback",
-  "https://some-embassy-fake-smoking.trycloudflare.com/auth/shopify/callback",
-  "https://some-embassy-fake-smoking.trycloudflare.com/api/auth/callback"
+  "https://diabetes-bibliography-vary-ribbon.trycloudflare.com/auth/callback",
+  "https://diabetes-bibliography-vary-ribbon.trycloudflare.com/auth/shopify/callback",
+  "https://diabetes-bibliography-vary-ribbon.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

@@ -29,10 +29,21 @@ import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 import { PrismaClient } from "@prisma/client";
+import { authenticate } from "../shopify.server";
 const db = new PrismaClient();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+
+export const loader = async ({ request }) => {
+  const {session,redirect} = await authenticate.admin(request);
+  const shop = session.shop;
+  if(shop !== process.env.MAIN_SHOP){
+    return redirect(/app/);
+  }
+  return null;
+};
 
 // Main action function to handle form submission and section creation
 export const action = async ({ request }) => {

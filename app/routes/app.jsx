@@ -8,15 +8,21 @@ import { authenticate } from "../shopify.server";
 
 export const links = () => [{ rel: "stylesheet", href: polarisStyles }];
 
-export const loader = async ({ request }) => {
-  await authenticate.admin(request);
 
-  return json({ apiKey: process.env.SHOPIFY_API_KEY || "" });
+export const loader = async ({ request }) => {
+  const { session, redirect } = await authenticate.admin(request);
+  const shop = session.shop;
+  if (shop == process.env.MAIN_SHOP) {
+    return json({ apiKey: process.env.SHOPIFY_API_KEY || "", admin: true });
+  }else{
+    return json({ apiKey: process.env.SHOPIFY_API_KEY || "", admin: false });
+  }
 };
 
-export default function App() {
-  const { apiKey } = useLoaderData();
 
+export default function App() {
+  const { apiKey,admin } = useLoaderData();
+  
   return (
     <AppProvider isEmbeddedApp apiKey={apiKey}>
       <NavMenu>
@@ -25,6 +31,7 @@ export default function App() {
         </Link>
         <Link to="/app/PurchasedSections">My Sections</Link>
         <Link to="/app/Tutorial">Tutorial</Link>
+        {admin && <Link to="/app/admin">Admin</Link>}
       </NavMenu>
       <Outlet />
     </AppProvider>

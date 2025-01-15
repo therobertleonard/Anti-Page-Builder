@@ -5,7 +5,18 @@ import { Button, TextField, Form, Page, Frame, Toast, Card, BlockStack } from "@
 import { useNavigate } from "react-router-dom";
 
 import { PrismaClient } from "@prisma/client";
+import { authenticate } from "../shopify.server";
 const db = new PrismaClient();
+
+
+export const loader = async ({ request }) => {
+  const {session,redirect} = await authenticate.admin(request);
+  const shop = session.shop;
+  if(shop !== process.env.MAIN_SHOP){
+    return redirect(/app/);
+  }
+  return null;
+};
 
 // Main action function to handle form submission and category creation
 export const action = async ({ request }) => {
